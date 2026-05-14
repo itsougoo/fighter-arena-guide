@@ -129,7 +129,6 @@
   .step-body h4 { font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .step-body p { margin: 0; font-size: 13.5px; }
 
-  /* ── FIGHTER CARDS ── */
   .fighter-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 22px 0; }
   .fighter-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -147,13 +146,7 @@
   .f-name { font-size: 13px; font-weight: 700; color: var(--text); }
   .f-role { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
   .f-style { font-size: 11px; color: var(--muted2); margin-top: 3px; }
-  .fc-vandal   .fighter-card { border-color: rgba(232,64,64,.3); }
-  .fc-typhoon  .fighter-card { border-color: rgba(91,141,238,.3); }
-  .fc-saenchai .fighter-card { border-color: rgba(245,200,66,.3); }
-  .fc-meilin   .fighter-card { border-color: rgba(61,220,132,.3); }
-  .fc-vixen    .fighter-card { border-color: rgba(160,90,220,.3); }
 
-  /* ── TABLE ── */
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin: 18px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   thead th { text-align: left; padding: 11px 16px; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted2); border-bottom: 1px solid var(--border); background: var(--bg2); }
@@ -169,7 +162,6 @@
   .tier-bar  { height: 4px; background: var(--surface2); border-radius: 2px; min-width: 80px; }
   .tier-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--orange)); }
 
-  /* ── FORMULA ── */
   .formula-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin: 20px 0; text-align: center; }
   .formula { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--gold); background: var(--bg2); padding: 14px 24px; border-radius: var(--radius); border: 1px solid var(--border); display: inline-block; margin-bottom: 24px; letter-spacing: .5px; }
   .factor-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
@@ -177,21 +169,15 @@
   .factor .var  { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
   .factor .desc { font-size: 11px; color: var(--muted2); line-height: 1.5; }
 
-  /* ── VAULT SPLIT ── */
-  .split-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
+  .split-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 20px 0; }
   .split-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; text-align: center; transition: border-color .2s; }
   .split-card:hover { border-color: var(--border-glow); }
   .split-pct { font-size: 38px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
   .split-name { font-size: 13.5px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
   .split-desc { font-size: 12px; color: var(--muted2); line-height: 1.6; }
 
-  /* ── CODE ── */
   .code { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; font-family: var(--mono); font-size: 12.5px; color: #a8bff5; margin: 14px 0; overflow-x: auto; line-height: 1.7; }
 
-  /* ── ADDR CHIP ── */
-  .addr { font-family: var(--mono); font-size: 11px; color: #a8bff5; background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; letter-spacing: .3px; }
-
-  /* ── FAQ ── */
   details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
   details:hover { border-color: var(--border-glow); }
   details[open] { border-color: rgba(232,64,64,.3); }
@@ -202,7 +188,6 @@
   details[open] summary { border-bottom: 1px solid var(--border); }
   .detail-body { padding: 16px 20px; font-size: 13.5px; line-height: 1.8; color: var(--muted); }
 
-  /* ── HERO ── */
   .hero { margin-bottom: 40px; }
   .hero-title { font-size: 40px; font-weight: 700; color: var(--text); letter-spacing: -1px; line-height: 1.1; margin-bottom: 16px; }
   .hero-title em { color: var(--red); font-style: normal; }
@@ -212,7 +197,6 @@
   .season-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 1.5s infinite; }
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
 
-  /* ── TIMELINE ── */
   .timeline { position: relative; padding-left: 24px; margin: 20px 0; }
   .timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(to bottom, var(--red), transparent); }
   .tl-item { position: relative; margin-bottom: 24px; }
@@ -220,12 +204,10 @@
   .tl-item h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .tl-item p  { font-size: 13px; margin: 0; }
 
-  /* ── FOOTER ── */
   footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted2); display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
   footer a { color: var(--red); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
-  /* ── MOBILE ── */
   .mobile-header { display: none; position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 20px; align-items: center; justify-content: space-between; }
   .mobile-menu-btn { background: none; border: none; color: var(--text); font-size: 20px; cursor: pointer; padding: 4px; }
 
@@ -419,14 +401,14 @@
           <div class="step-num">1</div>
           <div class="step-body">
             <h4>Create your AGW</h4>
-            <p>Go to <strong>abs.xyz</strong>. Sign up with email or social &mdash; no seed phrase needed to get started.</p>
+            <p>Go to <strong>abs.xyz</strong>. Sign up with email or social &mdash; no seed phrase needed.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-body">
             <h4>Get testnet ETH</h4>
-            <p>Use the Abstract testnet faucet to receive ETH on Chain ID 11124. RPC: <code style="font-family:var(--mono);font-size:11px;color:#a8bff5;">https://api.testnet.abs.xyz</code></p>
+            <p>Use the Abstract testnet faucet. RPC: <code style="font-family:var(--mono);font-size:11px;color:#a8bff5;">https://api.testnet.abs.xyz</code></p>
           </div>
         </div>
         <div class="step">
@@ -451,9 +433,7 @@
 
       <div class="table-wrap">
         <table>
-          <thead>
-            <tr><th>Contract</th><th>Address</th><th>Status</th></tr>
-          </thead>
+          <thead><tr><th>Contract</th><th>Address</th><th>Status</th></tr></thead>
           <tbody>
             <tr>
               <td class="t-bold">ChampionVaultFactoryV2</td>
@@ -487,9 +467,7 @@
       <h3>Season 1 Fighter Vaults</h3>
       <div class="table-wrap">
         <table>
-          <thead>
-            <tr><th>Fighter</th><th>Vault Address</th></tr>
-          </thead>
+          <thead><tr><th>Fighter</th><th>Vault Address</th></tr></thead>
           <tbody>
             <tr>
               <td class="t-bold" style="color:var(--red);">&#9876; Vandal</td>
@@ -508,7 +486,7 @@
               <td class="t-mono">0xb8b4dc35Df42A12849298dd86a19c163917aE083</td>
             </tr>
             <tr>
-              <td class="t-bold" style="color:var(--purple);">&#10022; Vixen</td>
+              <td class="t-bold" style="color:var(--purple);">&#128974; Vixen</td>
               <td class="t-mono">0x06cD7A1211F1971CfD3A49D8555AF9f26e2EBEcA</td>
             </tr>
           </tbody>
@@ -530,7 +508,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Overview</h2>
       </div>
-      <p>Season 1 is Fighter Arena's debut competitive season on Abstract. Five AI fighters battle around the clock while players earn ETH by backing them strategically. Rewards split between the weekly <strong>prize pool</strong> and a cross-season <strong>Jackpot</strong>.</p>
+      <p>Season 1 is Fighter Arena's debut competitive season on Abstract. Five AI fighters battle around the clock while players earn ETH by backing them strategically.</p>
       <div class="stat-strip">
         <div class="stat-card">
           <div class="stat-label">Season Duration</div>
@@ -538,9 +516,9 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
           <div class="stat-sub">168 hourly windows</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Prize Split</div>
-          <div class="stat-val">30 / 65</div>
-          <div class="stat-sub">prize pool / jackpot</div>
+          <div class="stat-label">Deposit Split</div>
+          <div class="stat-val">95 / 5</div>
+          <div class="stat-sub">player pool / protocol fee</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Active Fighters</div>
@@ -557,7 +535,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <span class="callout-icon">&#128226;</span>
         <div>
           <strong>New in Season 1</strong><br/>
-          &middot; ChampionVaultV2 &mdash; native ETH, <code style="font-family:var(--mono);font-size:12px;">claimTo()</code>, no EOA teamWallet<br/>
+          &middot; ChampionVaultV2 &mdash; native ETH, <code style="font-family:var(--mono);font-size:12px;">claimTo()</code>, 95/5 deposit split<br/>
           &middot; SHA-256 tamper-evident fight audit log (replaces FNV-32)<br/>
           &middot; On-chain Merkle proof reward distribution<br/>
           &middot; CombatContributionRouter &amp; SeasonPassPaymentRouter<br/>
@@ -577,7 +555,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
       <p>Season 1 features <strong>5 fully autonomous AI fighters</strong>. You cannot modify their behavior &mdash; study their performance data before committing your ETH.</p>
 
       <div class="fighter-row">
-        <div class="fighter-card fc-vandal" style="border-color:rgba(232,64,64,.35);">
+        <div class="fighter-card" style="border-color:rgba(232,64,64,.35);">
           <div class="f-num">F-01</div>
           <div class="fighter-avatar fa-red">&#128308;</div>
           <div class="f-name">Vandal</div>
@@ -616,7 +594,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
 
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>You don't control fighters.</strong> They are fully autonomous AI agents running on-chain. You back them financially &mdash; their decisions in the arena are their own. Fighter rotation may change between seasons.</div>
+        <div><strong>You don't control fighters.</strong> They are fully autonomous AI agents. You back them financially &mdash; their decisions in the arena are their own. Fighter rotation may change between seasons.</div>
       </div>
     </section>
 
@@ -629,7 +607,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <h2>Combat System</h2>
       </div>
       <p>Fights are fully automated and run every hour, 24/7, for the entire 7-day season. Each hourly window produces <strong>10 one-minute fights</strong> in round-robin format &mdash; every fighter faces every other fighter multiple times per season.</p>
-      <p>Each fight tracks <strong>HP, Special Gauge, and round state</strong>. Special attacks activate when the gauge hits 100. Combat is deterministic &mdash; given the same fighter states and inputs, the same fight always produces the same result.</p>
+      <p>Each fight tracks <strong>HP, Special Gauge, and round state</strong>. Special attacks activate when the gauge hits 100. Combat is deterministic &mdash; the same fighter states always produce the same result.</p>
 
       <h3>Season timeline</h3>
       <div class="timeline">
@@ -691,11 +669,11 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
       </div>
 
       <h3>Anti-whale protection</h3>
-      <p>Fighter Arena applies a <strong>square-root</strong> to raw ETH amounts before scoring. Doubling your deposit only increases your amount score by ~41%. A consistent mid-sized depositor who trains regularly can outrank a whale who staked once late in the season.</p>
+      <p>Fighter Arena applies a <strong>square-root</strong> to raw ETH amounts before scoring. Doubling your deposit only increases your amount score by ~41%. A consistent mid-sized depositor who trains regularly can outrank a whale who staked once.</p>
 
       <div class="callout success">
         <span class="callout-icon">&#128161;</span>
-        <div><strong>Strategy tip:</strong> Deposit early into your fighter's vault (via CombatContributionRouter) and keep contributing throughout the week. High duration + regularity consistently outperforms single large late deposits.</div>
+        <div><strong>Strategy tip:</strong> Deposit early into your fighter's vault and keep contributing throughout the week. High duration + regularity consistently outperforms a single large late deposit.</div>
       </div>
     </section>
 
@@ -722,7 +700,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
           </div>
           <div class="factor">
             <div class="var">regularity</div>
-            <div class="desc">Consistency across the season. Repeated deposits beat a single large one-time stake.</div>
+            <div class="desc">Consistency across the season. Repeated deposits beat a single one-time stake.</div>
           </div>
           <div class="factor">
             <div class="var">risk</div>
@@ -733,7 +711,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
 
       <div class="callout info">
         <span class="callout-icon">&#9201;</span>
-        <div><strong>Start early.</strong> Duration is a linear multiplier &mdash; every hour staked before season end adds directly to your score. The first depositor of the season has a structural advantage over latecomers.</div>
+        <div><strong>Start early.</strong> Duration is a linear multiplier &mdash; every hour staked before season end adds directly to your score. The first depositor has a structural advantage over latecomers.</div>
       </div>
     </section>
 
@@ -766,11 +744,11 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
 
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>Bottom 5% earn nothing from the prize pool.</strong> Your deposited ETH is always safe in the vault, but you receive zero rewards. Deposit early and consistently to stay above the floor.</div>
+        <div><strong>Bottom 5% earn nothing from the prize pool.</strong> Your deposited ETH is always safe in the vault. Deposit early and consistently to stay above the floor.</div>
       </div>
 
       <h3>Individual payout formula</h3>
-      <p>Within each tier, rewards scale proportionally with your score relative to other players in the same tier:</p>
+      <p>Within each tier, rewards scale proportionally with your score relative to others in the same tier:</p>
       <div class="code">your_reward = (your_score / total_tier_score) &times; tier_allocation &times; prize_pool</div>
     </section>
 
@@ -784,23 +762,25 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
       </div>
       <p>All ETH deposited in Fighter Arena flows through <strong>ChampionVaultV2</strong> &mdash; a non-custodial smart contract on Abstract. Only you can claim your rewards, only after the season settles with a valid Merkle proof.</p>
 
-      <h3>Vault fund split</h3>
+      <h3>Deposit split</h3>
+      <p>Every deposit is automatically split at the contract level (defined in <code style="font-family:var(--mono);background:var(--bg2);padding:2px 6px;border-radius:4px;font-size:12px;color:#a8bff5;">ChampionVaultV2.sol</code> &mdash; <code style="font-family:var(--mono);background:var(--bg2);padding:2px 6px;border-radius:4px;font-size:12px;color:#a8bff5;">PLAYER_POOL_BPS = 9_500</code>):</p>
+
       <div class="split-row">
         <div class="split-card">
-          <div class="split-pct" style="color:var(--green)">30%</div>
-          <div class="split-name">Prize Pool</div>
-          <div class="split-desc">Distributed to players based on contribution score tier rankings at season end.</div>
-        </div>
-        <div class="split-card">
-          <div class="split-pct" style="color:var(--gold)">65%</div>
-          <div class="split-name">Jackpot</div>
-          <div class="split-desc">Accumulates in the Jackpot contract across seasons. Released through periodic jackpot events.</div>
+          <div class="split-pct" style="color:var(--green)">95%</div>
+          <div class="split-name">Player Pool</div>
+          <div class="split-desc">Stays in the vault and is distributed to players based on contribution score tier rankings at season end.</div>
         </div>
         <div class="split-card">
           <div class="split-pct" style="color:var(--muted2)">5%</div>
           <div class="split-name">Protocol Fee</div>
-          <div class="split-desc">Sent to ProtocolFeeTreasury (<span style="font-family:var(--mono);font-size:10px;">0xE2D4...0B0b</span>) to fund ongoing development.</div>
+          <div class="split-desc">Sent instantly to ProtocolFeeTreasury (<span style="font-family:var(--mono);font-size:10px;">0xE2D4...0B0b</span>) to fund development and operations.</div>
         </div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>Combat routing (CombatContributionRouter):</strong> Combat contributions are routed separately &mdash; 65% to the winner's vault, 30% to the loser's vault, 5% protocol fee &mdash; before being credited to the player pool.</div>
       </div>
 
       <div class="callout danger">
@@ -824,7 +804,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
           <div class="step-num">1</div>
           <div class="step-body">
             <h4>Wait for settlement</h4>
-            <p>After the season closes, the protocol builds the Merkle reward tree off-chain and commits the Merkle root on-chain. This typically takes a few hours.</p>
+            <p>After the season closes, the protocol builds the Merkle reward tree off-chain and commits the root on-chain. This typically takes a few hours.</p>
           </div>
         </div>
         <div class="step">
@@ -867,7 +847,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
 
       <details>
         <summary>Can I control how my fighter fights? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No. Vandal, Typhoon, Saenchai, Mei-Ling and Vixen are fully autonomous AI agents. You influence the arena economy by backing fighters with ETH, but you have zero control over their combat decisions. Think of yourself as a manager, not a fighter.</div>
+        <div class="detail-body">No. Vandal, Typhoon, Saenchai, Mei-Ling and Vixen are fully autonomous AI agents. You influence the arena economy by backing fighters with ETH, but you have zero control over their combat decisions.</div>
       </details>
 
       <details>
@@ -876,8 +856,13 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
       </details>
 
       <details>
+        <summary>What is the deposit split? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Every direct deposit is split automatically: 95% goes to the player pool (stays in the vault, distributed at season end) and 5% goes to the ProtocolFeeTreasury. This is hardcoded in ChampionVaultV2.sol (PLAYER_POOL_BPS = 9_500). Combat contributions via CombatContributionRouter are routed 65% to winner / 30% to loser / 5% fee before being credited to each vault's player pool.</div>
+      </details>
+
+      <details>
         <summary>What happens if my fighter loses most matches? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Your ETH principal is always safe in the vault &mdash; it's not at risk based on fight outcomes. However, a lower-performing fighter gives you a weaker risk multiplier in your score. If your fighter wins unexpectedly, the risk multiplier rewards you more.</div>
+        <div class="detail-body">Your ETH principal is always safe in the vault. However, a lower-performing fighter gives you a weaker risk multiplier in your score. If your fighter wins unexpectedly, the risk multiplier rewards you more.</div>
       </details>
 
       <details>
@@ -887,12 +872,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
 
       <details>
         <summary>How are fight results verified as fair? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Every fight is logged with a SHA-256 tamper-evident checksum in the agent audit log (replaced FNV-32 in Season 1). Combat is deterministic &mdash; the same fighter states and inputs always produce the same result. The full audit trail is publicly accessible on GitHub.</div>
-      </details>
-
-      <details>
-        <summary>Is the Jackpot separate from seasonal rewards? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Yes. 65% of all vault deposits go to the Jackpot contract, which accumulates across seasons. Jackpot events are separate from the weekly 30% prize pool and reward long-term participants.</div>
+        <div class="detail-body">Every fight is logged with a SHA-256 tamper-evident checksum in the agent audit log. Combat is deterministic &mdash; the same fighter states and inputs always produce the same result. The full audit trail is publicly accessible on GitHub.</div>
       </details>
 
       <details>
@@ -902,7 +882,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
 
       <details>
         <summary>I'm in the bottom 5% &mdash; do I get anything? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No prize pool rewards &mdash; but your deposited ETH is returned in full. The bottom 5% of contribution scores earn zero from the prize pool. Deposit early and contribute consistently throughout the season to stay above the floor.</div>
+        <div class="detail-body">No prize pool rewards &mdash; but your deposited ETH is returned in full. Deposit early and contribute consistently throughout the season to stay above the floor.</div>
       </details>
     </section>
 
