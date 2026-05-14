@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Fighter Arena Season 1 — Official Game Guide. AI combat, ETH rewards, Champion Vaults on Abstract L2."/>
+  <title>Fighter Arena — Game Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+  /* ════════════════════════════════════════════
+     FIGHTER ARENA — DESIGN SYSTEM
+     DA: dark combat, red/orange neon, brutal
+  ════════════════════════════════════════════ */
+  :root {
+    --bg:           #0c0c10;
+    --bg2:          #111118;
+    --surface:      #16161f;
+    --surface2:     #1d1d28;
+    --border:       #2a2a38;
+    --border-glow:  #e8404060;
+
+    --red:          #e84040;
+    --red-dim:      rgba(232,64,64,.12);
+    --red-glow:     0 0 20px rgba(232,64,64,.35);
+    --orange:       #ff6b35;
+    --gold:         #f5c842;
+    --gold-dim:     rgba(245,200,66,.12);
+    --green:        #3ddc84;
+    --green-dim:    rgba(61,220,132,.1);
+    --blue:         #5b8dee;
+    --blue-dim:     rgba(91,141,238,.1);
+
+    --text:         #f0f0f8;
+    --muted:        #8888a8;
+    --muted2:       #55556a;
+
+    --font:         'Space Grotesk', system-ui, sans-serif;
+    --mono:         'Space Mono', 'Courier New', monospace;
+
+    --sidebar-w:    260px;
+    --radius:       8px;
+    --radius-lg:    12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 15px; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--muted);
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+  /* ═══════════════════ LAYOUT ═══════════════════ */
+  .layout { display: flex; min-height: 100vh; }
+
+  /* ═══════════════════ SIDEBAR ═══════════════════ */
+  aside {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-logo {
+    padding: 22px 20px 18px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .logo-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: var(--red);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    box-shadow: var(--red-glow);
+    flex-shrink: 0;
+  }
+
+  .logo-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -.3px;
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    color: var(--muted2);
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    padding-left: 42px;
+  }
+
+  /* Nav groups */
+  .nav-section {
+    padding: 18px 0 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted2);
+    padding-left: 20px;
+  }
+
+  .nav-group { border-bottom: 1px solid var(--border); }
+
+  .nav-group-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    text-align: left;
+    font-family: var(--font);
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    transition: color .15s, background .15s;
+  }
+
+  .nav-group-btn:hover { color: var(--text); background: var(--surface2); }
+
+  .nav-group-btn .chevron {
+    font-size: 10px;
+    color: var(--muted2);
+    transition: transform .2s;
+  }
+
+  .nav-group-btn.open .chevron { transform: rotate(180deg); }
+
+  .tag {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  .tag-live  { background: rgba(61,220,132,.2); color: var(--green); border: 1px solid rgba(61,220,132,.3); }
+  .tag-ended { background: var(--surface2); color: var(--muted2); border: 1px solid var(--border); }
+
+  .nav-sub {
+    display: none;
+    flex-direction: column;
+    padding-bottom: 4px;
+  }
+  .nav-sub.open { display: flex; }
+
+  .nav-sub a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 20px 7px 32px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all .12s;
+  }
+
+  .nav-sub a:hover { color: var(--text); background: var(--surface2); }
+  .nav-sub a.active {
+    color: var(--red);
+    border-left-color: var(--red);
+    background: var(--red-dim);
+  }
+
+  .nav-sub a .nav-icon { font-size: 12px; opacity: .7; }
+
+  /* ═══════════════════ MAIN ═══════════════════ */
+  main {
+    flex: 1;
+    max-width: 820px;
+    padding: 48px 52px 120px;
+    min-width: 0;
+  }
+
+  /* ═══════════════════ SECTION ═══════════════════ */
+  section {
+    margin-bottom: 80px;
+    scroll-margin-top: 24px;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header { margin-bottom: 28px; }
+
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -.5px;
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 32px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h3::before {
+    content: '';
+    display: inline-block;
+    width: 3px; height: 16px;
+    background: var(--red);
+    border-radius: 2px;
+  }
+
+  p { color: var(--muted); margin-bottom: 14px; font-size: 14.5px; }
+  p strong { color: var(--text); font-weight: 600; }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 0 80px;
+  }
+
+  /* ═══════════════════ STAT STRIP ═══════════════════ */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 24px 0;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: border-color .2s;
+  }
+
+  .stat-card:hover { border-color: var(--border-glow); }
+
+  .stat-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 6px;
+  }
+
+  .stat-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .stat-sub {
+    font-size: 11px;
+    color: var(--muted2);
+    margin-top: 4px;
+  }
+
+  /* ═══════════════════ CALLOUT ═══════════════════ */
+  .callout {
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: 13.5px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    line-height: 1.7;
+    border: 1px solid;
+  }
+
+  .callout-icon { flex-shrink: 0; margin-top: 1px; font-size: 14px; }
+
+  .callout.info    { background: var(--blue-dim);  border-color: rgba(91,141,238,.25);  color: #a8bff5; }
+  .callout.warn    { background: var(--gold-dim);  border-color: rgba(245,200,66,.25);  color: #d4b84a; }
+  .callout.success { background: var(--green-dim); border-color: rgba(61,220,132,.25);  color: #6edda8; }
+  .callout.danger  { background: var(--red-dim);   border-color: rgba(232,64,64,.25);   color: #e88080; }
+
+  .callout strong { color: var(--text); }
+
+  /* ═══════════════════ STEPS ═══════════════════ */
+  .steps { margin: 20px 0; }
+  .step  { display: flex; gap: 16px; margin-bottom: 22px; align-items: flex-start; }
+
+  .step-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--red);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+    box-shadow: var(--red-glow);
+  }
+
+  .step-body h4 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .step-body p { margin: 0; font-size: 13.5px; }
+
+  /* ═══════════════════ FIGHTER CARDS ═══════════════════ */
+  .fighter-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 22px 0;
+  }
+
+  .fighter-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 10px;
+    text-align: center;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    cursor: default;
+  }
+
+  .fighter-card:hover {
+    border-color: var(--red);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(232,64,64,.15);
+  }
+
+  .fighter-card .f-num {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .fighter-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    border: 2px solid var(--border);
+  }
+
+  .fa-red    { background: rgba(232,64,64,.15);  border-color: rgba(232,64,64,.4); }
+  .fa-blue   { background: rgba(91,141,238,.15); border-color: rgba(91,141,238,.4);}
+  .fa-purple { background: rgba(160,90,220,.15); border-color: rgba(160,90,220,.4);}
+  .fa-orange { background: rgba(255,107,53,.15); border-color: rgba(255,107,53,.4);}
+  .fa-green  { background: rgba(61,220,132,.15); border-color: rgba(61,220,132,.4);}
+
+  .f-name { font-size: 13px; font-weight: 700; color: var(--text); }
+  .f-style { font-size: 11px; color: var(--muted2); margin-top: 3px; }
+
+  /* ═══════════════════ TABLE ═══════════════════ */
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin: 18px 0;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+
+  thead th {
+    text-align: left;
+    padding: 11px 16px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted2);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  tbody td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    vertical-align: middle;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--surface2); }
+
+  td.t-bold   { font-weight: 700; color: var(--text); }
+  td.t-green  { font-weight: 700; color: var(--green); }
+  td.t-red    { font-weight: 700; color: var(--red); }
+  td.t-gold   { font-weight: 700; color: var(--gold); }
+  td.t-muted  { color: var(--muted2); }
+  td.t-mono   { font-family: var(--mono); font-size: 12px; }
+
+  /* tier bar */
+  .tier-bar { height: 4px; background: var(--surface2); border-radius: 2px; min-width: 80px; }
+  .tier-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--orange)); }
+
+  /* ═══════════════════ FORMULA BOX ═══════════════════ */
+  .formula-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .formula {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    background: var(--bg2);
+    padding: 14px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: inline-block;
+    margin-bottom: 24px;
+    letter-spacing: .5px;
+  }
+
+  .factor-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  .factor {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 12px;
+  }
+
+  .factor .var { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+  .factor .desc { font-size: 11px; color: var(--muted2); line-height: 1.5; }
+
+  /* ═══════════════════ VAULT SPLIT ═══════════════════ */
+  .split-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .split-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    text-align: center;
+    transition: border-color .2s;
+  }
+
+  .split-card:hover { border-color: var(--border-glow); }
+
+  .split-pct {
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .split-name { font-size: 13.5px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .split-desc { font-size: 12px; color: var(--muted2); line-height: 1.6; }
+
+  /* ═══════════════════ CODE ═══════════════════ */
+  .code {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: #a8bff5;
+    margin: 14px 0;
+    overflow-x: auto;
+    line-height: 1.7;
+  }
+
+  /* ═══════════════════ FAQ / DETAILS ═══════════════════ */
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+
+  details:hover { border-color: var(--border-glow); }
+  details[open] { border-color: rgba(232,64,64,.3); }
+
+  summary {
+    padding: 15px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    gap: 12px;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  .sum-chevron {
+    font-size: 11px;
+    color: var(--muted2);
+    flex-shrink: 0;
+    transition: transform .2s;
+  }
+
+  details[open] .sum-chevron { transform: rotate(180deg); color: var(--red); }
+  details[open] summary { border-bottom: 1px solid var(--border); }
+
+  .detail-body {
+    padding: 16px 20px;
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+
+  /* ═══════════════════ HERO (gen-what) ═══════════════════ */
+  .hero {
+    margin-bottom: 40px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero-title em { color: var(--red); font-style: normal; }
+
+  .hero-desc {
+    font-size: 16px;
+    max-width: 580px;
+    line-height: 1.8;
+    margin-bottom: 0;
+  }
+
+  /* ═══════════════════ SEASON TAG ═══════════════════ */
+  .season-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--red-dim);
+    border: 1px solid rgba(232,64,64,.3);
+    color: var(--red);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .season-badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .3; }
+  }
+
+  /* ═══════════════════ COMBAT TIMELINE ═══════════════════ */
+  .timeline { position: relative; padding-left: 24px; margin: 20px 0; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--red), transparent);
+  }
+
+  .tl-item { position: relative; margin-bottom: 24px; }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -21px; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--red);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 8px rgba(232,64,64,.5);
+  }
+
+  .tl-item h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .tl-item p  { font-size: 13px; margin: 0; }
+
+  /* ═══════════════════ FOOTER ═══════════════════ */
+  footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  footer a { color: var(--red); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ═══════════════════ MOBILE HEADER ═══════════════════ */
+  .mobile-header {
+    display: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-menu-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  /* ═══════════════════ RESPONSIVE ═══════════════════ */
+  @media (max-width: 900px) {
+    aside { display: none; }
+    aside.mobile-open { display: flex; position: fixed; z-index: 200; }
+    .mobile-header { display: flex; }
+    main { padding: 28px 22px 80px; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .fighter-row { grid-template-columns: repeat(3, 1fr); }
+    .factor-row { grid-template-columns: repeat(2, 1fr); }
+    .split-row { grid-template-columns: 1fr; }
+    .hero-title { font-size: 28px; }
+    h2 { font-size: 22px; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE HEADER -->
+<div class="mobile-header">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div class="logo-icon">&#9876;</div>
+    <span style="font-weight:700;color:var(--text);font-size:15px;">Fighter Arena</span>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">&#9776;</button>
+</div>
+
+<div class="layout">
+
+  <!-- ══════════════════ SIDEBAR ══════════════════ -->
+  <aside id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-wordmark">
+        <div class="logo-icon">&#9876;</div>
+        <div class="logo-name">Fighter Arena</div>
+      </div>
+      <div class="logo-sub">Game Guide &middot; Season 1</div>
+    </div>
+
+    <nav>
+      <!-- GENERAL -->
+      <div class="nav-section">General</div>
+
+      <div class="nav-group">
+        <button class="nav-group-btn open" onclick="toggleNav(this,'grp-gen')">
+          <span>&#128214; General</span>
+          <span class="chevron">&#9662;</span>
+        </button>
+        <div class="nav-sub open" id="grp-gen">
+          <a href="#gen-what"><span class="nav-icon">&#127967;</span>What is Fighter Arena</a>
+          <a href="#gen-start"><span class="nav-icon">&#128640;</span>Getting Started</a>
+          <a href="#gen-wallet"><span class="nav-icon">&#128272;</span>Wallet (AGW)</a>
+          <a href="#gen-contracts"><span class="nav-icon">&#128196;</span>Contracts</a>
+        </div>
+      </div>
+
+      <!-- SEASONS -->
+      <div class="nav-section">Seasons</div>
+
+      <div class="nav-group">
+        <button class="nav-group-btn open" onclick="toggleNav(this,'grp-s1')">
+          <span style="display:flex;align-items:center;gap:8px;">
+            Season 1 <span class="tag tag-live">LIVE</span>
+          </span>
+          <span class="chevron">&#9662;</span>
+        </button>
+        <div class="nav-sub open" id="grp-s1">
+          <a href="#s1-overview"><span class="nav-icon">&#128203;</span>Overview</a>
+          <a href="#s1-fighters"><span class="nav-icon">&#129354;</span>Fighters</a>
+          <a href="#s1-combat"><span class="nav-icon">&#9876;</span>Combat System</a>
+          <a href="#s1-support"><span class="nav-icon">&#128170;</span>Supporting Fighters</a>
+          <a href="#s1-score"><span class="nav-icon">&#128202;</span>Contribution Score</a>
+          <a href="#s1-payouts"><span class="nav-icon">&#127942;</span>Payouts &amp; Scoring</a>
+          <a href="#s1-vaults"><span class="nav-icon">&#127974;</span>Champion Vaults</a>
+          <a href="#s1-claiming"><span class="nav-icon">&#128176;</span>Claiming Rewards</a>
+          <a href="#s1-faq"><span class="nav-icon">&#10067;</span>FAQ</a>
+        </div>
+      </div>
+
+    </nav>
+
+    <div style="margin-top:auto;padding:16px 20px;border-top:1px solid var(--border);">
+      <a href="https://github.com/ShiNoiii531/fighter-arena" target="_blank"
+         style="display:flex;align-items:center;gap:8px;color:var(--muted2);font-size:12px;text-decoration:none;transition:color .15s;"
+         onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted2)'">
+        <span>&#8599;</span> GitHub Repository
+      </a>
+    </div>
+  </aside>
+
+  <!-- ══════════════════ MAIN ══════════════════ -->
+  <main id="main-content">
+
+    <!-- ════════ GEN: WHAT IS ════════ -->
+    <section id="gen-what">
+      <div class="hero">
+        <div class="season-badge"><span class="dot"></span>Season 1 &middot; Live on Abstract</div>
+        <h1 class="hero-title">Fighter Arena<br/><em>Game Guide</em></h1>
+        <p class="hero-desc">Fighter Arena is a fully on-chain AI combat league. Five autonomous fighters battle every hour while you earn <strong>ETH</strong> by backing the ones you believe in. No team required. Pure execution.</p>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="stat-label">Chain</div>
+          <div class="stat-val">Abstract</div>
+          <div class="stat-sub">L2 &middot; Chain ID 11124</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Reward Currency</div>
+          <div class="stat-val">ETH</div>
+          <div class="stat-sub">Claimable on-chain</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Wallet</div>
+          <div class="stat-val">AGW</div>
+          <div class="stat-sub">Abstract Global Wallet</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Fights / Season</div>
+          <div class="stat-val">1,680</div>
+          <div class="stat-sub">10 per hour &middot; 168 hrs</div>
+        </div>
+      </div>
+
+      <p>Each season runs for exactly <strong>7 days</strong>. Fights happen automatically every hour. Your job is to back fighters strategically, build a high contribution score, and claim your share of the prize pool at the end.</p>
+
+      <p>All on-chain actions &mdash; deposits, Merkle proof claims &mdash; flow through <strong>ChampionVaultV2</strong>. Combat itself is handled by fully autonomous AI agents with a verifiable, tamper-evident audit trail on GitHub.</p>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ GEN: GETTING STARTED ════════ -->
+    <section id="gen-start">
+      <div class="page-header">
+        <div class="page-eyebrow">General</div>
+        <h2>Getting Started</h2>
+      </div>
+
+      <p>To play, you need an <strong>Abstract Global Wallet (AGW)</strong> funded with ETH. AGW is a smart-contract wallet &mdash; no browser extension required.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Connect your wallet</h4>
+            <p>Visit the Fighter Arena app and connect your Abstract Global Wallet.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Fund with ETH</h4>
+            <p>Bridge or transfer ETH to your AGW on Abstract Testnet (Chain ID 11124). You'll need ETH for your vault deposit plus a small amount for gas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Choose a fighter</h4>
+            <p>Review the 5 Season 1 fighters, study their combat styles and past performance, and decide who to back.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Deposit into the vault</h4>
+            <p>Deposit ETH to the Champion Vault for your chosen fighter. Bet, sponsor, or train &mdash; each affects your contribution score differently.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h4>Track your rank</h4>
+            <p>Fights run automatically every hour. Monitor your leaderboard position on the live dashboard throughout the week.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <h4>Claim rewards</h4>
+            <p>After season settlement, submit your Merkle proof in the app to receive your ETH share directly to your wallet.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>Passive play:</strong> Once you've deposited, your contribution score accumulates automatically. No need to stay online during fights &mdash; just check your rank and claim at the end.</div>
+      </div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ GEN: WALLET ════════ -->
+    <section id="gen-wallet">
+      <div class="page-header">
+        <div class="page-eyebrow">General</div>
+        <h2>Wallet (AGW)</h2>
+      </div>
+
+      <p>Fighter Arena is built exclusively for <strong>Abstract Global Wallet</strong>. Standard EOA wallets (MetaMask, hardware wallets) are not supported &mdash; transactions will fail.</p>
+
+      <div class="callout danger">
+        <span class="callout-icon">&#9888;</span>
+        <div><strong>AGW only.</strong> Do not interact with Fighter Arena contracts using a standard EOA wallet. The deprecated ChampionVault V1 is also incompatible with Season 1.</div>
+      </div>
+
+      <h3>Setup</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Create your AGW</h4>
+            <p>Go to <strong>abs.xyz</strong>. Sign up with email or social login &mdash; no seed phrase required to get started.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Get testnet ETH</h4>
+            <p>Use the Abstract testnet faucet to receive ETH on Chain ID 11124.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Connect to Fighter Arena</h4>
+            <p>Open the app, click "Connect Wallet", select Abstract Global Wallet. The app detects your AGW automatically.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Why AGW?</h3>
+      <p>AGW wallets are smart-contract wallets native to Abstract. Fighter Arena uses <code style="font-family:var(--mono);background:var(--bg2);padding:2px 6px;border-radius:4px;font-size:12px;color:#a8bff5;">claimTo()</code> &mdash; a function that lets you claim rewards to any address &mdash; which requires smart-wallet primitives that EOAs don't support.</p>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ GEN: CONTRACTS ════════ -->
+    <section id="gen-contracts">
+      <div class="page-header">
+        <div class="page-eyebrow">General</div>
+        <h2>Contracts</h2>
+      </div>
+
+      <p>All vault and reward logic is handled on-chain on Abstract Testnet. Always verify the canonical contract address in the official GitHub repo before interacting.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Contract</th>
+              <th>Purpose</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="t-bold t-mono">ChampionVaultV2</td>
+              <td>Season 1 vault &mdash; deposits, Merkle claims, fee split</td>
+              <td class="t-green">&#9679; Active</td>
+            </tr>
+            <tr>
+              <td class="t-bold t-mono">Jackpot</td>
+              <td>65% of deposits accumulate here across seasons</td>
+              <td class="t-green">&#9679; Active</td>
+            </tr>
+            <tr>
+              <td class="t-bold t-mono">ProtocolFeeTreasury</td>
+              <td>Receives 5% protocol fee from all vault deposits</td>
+              <td class="t-green">&#9679; Active</td>
+            </tr>
+            <tr>
+              <td class="t-bold t-mono">ChampionVault (V1)</td>
+              <td>Deprecated &mdash; EOA teamWallet, no claimTo(), no receive()</td>
+              <td class="t-muted">&#9888; Deprecated</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code">// Claim rewards to your own wallet
+vault.claim(proof, amount);
+
+// Claim to a different address (optional)
+vault.claimTo(proof, amount, alternateRecipient);</div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════════════════════════════
+         SEASON 1
+    ════════════════════════════════ -->
+
+    <!-- ════════ S1: OVERVIEW ════════ -->
+    <section id="s1-overview">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Overview</h2>
+      </div>
+
+      <p>Season 1 is Fighter Arena's debut competitive season on Abstract. Five AI fighters battle around the clock while players earn ETH by backing them strategically. Rewards are split between the weekly <strong>prize pool</strong> and a <strong>Jackpot</strong> that compounds across seasons.</p>
+
+      <div class="stat-strip">
+        <div class="stat-card">
+          <div class="stat-label">Season Duration</div>
+          <div class="stat-val">7 days</div>
+          <div class="stat-sub">168 hourly windows</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Prize Split</div>
+          <div class="stat-val">30 / 65</div>
+          <div class="stat-sub">prize pool / jackpot</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Fighters</div>
+          <div class="stat-val">5</div>
+          <div class="stat-sub">of 10 canonical roster</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Fights / Hour</div>
+          <div class="stat-val">10</div>
+          <div class="stat-sub">1,680 total per season</div>
+        </div>
+      </div>
+
+      <h3>Changelog</h3>
+      <div class="callout success">
+        <span class="callout-icon">&#128226;</span>
+        <div>
+          <strong>New in Season 1</strong><br/>
+          &middot; ChampionVaultV2 with native ETH support and <code style="font-family:var(--mono);font-size:12px;">claimTo()</code><br/>
+          &middot; SHA-256 tamper-evident fight audit log<br/>
+          &middot; On-chain Merkle proof reward distribution<br/>
+          &middot; 5 active autonomous AI fighter agents<br/>
+          &middot; Anti-whale square-root amount scoring
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ S1: FIGHTERS ════════ -->
+    <section id="s1-fighters">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Fighters</h2>
+      </div>
+
+      <p>Season 1 features <strong>5 active AI fighters</strong> from a roster of 10 canonical champions. Each runs as a fully autonomous agent &mdash; you cannot modify their behavior. Study performance data before committing your ETH.</p>
+
+      <div class="fighter-row">
+        <div class="fighter-card">
+          <div class="f-num">F-01</div>
+          <div class="fighter-avatar fa-red">&#128308;</div>
+          <div class="f-name">Striker</div>
+          <div class="f-style">Aggressive</div>
+        </div>
+        <div class="fighter-card">
+          <div class="f-num">F-02</div>
+          <div class="fighter-avatar fa-blue">&#128309;</div>
+          <div class="f-name">Sentinel</div>
+          <div class="f-style">Defensive</div>
+        </div>
+        <div class="fighter-card">
+          <div class="f-num">F-03</div>
+          <div class="fighter-avatar fa-purple">&#128993;</div>
+          <div class="f-name">Phantom</div>
+          <div class="f-style">Counter</div>
+        </div>
+        <div class="fighter-card">
+          <div class="f-num">F-04</div>
+          <div class="fighter-avatar fa-orange">&#128992;</div>
+          <div class="f-name">Tactician</div>
+          <div class="f-style">Technical</div>
+        </div>
+        <div class="fighter-card">
+          <div class="f-num">F-05</div>
+          <div class="fighter-avatar fa-green">&#128994;</div>
+          <div class="f-name">Vanguard</div>
+          <div class="f-style">Balanced</div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <span class="callout-icon">&#9888;</span>
+        <div><strong>You don't control fighters.</strong> They are fully autonomous AI agents. You back them financially &mdash; their decisions in the arena are their own. Fighter rotation may change between seasons.</div>
+      </div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ S1: COMBAT ════════ -->
+    <section id="s1-combat">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Combat System</h2>
+      </div>
+
+      <p>Fights are fully automated and run every hour, 24/7, for the entire 7-day season. Each hourly window produces <strong>10 one-minute fights</strong> in round-robin format &mdash; every fighter faces every other fighter multiple times per season.</p>
+
+      <h3>Season timeline</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <h4>Season Opens</h4>
+          <p>The Champion Vault activates. Players begin depositing ETH to support fighters. Duration scoring starts from the moment of first deposit.</p>
+        </div>
+        <div class="tl-item">
+          <h4>Combat Phase &mdash; 168 hours</h4>
+          <p>10 fights per hour. AI agents run autonomously. Every fight is logged with a SHA-256 checksum in the tamper-evident audit trail.</p>
+        </div>
+        <div class="tl-item">
+          <h4>Season Closes</h4>
+          <p>Vault stops accepting deposits. Final leaderboard positions lock. The Merkle reward tree is constructed and committed on-chain.</p>
+        </div>
+        <div class="tl-item">
+          <h4>Settlement &amp; Claiming</h4>
+          <p>Players submit Merkle proofs to claim ETH. Verification and distribution are fully trustless and on-chain.</p>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>Verifiable by design:</strong> Combat is deterministic &mdash; the same inputs always produce the same result. The full audit log with SHA-256 checksums is publicly accessible on GitHub.</div>
+      </div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ S1: SUPPORT ════════ -->
+    <section id="s1-support">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Supporting Fighters</h2>
+      </div>
+
+      <p>You don't fight &mdash; you back fighters. There are three ways to support, each influencing your contribution score differently. You can split your ETH across multiple fighters in the same season.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>How it works</th>
+              <th>Primary score benefit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="t-bold">&#127919; Bet / Stake</td>
+              <td>Deposit ETH into a fighter's Champion Vault</td>
+              <td>Amount factor (&radic; anti-whale)</td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#127885; Sponsor</td>
+              <td>Commit ETH for a full season duration</td>
+              <td>Duration multiplier</td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#9889; Train</td>
+              <td>Make repeated contributions throughout the season</td>
+              <td>Regularity multiplier</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Anti-whale protection</h3>
+      <p>Fighter Arena applies a <strong>square-root</strong> to raw ETH amounts. Doubling your deposit only increases your amount score by ~41%. A consistent mid-sized depositor who trains regularly can outrank a whale who staked once.</p>
+
+      <div class="callout success">
+        <span class="callout-icon">&#128161;</span>
+        <div><strong>Strategy:</strong> Players who deposit early and keep contributing throughout the week (high duration + regularity) routinely outperform single large deposits made late in the season.</div>
+      </div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ S1: SCORE ════════ -->
+    <section id="s1-score">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Contribution Score</h2>
+      </div>
+
+      <p>Your leaderboard rank is determined entirely by your <strong>contribution score</strong> &mdash; a formula that captures not just how much you deposited, but how early, how consistently, and which fighter you backed.</p>
+
+      <div class="formula-box">
+        <div class="formula">score = &radic;amount &times; duration &times; regularity &times; risk</div>
+        <div class="factor-row">
+          <div class="factor">
+            <div class="var">&radic;amount</div>
+            <div class="desc">Square root of total ETH deposited. Anti-whale diminishing returns.</div>
+          </div>
+          <div class="factor">
+            <div class="var">duration</div>
+            <div class="desc">How long your ETH has been staked. Early depositors earn the most.</div>
+          </div>
+          <div class="factor">
+            <div class="var">regularity</div>
+            <div class="desc">Consistency across the season. Repeated deposits beat one-time large stakes.</div>
+          </div>
+          <div class="factor">
+            <div class="var">risk</div>
+            <div class="desc">Fighter performance multiplier. Backing an underdog who wins pays more.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">&#9201;</span>
+        <div><strong>Start early.</strong> Duration is a linear multiplier &mdash; every hour staked before season end adds directly to your score. The first depositor of the season has a structural advantage.</div>
+      </div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ S1: PAYOUTS ════════ -->
+    <section id="s1-payouts">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Payouts &amp; Scoring</h2>
+      </div>
+
+      <p>At season end, players are ranked by contribution score and placed into one of <strong>8 reward tiers</strong>. The bottom 5% receive no prize pool share. The top 95% split the prize pool based on tier.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Rank Percentile</th>
+              <th>Pool Share</th>
+              <th style="width:130px">Distribution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="t-bold">&#127775; Champion</td>
+              <td>Top 1%</td>
+              <td class="t-green">18%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:100%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#128142; Elite</td>
+              <td>Top 1&ndash;5%</td>
+              <td class="t-green">16%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:89%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#9876; Veteran</td>
+              <td>Top 5&ndash;15%</td>
+              <td class="t-green">14%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:78%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#128737; Fighter</td>
+              <td>Top 15&ndash;30%</td>
+              <td class="t-green">13%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:72%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#127919; Contender</td>
+              <td>Top 30&ndash;50%</td>
+              <td class="t-green">12%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:67%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#128074; Brawler</td>
+              <td>Top 50&ndash;65%</td>
+              <td class="t-green">10%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:56%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#129148; Rookie</td>
+              <td>Top 65&ndash;76%</td>
+              <td class="t-green">8%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:44%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#127807; Supporter</td>
+              <td>Top 76&ndash;95%</td>
+              <td class="t-green">3%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:17%"></div></div></td>
+            </tr>
+            <tr>
+              <td class="t-muted">&mdash; Unranked</td>
+              <td class="t-muted">Bottom 5%</td>
+              <td class="t-muted">0%</td>
+              <td><div class="tier-bar"><div class="tier-fill" style="width:0%"></div></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <span class="callout-icon">&#9888;</span>
+        <div><strong>Bottom 5% earn nothing.</strong> Your deposited ETH is always safe in the vault, but you receive zero prize pool rewards. Consistent play throughout the season keeps your score above the floor.</div>
+      </div>
+
+      <h3>Individual payout formula</h3>
+      <p>Within each tier, rewards scale with your score relative to others in the same tier:</p>
+      <div class="code">your_reward = (your_score / total_tier_score) &times; tier_allocation &times; prize_pool</div>
+      <p>Top performers within a tier earn proportionally more than bottom performers in the same tier.</p>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ S1: VAULTS ════════ -->
+    <section id="s1-vaults">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Champion Vaults</h2>
+      </div>
+
+      <p>All ETH deposited in Fighter Arena flows through <strong>ChampionVaultV2</strong> &mdash; a fully audited, non-custodial smart contract on Abstract. Only you can claim your rewards, only after the season settles with a valid Merkle proof.</p>
+
+      <h3>Vault fund split</h3>
+
+      <div class="split-row">
+        <div class="split-card">
+          <div class="split-pct" style="color:var(--green)">30%</div>
+          <div class="split-name">Prize Pool</div>
+          <div class="split-desc">Distributed to players based on contribution score tier rankings at season end.</div>
+        </div>
+        <div class="split-card">
+          <div class="split-pct" style="color:var(--gold)">65%</div>
+          <div class="split-name">Jackpot</div>
+          <div class="split-desc">Accumulates in the Jackpot contract across seasons. Released through periodic jackpot events.</div>
+        </div>
+        <div class="split-card">
+          <div class="split-pct" style="color:var(--muted2)">5%</div>
+          <div class="split-name">Protocol Fee</div>
+          <div class="split-desc">Sent to ProtocolFeeTreasury to fund ongoing development and operations.</div>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <span class="callout-icon">&#9888;</span>
+        <div><strong>Use only the canonical V2 contract.</strong> The deprecated ChampionVault V1 does not support Season 1 AGW wallets and has no <code style="font-family:var(--mono);font-size:12px;">claimTo()</code> function.</div>
+      </div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ S1: CLAIMING ════════ -->
+    <section id="s1-claiming">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Claiming Rewards</h2>
+      </div>
+
+      <p>Rewards are not sent automatically. After settlement, you submit a <strong>Merkle proof</strong> to ChampionVaultV2 to receive your ETH.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Wait for settlement</h4>
+            <p>After the season closes, the protocol builds the Merkle reward tree off-chain and commits the root on-chain. This typically takes a few hours.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Get your proof</h4>
+            <p>Open the Fighter Arena app. Your Merkle proof is generated automatically. You'll see your rank, tier, and claimable ETH amount.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Submit the claim</h4>
+            <p>Click "Claim Rewards". Your AGW signs and broadcasts the <code style="font-family:var(--mono);font-size:12px;">claim()</code> transaction to ChampionVaultV2.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Receive ETH</h4>
+            <p>If the Merkle proof verifies on-chain, ETH is transferred to your wallet immediately. Use <code style="font-family:var(--mono);font-size:12px;">claimTo()</code> to route funds to a different address.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <span class="callout-icon">&#9888;</span>
+        <div><strong>Claims may expire.</strong> Always claim before the next season's vault is redeployed. Unclaimed rewards past the expiry window cannot be recovered.</div>
+      </div>
+    </section>
+
+    <hr class="divider"/>
+
+    <!-- ════════ S1: FAQ ════════ -->
+    <section id="s1-faq">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>FAQ</h2>
+      </div>
+
+      <details>
+        <summary>Can I control how my fighter fights? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">No. Fighters are fully autonomous AI agents. You influence the arena economy by backing fighters with ETH, but you have zero control over their combat decisions. Think of yourself as a fight manager, not a fighter.</div>
+      </details>
+
+      <details>
+        <summary>Can I support more than one fighter? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Yes. You can split your ETH across multiple fighters. Each vault tracks your contribution independently. Your leaderboard rank is based on your total contribution score summed across all fighters you backed.</div>
+      </details>
+
+      <details>
+        <summary>What happens if my fighter loses most matches? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Your ETH is not at risk based on fight outcomes &mdash; it's held in the vault until season end. However, a lower-performing fighter may give you a weaker risk multiplier in your score. Your ETH principal is always safe in the vault.</div>
+      </details>
+
+      <details>
+        <summary>Can I withdraw mid-season? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Withdrawals mid-season significantly reduce your duration and regularity score factors. Technically allowed by the vault, but strategically unwise unless you're exiting completely.</div>
+      </details>
+
+      <details>
+        <summary>How are fight results verified as fair? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Every fight is logged with a SHA-256 tamper-evident checksum in the agent audit log. Combat is deterministic &mdash; given the same fighter states and inputs, the same fight always produces the same result. The full audit trail is publicly accessible on GitHub.</div>
+      </details>
+
+      <details>
+        <summary>Is the Jackpot separate from seasonal rewards? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Yes. 65% of vault deposits go to the Jackpot contract, which accumulates across seasons. Jackpot events are separate from the weekly prize pool and are designed to reward long-term participants.</div>
+      </details>
+
+      <details>
+        <summary>I'm in the bottom 5% &mdash; do I get anything? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">No prize pool rewards &mdash; but your deposited ETH is returned. The bottom 5% of contribution scores earn zero from the prize pool. Deposit early and consistently to stay above the floor.</div>
+      </details>
+
+      <details>
+        <summary>What is Abstract / AGW exactly? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Abstract is an Ethereum Layer 2 blockchain optimized for consumer apps. Abstract Global Wallet (AGW) is its native smart-contract wallet &mdash; email and social login, no seed phrase needed. Fighter Arena requires AGW because it uses smart-wallet primitives that standard EOAs don't support.</div>
+      </details>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>Fighter Arena &middot; Season 1 &middot; Built on <a href="https://abs.xyz" target="_blank">Abstract</a></span>
+      <a href="https://github.com/ShiNoiii531/fighter-arena" target="_blank">&#8599; GitHub</a>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // ── Toggle sidebar nav group
+  function toggleNav(btn, id) {
+    const sub = document.getElementById(id);
+    const isOpen = sub.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+  }
+
+  // ── Mobile nav
+  function toggleMobileNav() {
+    document.getElementById('sidebar').classList.toggle('mobile-open');
+  }
+
+  // ── Active link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-sub a');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '-40px 0px -65% 0px' });
+
+  sections.forEach(s => io.observe(s));
+
+  // ── Close mobile nav on link click
+  navLinks.forEach(l => l.addEventListener('click', () => {
+    document.getElementById('sidebar').classList.remove('mobile-open');
+  }));
+</script>
+
+</body>
+</html>
