@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Fighter Arena Season 1 — Official Game Guide. Back AI fighters, earn ETH, climb the leaderboard."/>
-  <title>Fighter Arena — Game Guide</title>
+  <meta name="description" content="Fighter Arena Season 1 Official Game Guide. Back AI fighters, earn ETH, climb the leaderboard."/>
+  <title>Fighter Arena Game Guide</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
@@ -131,7 +131,6 @@
   .step-body h4 { font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .step-body p { margin: 0; font-size: 13.5px; }
 
-  /* ═══ FIGHTER CARDS ═══ */
   .fighter-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 22px 0; }
   .fighter-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
@@ -152,8 +151,7 @@
   }
   .fighter-portrait img {
     width: 100%; height: 100%; object-fit: cover; object-position: top center;
-    display: block;
-    transition: transform .3s;
+    display: block; transition: transform .3s;
   }
   .fighter-card:hover .fighter-portrait img { transform: scale(1.05); }
   .fighter-portrait::after {
@@ -318,7 +316,6 @@
 
   <main id="main-content">
 
-    <!-- ════ GEN: WHAT IS ════ -->
     <section id="gen-what">
       <div class="hero">
         <div class="season-badge"><span class="dot"></span>Season 1 &nbsp; Live on Abstract</div>
@@ -353,7 +350,6 @@
 
     <hr class="divider"/>
 
-    <!-- ════ GEN: GETTING STARTED ════ -->
     <section id="gen-start">
       <div class="page-header">
         <div class="page-eyebrow">General</div>
@@ -365,7 +361,7 @@
           <div class="step-num">1</div>
           <div class="step-body">
             <h4>Create your Abstract Global Wallet</h4>
-            <p>Go to <strong>abs.xyz</strong> and sign up — email or social, no seed phrase. This is the only wallet Fighter Arena supports.</p>
+            <p>Go to <strong>abs.xyz</strong> and sign up with email or social, no seed phrase. This is the only wallet Fighter Arena supports.</p>
           </div>
         </div>
         <div class="step">
@@ -406,22 +402,21 @@
       </div>
       <div class="callout success">
         <span class="callout-icon">&#128161;</span>
-        <div><strong>Deposit early, deposit often.</strong> Once your ETH is in the vault, your score builds passively. You don't need to be online during fights — just keep an eye on your rank.</div>
+        <div><strong>Deposit early, deposit often.</strong> Once your ETH is in the vault, your score builds passively. Just keep an eye on your rank.</div>
       </div>
     </section>
 
     <hr class="divider"/>
 
-    <!-- ════ GEN: WALLET ════ -->
     <section id="gen-wallet">
       <div class="page-header">
         <div class="page-eyebrow">General</div>
         <h2>Wallet (AGW)</h2>
       </div>
-      <p>Fighter Arena runs exclusively on <strong>Abstract Global Wallet</strong>. MetaMask, Ledger, and other standard wallets won't work — transactions will fail at the contract level.</p>
+      <p>Fighter Arena runs exclusively on <strong>Abstract Global Wallet</strong>. MetaMask, Ledger, and other standard wallets won't work. Transactions will fail at the contract level.</p>
       <div class="callout danger">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>AGW only.</strong> Don't try to interact with Fighter Arena using a regular EOA wallet. It's not a UI limitation — the contracts themselves require smart-wallet primitives that standard wallets don't have.</div>
+        <div><strong>AGW only.</strong> Don't try to interact with Fighter Arena using a regular EOA wallet. It's not a UI limitation. The contracts themselves require smart-wallet primitives that standard wallets don't have.</div>
       </div>
       <h3>Creating your AGW</h3>
       <div class="steps">
@@ -451,13 +446,12 @@
 
     <hr class="divider"/>
 
-    <!-- ════ GEN: SEASON PASS ════ -->
     <section id="gen-pass">
       <div class="page-header">
         <div class="page-eyebrow">General</div>
         <h2>Season Pass</h2>
       </div>
-      <p>The Season Pass gives you access to the full Fighter Arena experience. Free players can watch and explore — Pass holders get to actually play and earn.</p>
+      <p>The Season Pass gives you access to the full Fighter Arena experience. Free players can watch and explore. Pass holders get to actually play and earn.</p>
       <div class="pass-grid">
         <div class="pass-card">
           <div class="pass-tier" style="color:var(--muted2)">Free</div>
@@ -489,12 +483,11 @@
         <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2.</div>
       </div>
       <h3>Why a pass?</h3>
-      <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future seasons. Season Pass holders are directly betting on Fighter Arena staying alive — which aligns with them also wanting to earn.</p>
+      <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future seasons. Season Pass holders are directly betting on Fighter Arena staying alive, which aligns with them also wanting to earn.</p>
     </section>
 
     <hr class="divider"/>
 
-    <!-- ════ S1: OVERVIEW ════ -->
     <section id="s1-overview">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
@@ -539,17 +532,14 @@
 
     <hr class="divider"/>
 
-    <!-- ════ S1: FIGHTERS ════ -->
     <section id="s1-fighters">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
         <h2>Fighters</h2>
       </div>
-      <p>Five AI fighters compete in Season 1. They're fully autonomous — you can't control what they do in the arena. What you control is which one you back and how much skin you put in.</p>
+      <p>Five AI fighters compete in Season 1. They're fully autonomous. You can't control what they do in the arena. What you control is which one you back and how much skin you put in.</p>
 
       <div class="fighter-row">
-
-        <!-- VANDAL -->
         <div class="fighter-card" style="--fc:rgba(160,90,220,.12); border-color:rgba(160,90,220,.4);">
           <div class="fighter-portrait">
             <img src="vandal.png" alt="Vandal"/>
@@ -560,7 +550,6 @@
           <div class="f-style">Aggressive  High risk</div>
         </div>
 
-        <!-- TYPHOON -->
         <div class="fighter-card" style="--fc:rgba(232,64,64,.12); border-color:rgba(232,64,64,.4);">
           <div class="fighter-portrait">
             <img src="typhon.png" alt="Typhoon"/>
@@ -571,7 +560,6 @@
           <div class="f-style">Raw power  Endurance</div>
         </div>
 
-        <!-- SAENCHAI -->
         <div class="fighter-card" style="--fc:rgba(91,141,238,.12); border-color:rgba(91,141,238,.4);">
           <div class="fighter-portrait">
             <img src="sebchai.png" alt="Saenchai"/>
@@ -582,7 +570,6 @@
           <div class="f-style">Precision  Counters</div>
         </div>
 
-        <!-- MEI-LING -->
         <div class="fighter-card" style="--fc:rgba(160,90,220,.12); border-color:rgba(160,90,220,.4);">
           <div class="fighter-portrait">
             <img src="mei ling.png" alt="Mei-Ling"/>
@@ -593,7 +580,6 @@
           <div class="f-style">Strategy  Adaptable</div>
         </div>
 
-        <!-- VIXEN -->
         <div class="fighter-card" style="--fc:rgba(61,220,132,.12); border-color:rgba(61,220,132,.4);">
           <div class="fighter-portrait">
             <img src="vixen.png" alt="Vixen"/>
@@ -603,27 +589,25 @@
           <div class="f-role" style="color:#3ddc84;">Phantom</div>
           <div class="f-style">Evasion  Burst</div>
         </div>
-
       </div>
 
       <p>Each fighter has a distinct combat style that affects how they perform across the 1,680 fights in a season. A fighter on a hot streak gives their backers a better risk multiplier. An underdog who pulls through pays even more.</p>
 
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>You don't control fighters.</strong> Their decisions in the arena are entirely their own. Study their tendencies before you commit your ETH — fighter roster may change between seasons.</div>
+        <div><strong>You don't control fighters.</strong> Their decisions in the arena are entirely their own. Study their tendencies before you commit your ETH. Fighter roster may change between seasons.</div>
       </div>
     </section>
 
     <hr class="divider"/>
 
-    <!-- ════ S1: COMBAT ════ -->
     <section id="s1-combat">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
         <h2>Combat System</h2>
       </div>
-      <p>Fights run every hour, automatically, for the full 7-day season. Each hourly window has <strong>10 fights</strong> in a round-robin format — every fighter faces every other fighter multiple times across the season.</p>
-      <p>Each fight tracks HP, a Special Gauge, and round state. When the Special Gauge hits 100, the fighter unleashes a special move. Combat is deterministic — given the same starting states, you always get the same result.</p>
+      <p>Fights run every hour, automatically, for the full 7-day season. Each hourly window has <strong>10 fights</strong> in a round-robin format. Every fighter faces every other fighter multiple times across the season.</p>
+      <p>Each fight tracks HP, a Special Gauge, and round state. When the Special Gauge hits 100, the fighter unleashes a special move. Combat is deterministic. Given the same starting states, you always get the same result.</p>
 
       <h3>How a season plays out</h3>
       <div class="timeline">
@@ -632,8 +616,8 @@
           <p>Vaults go live. Pass holders can deposit ETH. Duration scoring starts ticking from the moment you deposit.</p>
         </div>
         <div class="tl-item">
-          <h4>Combat phase — 168 hours</h4>
-          <p>10 fights per hour, non-stop. Every result is recorded on-chain with cryptographic verification — anyone can check the outcome of any fight at any time.</p>
+          <h4>Combat phase 168 hours</h4>
+          <p>10 fights per hour, non-stop. Every result is recorded on-chain with cryptographic verification. Anyone can check the outcome of any fight at any time.</p>
         </div>
         <div class="tl-item">
           <h4>Season closes</h4>
@@ -641,25 +625,24 @@
         </div>
         <div class="tl-item">
           <h4>Settlement and claiming</h4>
-          <p>Players submit Merkle proofs through the app. Verification and payout are fully trustless — no one can block your claim if the proof checks out.</p>
+          <p>Players submit Merkle proofs through the app. Verification and payout are fully trustless. No one can block your claim if the proof checks out.</p>
         </div>
       </div>
 
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
-        <div><strong>Every fight is verifiable.</strong> Combat is deterministic — the same fighter states always produce the same result. Fight results are publicly accessible on GitHub and anyone can verify them independently.</div>
+        <div><strong>Every fight is verifiable.</strong> Combat is deterministic. The same fighter states always produce the same result. Fight results are publicly accessible on GitHub and anyone can verify them independently.</div>
       </div>
     </section>
 
     <hr class="divider"/>
 
-    <!-- ════ S1: SUPPORT ════ -->
     <section id="s1-support">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
         <h2>Supporting Fighters</h2>
       </div>
-      <p>You back fighters by depositing ETH into their vault. You can spread across multiple fighters — each vault tracks your contribution separately, and you earn from every vault where you place top 95%.</p>
+      <p>You back fighters by depositing ETH into their vault. You can spread across multiple fighters. Each vault tracks your contribution separately, and you earn from every vault where you place top 95%.</p>
 
       <div class="table-wrap">
         <table>
@@ -673,19 +656,19 @@
             <tr>
               <td class="t-bold">&#9201; Back early</td>
               <td>Deposit at or near season start</td>
-              <td>Duration multiplier — biggest edge you can get</td>
+              <td>Duration multiplier, biggest edge you can get</td>
             </tr>
             <tr>
               <td class="t-bold">&#9889; Keep adding</td>
               <td>Make multiple deposits throughout the week</td>
-              <td>Regularity multiplier — beats one-time stakers</td>
+              <td>Regularity multiplier, beats one-time stakers</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h3>Anti-whale protection</h3>
-      <p>Raw ETH amounts go through a square root before scoring. If you put in 4x more ETH than someone else, you only get 2x their amount score — not 4x. This means a player who deposits consistently at medium size and stays for the full season can realistically outrank someone who dumped a huge amount late and did nothing else.</p>
+      <p>Raw ETH amounts go through a square root before scoring. If you put in 4x more ETH than someone else, you only get 2x their amount score. This means a player who deposits consistently at medium size and stays for the full season can realistically outrank someone who dumped a huge amount late and did nothing else.</p>
 
       <div class="callout success">
         <span class="callout-icon">&#128161;</span>
@@ -695,13 +678,12 @@
 
     <hr class="divider"/>
 
-    <!-- ════ S1: SCORE ════ -->
     <section id="s1-score">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
         <h2>Contribution Score</h2>
       </div>
-      <p>Your rank is determined by your <strong>contribution score</strong> — a number that captures how much you put in, how early, how consistently, and whether your fighters performed.</p>
+      <p>Your rank is determined by your <strong>contribution score</strong>, a number that captures how much you put in, how early, how consistently, and whether your fighters performed.</p>
 
       <div class="formula-box">
         <div class="formula">score = &radic;amount &times; duration &times; regularity &times; risk</div>
@@ -712,7 +694,7 @@
           </div>
           <div class="factor">
             <div class="var">duration</div>
-            <div class="desc">How long your ETH has been in the vault. Every hour counts — depositing Day 1 beats depositing Day 6.</div>
+            <div class="desc">How long your ETH has been in the vault. Every hour counts. Depositing Day 1 beats depositing Day 6.</div>
           </div>
           <div class="factor">
             <div class="var">regularity</div>
@@ -727,13 +709,12 @@
 
       <div class="callout info">
         <span class="callout-icon">&#9201;</span>
-        <div><strong>Time is your biggest edge.</strong> Duration is linear — every hour your ETH sits in the vault adds to your score. There's no catching up to someone who deposited on Day 1.</div>
+        <div><strong>Time is your biggest edge.</strong> Duration is linear. Every hour your ETH sits in the vault adds to your score. There's no catching up to someone who deposited on Day 1.</div>
       </div>
     </section>
 
     <hr class="divider"/>
 
-    <!-- ════ S1: PAYOUTS ════ -->
     <section id="s1-payouts">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
@@ -746,35 +727,34 @@
           <thead><tr><th>Tier</th><th>Rank</th><th>Pool Share</th><th style="width:130px">Bar</th></tr></thead>
           <tbody>
             <tr><td class="t-bold">&#127775; Champion</td><td>Top 1%</td><td class="t-green">18%</td><td><div class="tier-bar"><div class="tier-fill" style="width:100%"></div></div></td></tr>
-            <tr><td class="t-bold">&#128142; Elite</td><td>Top 1–5%</td><td class="t-green">16%</td><td><div class="tier-bar"><div class="tier-fill" style="width:89%"></div></div></td></tr>
-            <tr><td class="t-bold">&#9876; Veteran</td><td>Top 5–15%</td><td class="t-green">14%</td><td><div class="tier-bar"><div class="tier-fill" style="width:78%"></div></div></td></tr>
-            <tr><td class="t-bold">&#128737; Fighter</td><td>Top 15–30%</td><td class="t-green">13%</td><td><div class="tier-bar"><div class="tier-fill" style="width:72%"></div></div></td></tr>
-            <tr><td class="t-bold">&#127919; Contender</td><td>Top 30–50%</td><td class="t-green">12%</td><td><div class="tier-bar"><div class="tier-fill" style="width:67%"></div></div></td></tr>
-            <tr><td class="t-bold">&#128074; Brawler</td><td>Top 50–65%</td><td class="t-green">10%</td><td><div class="tier-bar"><div class="tier-fill" style="width:56%"></div></div></td></tr>
-            <tr><td class="t-bold">&#129148; Rookie</td><td>Top 65–76%</td><td class="t-green">8%</td><td><div class="tier-bar"><div class="tier-fill" style="width:44%"></div></div></td></tr>
-            <tr><td class="t-bold">&#127807; Supporter</td><td>Top 76–95%</td><td class="t-green">3%</td><td><div class="tier-bar"><div class="tier-fill" style="width:17%"></div></div></td></tr>
+            <tr><td class="t-bold">&#128142; Elite</td><td>Top 1 to 5%</td><td class="t-green">16%</td><td><div class="tier-bar"><div class="tier-fill" style="width:89%"></div></div></td></tr>
+            <tr><td class="t-bold">&#9876; Veteran</td><td>Top 5 to 15%</td><td class="t-green">14%</td><td><div class="tier-bar"><div class="tier-fill" style="width:78%"></div></div></td></tr>
+            <tr><td class="t-bold">&#128737; Fighter</td><td>Top 15 to 30%</td><td class="t-green">13%</td><td><div class="tier-bar"><div class="tier-fill" style="width:72%"></div></div></td></tr>
+            <tr><td class="t-bold">&#127919; Contender</td><td>Top 30 to 50%</td><td class="t-green">12%</td><td><div class="tier-bar"><div class="tier-fill" style="width:67%"></div></div></td></tr>
+            <tr><td class="t-bold">&#128074; Brawler</td><td>Top 50 to 65%</td><td class="t-green">10%</td><td><div class="tier-bar"><div class="tier-fill" style="width:56%"></div></div></td></tr>
+            <tr><td class="t-bold">&#129148; Rookie</td><td>Top 65 to 76%</td><td class="t-green">8%</td><td><div class="tier-bar"><div class="tier-fill" style="width:44%"></div></div></td></tr>
+            <tr><td class="t-bold">&#127807; Supporter</td><td>Top 76 to 95%</td><td class="t-green">3%</td><td><div class="tier-bar"><div class="tier-fill" style="width:17%"></div></div></td></tr>
             <tr><td class="t-muted">Unranked</td><td class="t-muted">Bottom 5%</td><td class="t-muted">0%</td><td><div class="tier-bar"><div class="tier-fill" style="width:0%"></div></div></td></tr>
           </tbody>
         </table>
       </div>
 
-      <p>Within each tier, your individual payout scales with your score relative to everyone else in the same tier. Two players in the same tier don't get the same amount — the higher scorer takes more.</p>
+      <p>Within each tier, your individual payout scales with your score relative to everyone else in the same tier. Two players in the same tier don't get the same amount. The higher scorer takes more.</p>
 
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>Bottom 5% earn nothing from the pool.</strong> Your deposited ETH is always returned — but you get no prize share. Stay active, deposit early, and keep adding throughout the week.</div>
+        <div><strong>Bottom 5% earn nothing from the pool.</strong> Your deposited ETH is always returned but you get no prize share. Stay active, deposit early, and keep adding throughout the week.</div>
       </div>
     </section>
 
     <hr class="divider"/>
 
-    <!-- ════ S1: VAULTS ════ -->
     <section id="s1-vaults">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
         <h2>Champion Vaults</h2>
       </div>
-      <p>Every fighter has their own <strong>Champion Vault</strong> — a non-custodial smart contract on Abstract. Your ETH goes in, it stays there, and only you can claim it out with a valid Merkle proof after the season settles. Nobody can touch it in between.</p>
+      <p>Every fighter has their own <strong>Champion Vault</strong>, a non-custodial smart contract on Abstract. Your ETH goes in, it stays there, and only you can claim it out with a valid Merkle proof after the season settles. Nobody can touch it in between.</p>
 
       <h3>How deposits split</h3>
       <p>Every deposit splits automatically at the contract level, with no middleman:</p>
@@ -794,13 +774,12 @@
 
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
-        <div><strong>Combat routing works differently.</strong> ETH from combat outcomes is routed 65% to the winner's vault, 30% to the loser's vault, and 5% as a protocol fee — before being credited to each vault's player pool. This is separate from direct deposits.</div>
+        <div><strong>Combat routing works differently.</strong> ETH from combat outcomes is routed 65% to the winner's vault, 30% to the loser's vault, and 5% as a protocol fee before being credited to each vault's player pool. This is separate from direct deposits.</div>
       </div>
     </section>
 
     <hr class="divider"/>
 
-    <!-- ════ S1: CLAIMING ════ -->
     <section id="s1-claiming">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
@@ -840,7 +819,6 @@
 
     <hr class="divider"/>
 
-    <!-- ════ S1: FAQ ════ -->
     <section id="s1-faq">
       <div class="page-header">
         <div class="page-eyebrow">Season 1</div>
@@ -849,12 +827,12 @@
 
       <details>
         <summary>Do I need the Season Pass to play? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Yes, if you want to actually earn. Free spectators can watch fights and browse the leaderboard, but depositing into vaults and claiming rewards requires a Season Pass. The pass is per season — it doesn't carry over.</div>
+        <div class="detail-body">Yes, if you want to actually earn. Free spectators can watch fights and browse the leaderboard, but depositing into vaults and claiming rewards requires a Season Pass. The pass is per season and it doesn't carry over.</div>
       </details>
 
       <details>
         <summary>Can I control how my fighter fights? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No. Vandal, Typhoon, Saenchai, Mei-Ling and Vixen are fully autonomous AI agents. You pick who to back with ETH, but what they do in the arena is entirely up to them. That's what makes it interesting — and risky.</div>
+        <div class="detail-body">No. Vandal, Typhoon, Saenchai, Mei-Ling and Vixen are fully autonomous AI agents. You pick who to back with ETH, but what they do in the arena is entirely up to them. That's what makes it interesting and risky.</div>
       </details>
 
       <details>
@@ -864,27 +842,27 @@
 
       <details>
         <summary>What happens to my ETH if my fighter loses most fights? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Your deposited ETH is always safe in the vault — you get it back. What you lose is the risk multiplier benefit. A fighter who wins a lot gives their backers a stronger score. Backing an underdog who overperforms pays very well — but it's a real risk if they don't.</div>
+        <div class="detail-body">Your deposited ETH is always safe in the vault, you get it back. What you lose is the risk multiplier benefit. A fighter who wins a lot gives their backers a stronger score. Backing an underdog who overperforms pays very well but it's a real risk if they don't.</div>
       </details>
 
       <details>
         <summary>Can I withdraw mid-season? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Technically yes, but it's a bad idea. Pulling out mid-season wipes most of your duration and regularity score — the two factors that compound over time. Only consider it if you're done with the season entirely.</div>
+        <div class="detail-body">Technically yes, but it's a bad idea. Pulling out mid-season wipes most of your duration and regularity score, the two factors that compound over time. Only consider it if you're done with the season entirely.</div>
       </details>
 
       <details>
         <summary>How are fights verified as fair? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Combat is deterministic — the same fighter states always produce the same result. Fight results are publicly accessible on GitHub and anyone can check them independently.</div>
+        <div class="detail-body">Combat is deterministic. The same fighter states always produce the same result. Fight results are publicly accessible on GitHub and anyone can check them independently.</div>
       </details>
 
       <details>
         <summary>What wallet do I need? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Abstract Global Wallet (AGW) only. MetaMask, Ledger, and other standard wallets will not work — this is a contract-level requirement, not just a UI thing. Create your AGW at abs.xyz. Takes about a minute, no seed phrase needed.</div>
+        <div class="detail-body">Abstract Global Wallet (AGW) only. MetaMask, Ledger, and other standard wallets will not work. This is a contract-level requirement, not just a UI thing. Create your AGW at abs.xyz. Takes about a minute, no seed phrase needed.</div>
       </details>
 
       <details>
         <summary>I'm in the bottom 5% — what do I get? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No prize pool rewards. But your deposited ETH comes back in full. To avoid landing here, deposit early and keep contributing through the week — even small adds improve your regularity score.</div>
+        <div class="detail-body">No prize pool rewards. But your deposited ETH comes back in full. To avoid landing here, deposit early and keep contributing through the week. Even small adds improve your regularity score.</div>
       </details>
 
       <details>
