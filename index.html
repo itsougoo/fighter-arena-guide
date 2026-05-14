@@ -165,6 +165,21 @@
   .f-role { font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; position: relative; z-index: 2; }
   .f-style { font-size: 10.5px; color: var(--muted2); position: relative; z-index: 2; padding: 0 8px; }
 
+  .mechanic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 22px 0; }
+  .mechanic-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 20px; transition: border-color .2s, transform .2s;
+  }
+  .mechanic-card:hover { border-color: var(--border-glow); transform: translateY(-2px); }
+  .mechanic-icon { font-size: 26px; margin-bottom: 10px; }
+  .mechanic-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .mechanic-mult { font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+  .mechanic-mult.green { background: rgba(61,220,132,.15); color: var(--green); border: 1px solid rgba(61,220,132,.3); }
+  .mechanic-mult.blue  { background: rgba(91,141,238,.15); color: var(--blue);  border: 1px solid rgba(91,141,238,.3); }
+  .mechanic-mult.gold  { background: rgba(245,200,66,.15); color: var(--gold);  border: 1px solid rgba(245,200,66,.3); }
+  .mechanic-mult.red   { background: rgba(232,64,64,.15);  color: var(--red);   border: 1px solid rgba(232,64,64,.3); }
+  .mechanic-desc { font-size: 13px; color: var(--muted2); line-height: 1.65; }
+
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin: 18px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   thead th { text-align: left; padding: 11px 16px; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted2); border-bottom: 1px solid var(--border); background: var(--bg2); }
@@ -175,6 +190,7 @@
   td.t-green { font-weight: 700; color: var(--green); }
   td.t-red   { font-weight: 700; color: var(--red); }
   td.t-gold  { font-weight: 700; color: var(--gold); }
+  td.t-blue  { font-weight: 700; color: var(--blue); }
   td.t-muted { color: var(--muted2); }
   .tier-bar  { height: 4px; background: var(--surface2); border-radius: 2px; min-width: 80px; }
   .tier-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--orange)); }
@@ -221,6 +237,12 @@
   .pass-blocked-price .eth-amount { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--gold); }
   .pass-blocked-price .eth-label { font-size: 12px; color: var(--muted2); text-transform: uppercase; letter-spacing: 1px; }
 
+  .pass-split-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
+  .pass-split-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; text-align: center; }
+  .pass-split-pct { font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .pass-split-name { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .pass-split-desc { font-size: 11px; color: var(--muted2); line-height: 1.5; }
+
   details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
   details:hover { border-color: var(--border-glow); }
   details[open] { border-color: rgba(232,64,64,.3); }
@@ -264,6 +286,8 @@
     .factor-row { grid-template-columns: repeat(2, 1fr); }
     .split-row { grid-template-columns: 1fr; }
     .pass-grid { grid-template-columns: 1fr; }
+    .mechanic-grid { grid-template-columns: 1fr; }
+    .pass-split-row { grid-template-columns: 1fr; }
     .hero-title { font-size: 28px; }
     h2 { font-size: 22px; }
   }
@@ -314,6 +338,7 @@
           <a href="#s1-fighters"><span class="nav-icon">&#129354;</span>Fighters</a>
           <a href="#s1-combat"><span class="nav-icon">&#9876;</span>Combat System</a>
           <a href="#s1-support"><span class="nav-icon">&#128170;</span>Supporting Fighters</a>
+          <a href="#s1-pool"><span class="nav-icon">&#128181;</span>Prize Pool Mechanics</a>
           <a href="#s1-score"><span class="nav-icon">&#128202;</span>Contribution Score</a>
           <a href="#s1-payouts"><span class="nav-icon">&#127942;</span>Payouts &amp; Tiers</a>
           <a href="#s1-vaults"><span class="nav-icon">&#127974;</span>Champion Vaults</a>
@@ -361,8 +386,8 @@
           <div class="stat-sub">1,680 fights total</div>
         </div>
       </div>
-      <p>Each season runs for exactly <strong>7 days</strong>. Fights run on their own, every hour, around the clock. You pick fighters to back, build up a contribution score over the week, and claim your share of the prize pool when it's done.</p>
-      <p>You don't need to do anything during fights. No babysitting, no manual actions. Deposit into a vault, watch the leaderboard move, claim at the end.</p>
+      <p>Each season runs for exactly <strong>7 days</strong>. Fights run automatically every hour, around the clock. You act as supporter, sponsor, trainer and bettor for the fighter you believe in. Build your contribution score over the week and claim your share of their prize pool when the season ends.</p>
+      <p>You never control a fighter directly. The AI agents make their own decisions in the arena. Your job is to back them, train them, sponsor them, and bet on them correctly.</p>
     </section>
 
     <hr class="divider"/>
@@ -384,42 +409,42 @@
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-body">
-            <h4>Get ETH on Abstract</h4>
-            <p>Bridge ETH to Abstract or use the in app onramp. You'll need ETH for your vault deposit plus a small amount for gas.</p>
+            <h4>Buy the Season Pass</h4>
+            <p>0.001 ETH. Without it you are blocked on the home screen. The pass is your entry ticket for the full 7 day season.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-body">
-            <h4>Pick a fighter</h4>
-            <p>Look at the 5 Season 1 fighters and decide who you want to back. You can split across multiple fighters if you want.</p>
+            <h4>Pick your fighter</h4>
+            <p>Study the 5 Season 1 fighters and choose who you want to back. Each one has a distinct style, strengths, and tendencies.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-body">
-            <h4>Deposit into their vault</h4>
-            <p>Back your fighter by depositing ETH into their Champion Vault. The earlier you deposit, the higher your duration score. That compounds over the whole week.</p>
+            <h4>Back them: bet, sponsor, train</h4>
+            <p>Deposit ETH into their Champion Vault via betting, sponsoring, or training sessions. Each action feeds their prize pool and builds your contribution score with a different risk multiplier.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">5</div>
           <div class="step-body">
-            <h4>Watch the fights, track your rank</h4>
-            <p>Fights run automatically every hour. Check the leaderboard to see where you stand. You can deposit more throughout the season to boost your score.</p>
+            <h4>Watch fights, track your rank</h4>
+            <p>Fights run every hour automatically. Watch the live viewer, follow the leaderboard, and keep contributing throughout the week.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">6</div>
           <div class="step-body">
             <h4>Claim your ETH after settlement</h4>
-            <p>When the season ends, your rewards are calculated and locked. Open the app, hit Claim, and the ETH lands in your wallet.</p>
+            <p>When the season ends your rewards are calculated and locked. Open the app, hit Claim, and the ETH lands in your wallet.</p>
           </div>
         </div>
       </div>
       <div class="callout success">
         <span class="callout-icon">&#128161;</span>
-        <div><strong>Deposit early, deposit often.</strong> Once your ETH is in the vault, your score builds passively. Just keep an eye on your rank.</div>
+        <div><strong>Start early, stay active.</strong> Duration is your biggest scoring edge. Every hour your ETH is in the vault counts. The earlier you commit, the harder you are to beat.</div>
       </div>
     </section>
 
@@ -448,7 +473,7 @@
           <div class="step-num">2</div>
           <div class="step-body">
             <h4>Fund your wallet</h4>
-            <p>Bridge ETH from mainnet or use Abstract's built in onramp. You need ETH for deposits and a small amount for gas fees.</p>
+            <p>Bridge ETH from mainnet or use Abstract's built in onramp. You need ETH for the Season Pass, for vault deposits, and a small amount for gas fees.</p>
           </div>
         </div>
         <div class="step">
@@ -504,7 +529,7 @@
           <ul class="pass-perks">
             <li>Full access to the game</li>
             <li>Browse all 5 fighters</li>
-            <li>Deposit ETH into fighter vaults</li>
+            <li>Bet, sponsor, and train fighters</li>
             <li>Live leaderboard and rankings</li>
             <li>Contribution score tracking</li>
             <li>Claim ETH rewards at season end</li>
@@ -517,13 +542,31 @@
         <div><strong>You are blocked without a pass.</strong> Connecting your wallet is not enough. You must purchase the Season Pass to get past the home screen. No pass means no game.</div>
       </div>
 
+      <h3>Where does the pass fee go?</h3>
+      <p>The 0.001 ETH Season Pass fee is split automatically on purchase. It does not come back to you as a reward. The distribution is fixed at the contract level:</p>
+
+      <div class="pass-split-row">
+        <div class="pass-split-card">
+          <div class="pass-split-pct" style="color:var(--green)">95%</div>
+          <div class="pass-split-name">Champion Vaults</div>
+          <div class="pass-split-desc">Split equally across the 5 active fighter vaults. This directly feeds the prize pools that players earn from.</div>
+        </div>
+        <div class="pass-split-card">
+          <div class="pass-split-pct" style="color:var(--muted2)">5%</div>
+          <div class="pass-split-name">Protocol Fee</div>
+          <div class="pass-split-desc">Goes to the protocol treasury. Funds development, infrastructure, and future seasons.</div>
+        </div>
+        <div class="pass-split-card" style="border-color:rgba(245,200,66,.3);">
+          <div class="pass-split-pct" style="color:var(--gold)">&#8599;</div>
+          <div class="pass-split-name">Every Pass Sold</div>
+          <div class="pass-split-desc">Grows the prize pool for all active fighters. More players buying passes means more ETH available for supporters to earn.</div>
+        </div>
+      </div>
+
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
         <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2. Each season costs 0.001 ETH.</div>
       </div>
-
-      <h3>Where does the pass fee go?</h3>
-      <p>The 0.001 ETH you pay for the Season Pass goes entirely to the team. It does not enter the prize pool. It funds ongoing development, server infrastructure, new fighters, and future seasons. The prize pool is separate and comes only from vault deposits, which follow the 95/5 split described in the Champion Vaults section.</p>
     </section>
 
     <hr class="divider"/>
@@ -538,10 +581,10 @@
         <div class="stat-card">
           <div class="stat-label">Season Duration</div>
           <div class="stat-val">7 days</div>
-          <div class="stat-sub">168 hourly windows</div>
+          <div class="stat-sub">May 4 to May 11</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Deposit Split</div>
+          <div class="stat-label">Vault Split</div>
           <div class="stat-val">95 / 5</div>
           <div class="stat-sub">player pool / protocol fee</div>
         </div>
@@ -563,8 +606,8 @@
           <div class="newlist">
             <span>ChampionVaultV2 with native ETH deposits and a clean 95/5 split</span>
             <span>Merkle proof reward distribution, fully trustless claiming</span>
-            <span>Anti whale square root amount scoring</span>
-            <span>Season Pass access system</span>
+            <span>Four ways to back your fighter: bet, sponsor, train, special attacks</span>
+            <span>Anti whale square root amount scoring with duration and regularity multipliers</span>
           </div>
         </div>
       </div>
@@ -577,7 +620,7 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Fighters</h2>
       </div>
-      <p>Five AI fighters compete in Season 1. They're fully autonomous. You can't control what they do in the arena. What you control is which one you back and how much skin you put in.</p>
+      <p>Five AI fighters compete in Season 1. They are fully autonomous. You can't control what they do in the arena. What you control is which one you back and how you back them.</p>
 
       <div class="fighter-row">
         <div class="fighter-card" style="--fc:rgba(160,90,220,.12); border-color:rgba(160,90,220,.4);">
@@ -587,7 +630,7 @@
           <div class="f-num">F-01</div>
           <div class="f-name">Vandal</div>
           <div class="f-role" style="color:#a05adc;">Striker</div>
-          <div class="f-style">Aggressive  High risk</div>
+          <div class="f-style">Counter pressure  Clean timing</div>
         </div>
 
         <div class="fighter-card" style="--fc:rgba(232,64,64,.12); border-color:rgba(232,64,64,.4);">
@@ -597,7 +640,7 @@
           <div class="f-num">F-02</div>
           <div class="f-name">Typhoon</div>
           <div class="f-role" style="color:#e84040;">Brawler</div>
-          <div class="f-style">Raw power  Endurance</div>
+          <div class="f-style">Power  Late pressure</div>
         </div>
 
         <div class="fighter-card" style="--fc:rgba(91,141,238,.12); border-color:rgba(91,141,238,.4);">
@@ -607,7 +650,7 @@
           <div class="f-num">F-03</div>
           <div class="f-name">Saenchai</div>
           <div class="f-role" style="color:#5b8dee;">Technician</div>
-          <div class="f-style">Precision  Counters</div>
+          <div class="f-style">Angles  Speed  Muay Thai</div>
         </div>
 
         <div class="fighter-card" style="--fc:rgba(160,90,220,.12); border-color:rgba(160,90,220,.4);">
@@ -617,7 +660,7 @@
           <div class="f-num">F-04</div>
           <div class="f-name">Mei-Ling</div>
           <div class="f-role" style="color:#a05adc;">Tactician</div>
-          <div class="f-style">Strategy  Adaptable</div>
+          <div class="f-style">Control  Rhythm  Wushu</div>
         </div>
 
         <div class="fighter-card" style="--fc:rgba(61,220,132,.12); border-color:rgba(61,220,132,.4);">
@@ -627,15 +670,13 @@
           <div class="f-num">F-05</div>
           <div class="f-name">Vixen</div>
           <div class="f-role" style="color:#3ddc84;">Phantom</div>
-          <div class="f-style">Evasion  Burst</div>
+          <div class="f-style">MMA hybrid  Stamina  Adapt</div>
         </div>
       </div>
 
-      <p>Each fighter has a distinct combat style that affects how they perform across the 1,680 fights in a season. A fighter on a hot streak gives their backers a better risk multiplier. An underdog who pulls through pays even more.</p>
-
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>You don't control fighters.</strong> Their decisions in the arena are entirely their own. Study their tendencies before you commit your ETH. Fighter roster may change between seasons.</div>
+        <div><strong>You don't control fighters.</strong> Their decisions in the arena are entirely their own. Study their tendencies, watch their past fights, then commit your ETH. Fighter roster may change between seasons.</div>
       </div>
     </section>
 
@@ -647,13 +688,13 @@
         <h2>Combat System</h2>
       </div>
       <p>Fights run every hour, automatically, for the full 7 day season. Each hourly window has <strong>10 fights</strong> in a round robin format. Every fighter faces every other fighter multiple times across the season.</p>
-      <p>Each fight tracks HP, a Special Gauge, and round state. When the Special Gauge hits 100, the fighter unleashes a special move. Combat is deterministic. Given the same starting states, you always get the same result.</p>
+      <p>Each fight tracks HP, a Special Gauge, and round state. When the Special Gauge hits 100 the fighter unleashes a special move. Combat is deterministic: given the same starting states you always get the same result. The live viewer shows the AI states — aggressive, defensive, counter mode, boosted, adapting — so you can read how your fighter is performing in real time.</p>
 
       <h3>How a season plays out</h3>
       <div class="timeline">
         <div class="tl-item">
           <h4>Season opens</h4>
-          <p>Vaults go live. Pass holders can deposit ETH. Duration scoring starts ticking from the moment you deposit.</p>
+          <p>Vaults go live. Pass holders can bet, sponsor, and train their fighters. Duration scoring starts ticking from your first deposit.</p>
         </div>
         <div class="tl-item">
           <h4>Combat phase 168 hours</h4>
@@ -682,37 +723,94 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Supporting Fighters</h2>
       </div>
-      <p>You back fighters by depositing ETH into their vault. You can spread across multiple fighters. Each vault tracks your contribution separately, and you earn from every vault where you place top 95%.</p>
+      <p>You back your fighter by putting ETH into their Champion Vault. There are four ways to do it. Each one feeds the prize pool and builds your contribution score, but they carry different <strong>risk multipliers</strong> that change how much your score counts at season end.</p>
+      <p>Pick the fighter you believe in and commit to them. If you switch fighters during the season you lose the contribution points you built with your previous one.</p>
+    </section>
+
+    <hr class="divider"/>
+
+    <section id="s1-pool">
+      <div class="page-header">
+        <div class="page-eyebrow">Season 1</div>
+        <h2>Prize Pool Mechanics</h2>
+      </div>
+      <p>Every fighter has their own separate prize pool inside their Champion Vault. There is no global prize pool. Rewards are calculated per fighter, not across all fighters at once. When you back Vandal, you are competing for Vandal's pool against other Vandal supporters.</p>
+      <p>Four mechanics feed each fighter's pool and build your contribution score. Each one has a different risk multiplier that amplifies your score:</p>
+
+      <div class="mechanic-grid">
+
+        <div class="mechanic-card">
+          <div class="mechanic-icon">&#127922;</div>
+          <div class="mechanic-title">Betting</div>
+          <div class="mechanic-mult red">Risk &times; 1.35</div>
+          <p class="mechanic-desc">The highest risk play. You bet ETH on your fighter winning their next fight. If they win, your contribution score gets the strongest multiplier in the game. If they lose, you still fed the pool but your multiplier is lower. High risk, high reward. This is how you climb the leaderboard fast.</p>
+        </div>
+
+        <div class="mechanic-card">
+          <div class="mechanic-icon">&#128293;</div>
+          <div class="mechanic-title">Special Attacks</div>
+          <div class="mechanic-mult gold">Risk &times; 1.20</div>
+          <p class="mechanic-desc">Trigger a special combat action for your fighter during a live fight window. The ETH you spend activates the action and goes directly into the vault. Your score gets a strong multiplier. Special attacks are limited per fight window so timing matters.</p>
+        </div>
+
+        <div class="mechanic-card">
+          <div class="mechanic-icon">&#128170;</div>
+          <div class="mechanic-title">Sponsoring</div>
+          <div class="mechanic-mult blue">Risk &times; 1.00</div>
+          <p class="mechanic-desc">Direct support deposit into your fighter's vault. No win condition, no special action. Neutral risk. The ETH goes straight into the pool and you get a solid base multiplier. Sponsoring is reliable and consistent. It is the safest way to accumulate contribution over the full season.</p>
+        </div>
+
+        <div class="mechanic-card">
+          <div class="mechanic-icon">&#127947;</div>
+          <div class="mechanic-title">Training Sessions</div>
+          <div class="mechanic-mult green">Risk &times; 0.85</div>
+          <p class="mechanic-desc">Fund a training session for your fighter between fights. The ETH goes into the vault but the multiplier is the lowest of the four options. Training is not about score. It is about consistency and duration. Players who train regularly all season keep their score compounding even during quiet periods.</p>
+        </div>
+
+      </div>
 
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Action</th><th>What it means</th><th>Score impact</th></tr></thead>
+          <thead>
+            <tr><th>Action</th><th>Risk Multiplier</th><th>Pool Impact</th><th>Score Strategy</th></tr>
+          </thead>
           <tbody>
             <tr>
-              <td class="t-bold">&#127919; Back a fighter</td>
-              <td>Deposit ETH into their vault</td>
-              <td>Amount factor (square root scaled)</td>
+              <td class="t-bold">&#127922; Betting</td>
+              <td class="t-red">&times; 1.35</td>
+              <td>Feeds vault directly</td>
+              <td>Max score when your fighter wins</td>
             </tr>
             <tr>
-              <td class="t-bold">&#9201; Back early</td>
-              <td>Deposit at or near season start</td>
-              <td>Duration multiplier, biggest edge you can get</td>
+              <td class="t-bold">&#128293; Special Attack</td>
+              <td class="t-gold">&times; 1.20</td>
+              <td>Feeds vault directly</td>
+              <td>High score during live fight windows</td>
             </tr>
             <tr>
-              <td class="t-bold">&#9889; Keep adding</td>
-              <td>Make multiple deposits throughout the week</td>
-              <td>Regularity multiplier, beats single time stakers</td>
+              <td class="t-bold">&#128170; Sponsoring</td>
+              <td class="t-blue">&times; 1.00</td>
+              <td>Feeds vault directly</td>
+              <td>Reliable base score all season</td>
+            </tr>
+            <tr>
+              <td class="t-bold">&#127947; Training</td>
+              <td class="t-muted">&times; 0.85</td>
+              <td>Feeds vault directly</td>
+              <td>Keeps duration and regularity climbing</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3>Anti whale protection</h3>
-      <p>Raw ETH amounts go through a square root before scoring. If you put in 4x more ETH than someone else, you only get 2x their amount score. This means a player who deposits consistently at medium size and stays for the full season can realistically outrank someone who dumped a huge amount late and did nothing else.</p>
+      <div class="callout warn">
+        <span class="callout-icon">&#9888;</span>
+        <div><strong>Every action feeds the pool.</strong> Regardless of multiplier, every ETH you put in through any mechanic goes directly into your fighter's Champion Vault. The pool grows with every bet, every sponsor, every training session, every special attack from all their supporters.</div>
+      </div>
 
-      <div class="callout success">
-        <span class="callout-icon">&#128161;</span>
-        <div><strong>The winning move:</strong> deposit early into one or two fighters you believe in, then add smaller amounts throughout the week. Duration and regularity combined is almost always stronger than a single large deposit.</div>
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>Rewards are per fighter, not global.</strong> If you back Vandal, you compete for Vandal's pool against other Vandal supporters only. Typhoon supporters compete in Typhoon's pool. There is no cross-fighter leaderboard for rewards.</div>
       </div>
     </section>
 
@@ -723,33 +821,37 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Contribution Score</h2>
       </div>
-      <p>Your rank is determined by your <strong>contribution score</strong>, a number that captures how much you put in, how early, how consistently, and whether your fighters performed.</p>
+      <p>Your rank within your fighter's pool is determined by your <strong>contribution score</strong>. It captures how much you put in, how early, how consistently, and how risky your actions were.</p>
 
       <div class="formula-box">
         <div class="formula">score = &radic;amount &times; duration &times; regularity &times; risk</div>
         <div class="factor-row">
           <div class="factor">
             <div class="var">&radic;amount</div>
-            <div class="desc">Square root of total ETH deposited. Goes up with size, but with diminishing returns.</div>
+            <div class="desc">Square root of total ETH deposited. Grows with size but with diminishing returns. Protects against whales.</div>
           </div>
           <div class="factor">
             <div class="var">duration</div>
-            <div class="desc">How long your ETH has been in the vault. Every hour counts. Depositing Day 1 beats depositing Day 6.</div>
+            <div class="desc">How long your ETH has been in the vault. Every hour counts. Depositing Day 1 beats depositing Day 6. Linear and unstoppable.</div>
           </div>
           <div class="factor">
             <div class="var">regularity</div>
-            <div class="desc">How consistently you deposited. Spreading contributions across the week beats a single stake.</div>
+            <div class="desc">How consistently you deposited. Spreading actions across the week beats one single deposit. Rewards active players.</div>
           </div>
           <div class="factor">
             <div class="var">risk</div>
-            <div class="desc">Your fighter's performance. Backing a fighter who outperforms expectations pays more.</div>
+            <div class="desc">The multiplier of your action type. Betting gives 1.35, special attacks 1.20, sponsoring 1.00, training 0.85.</div>
           </div>
         </div>
       </div>
 
-      <div class="callout info">
-        <span class="callout-icon">&#9201;</span>
-        <div><strong>Time is your biggest edge.</strong> Duration is linear. Every hour your ETH sits in the vault adds to your score. There's no catching up to someone who deposited on Day 1.</div>
+      <h3>Anti whale and anti sniping</h3>
+      <p>The square root applied to your ETH amount means that doubling your deposit does not double your score. If you put in 4x more ETH than someone else, you only get 2x their amount score. A consistent medium player who backs early and stays active all season can realistically outrank a late whale who dumped a large amount near the end.</p>
+      <p>Duration is linear and starts from your first deposit. There is no way to catch up to someone who has been in since Day 1. This protects early supporters from last minute sniping.</p>
+
+      <div class="callout success">
+        <span class="callout-icon">&#128161;</span>
+        <div><strong>Best strategy:</strong> bet on your fighter early for the high multiplier, sponsor consistently through the week for reliable score, and use training sessions to keep your regularity multiplier high. Mix all four actions to maximize every factor in the formula.</div>
       </div>
     </section>
 
@@ -760,7 +862,7 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Payouts &amp; Tiers</h2>
       </div>
-      <p>At season end, everyone gets ranked by contribution score into one of <strong>8 tiers</strong>. The bottom 5% get nothing from the prize pool, but their deposited ETH is always safe.</p>
+      <p>At season end, everyone within each fighter's pool gets ranked by contribution score into one of <strong>8 tiers</strong>. The bottom 5% get nothing from the prize pool, but their deposited ETH is always returned safely.</p>
 
       <div class="table-wrap">
         <table>
@@ -779,11 +881,11 @@
         </table>
       </div>
 
-      <p>Within each tier, your individual payout scales with your score relative to everyone else in the same tier. Two players in the same tier don't get the same amount. The higher scorer takes more.</p>
+      <p>Within each tier, your individual payout scales with your score relative to everyone else in that tier. Two players in the same tier do not get the same amount. The higher scorer takes more.</p>
 
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>Bottom 5% earn nothing from the pool.</strong> Your deposited ETH is always returned but you get no prize share. Stay active, deposit early, and keep adding throughout the week.</div>
+        <div><strong>Bottom 5% earn nothing from the pool.</strong> Your deposited ETH is always returned but you get no prize share. Stay active, bet early, and keep contributing through the week.</div>
       </div>
     </section>
 
@@ -794,16 +896,16 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Champion Vaults</h2>
       </div>
-      <p>Every fighter has their own <strong>Champion Vault</strong>, a non custodial smart contract on Abstract. Your ETH goes in, it stays there, and only you can claim it out with a valid Merkle proof after the season settles. Nobody can touch it in between.</p>
+      <p>Every fighter has their own <strong>Champion Vault</strong>, a non custodial smart contract on Abstract. Your ETH goes in when you bet, sponsor, train, or trigger a special attack. It stays locked in the vault until season end, and only you can claim it out with a valid Merkle proof after settlement. Nobody can touch it in between.</p>
 
       <h3>How vault deposits split</h3>
-      <p>Every deposit into a fighter vault splits automatically at the contract level. This split applies only to vault deposits and has nothing to do with the Season Pass fee.</p>
+      <p>Every deposit into a fighter vault, from any mechanic, splits automatically at the contract level:</p>
 
       <div class="split-row">
         <div class="split-card">
           <div class="split-pct" style="color:var(--green)">95%</div>
           <div class="split-name">Player Pool</div>
-          <div class="split-desc">Stays locked in the vault. Distributed back to players at season end based on contribution score tier rankings.</div>
+          <div class="split-desc">Stays locked in the vault. Distributed back to eligible supporters at season end based on contribution score tier rankings.</div>
         </div>
         <div class="split-card">
           <div class="split-pct" style="color:var(--muted2)">5%</div>
@@ -814,7 +916,7 @@
 
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
-        <div><strong>Season Pass fees are separate.</strong> The 0.001 ETH pass cost goes directly to the team and does not enter the prize pool. The 95/5 split only applies to ETH deposited into fighter vaults.</div>
+        <div><strong>Season Pass fees also feed the vaults.</strong> The 95% of each 0.001 ETH Season Pass purchase is split equally across the 5 active Champion Vaults. Every new player who buys a pass grows the prize pools for everyone.</div>
       </div>
 
       <div class="callout info">
@@ -872,32 +974,37 @@
 
       <details>
         <summary>Do I need the Season Pass to play? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Yes. Without a Season Pass you are blocked on the home screen. You cannot see fighters, deposit ETH, view the leaderboard, or claim rewards. The pass costs 0.001 ETH per season and does not carry over to the next one.</div>
+        <div class="detail-body">Yes. Without a Season Pass you are blocked on the home screen. You cannot see fighters, bet, sponsor, train, view the leaderboard, or claim rewards. The pass costs 0.001 ETH per season and does not carry over to the next one.</div>
       </details>
 
       <details>
         <summary>Where does my 0.001 ETH pass fee go? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">The pass fee goes entirely to the team. It does not enter the prize pool. The 95/5 split only applies to ETH deposited into fighter vaults, not to the Season Pass purchase.</div>
+        <div class="detail-body">95% is split equally across the 5 active Champion Vaults, directly growing the prize pools. 5% goes to the protocol treasury. Buying a pass doesn't just unlock the game, it feeds the pools that all supporters earn from.</div>
       </details>
 
       <details>
-        <summary>Can I control how my fighter fights? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No. Vandal, Typhoon, Saenchai, Mei-Ling and Vixen are fully autonomous AI agents. You pick who to back with ETH, but what they do in the arena is entirely up to them. That's what makes it interesting and risky.</div>
+        <summary>What is the difference between betting, sponsoring, training and special attacks? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">All four actions deposit ETH into your fighter's vault and build your contribution score, but they carry different risk multipliers. Betting gives the highest multiplier (1.35x) when your fighter wins. Special attacks give 1.20x during live fight windows. Sponsoring is neutral at 1.00x. Training gives 0.85x but keeps your regularity score compounding. Use all four throughout the season for maximum effect.</div>
       </details>
 
       <details>
         <summary>Can I back more than one fighter? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Yes. You can deposit into as many of the 5 fighter vaults as you want. Each vault tracks your contribution independently. Spreading your ETH across multiple fighters reduces the risk of backing someone who underperforms, at the cost of diluting your depth in any single vault.</div>
+        <div class="detail-body">You can deposit into multiple vaults but each fighter tracks your contribution separately. If you switch your main fighter mid season you lose the contribution points you built with the previous one. Spreading ETH across multiple fighters dilutes your depth in each pool.</div>
+      </details>
+
+      <details>
+        <summary>Can I control how my fighter fights? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">No. Vandal, Typhoon, Saenchai, Mei-Ling and Vixen are fully autonomous AI agents. You can trigger special attacks during live fight windows but you don't control their overall strategy. What they do in the arena is entirely up to them.</div>
       </details>
 
       <details>
         <summary>What happens to my ETH if my fighter loses most fights? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Your deposited ETH is always safe in the vault, you get it back. What you lose is the risk multiplier benefit. A fighter who wins a lot gives their backers a stronger score. Backing an underdog who overperforms pays very well but it's a real risk if they don't.</div>
+        <div class="detail-body">Your deposited ETH is always safe in the vault and comes back to you. What you lose is the risk multiplier benefit from bets. A fighter who wins consistently gives their backers a stronger score. Backing an underdog who surprises pays very well if they perform.</div>
       </details>
 
       <details>
         <summary>Can I withdraw mid season? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Technically yes, but it's a bad idea. Pulling out mid season wipes most of your duration and regularity score, the two factors that compound over time. Only consider it if you're done with the season entirely.</div>
+        <div class="detail-body">Technically yes, but it is a bad idea. Pulling out mid season wipes most of your duration and regularity score, the two factors that compound over time. Only consider it if you are done with the season entirely.</div>
       </details>
 
       <details>
@@ -912,7 +1019,7 @@
 
       <details>
         <summary>I'm in the bottom 5% — what do I get? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No prize pool rewards. But your deposited ETH comes back in full. To avoid landing here, deposit early and keep contributing through the week. Even small adds improve your regularity score.</div>
+        <div class="detail-body">No prize pool rewards. But your deposited ETH comes back in full. To avoid landing here, start early, bet on your fighter regularly, and keep contributing through the week. Even small training deposits improve your regularity score.</div>
       </details>
 
       <details>
