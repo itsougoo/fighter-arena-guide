@@ -203,6 +203,23 @@
   .pass-perks { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .pass-perks li { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; }
   .pass-perks li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .pass-perks li.locked { opacity: .45; }
+  .pass-perks li.locked::before { content: '✕'; color: var(--red); }
+
+  .pass-blocked-box {
+    background: var(--red-dim); border: 1px solid rgba(232,64,64,.35);
+    border-radius: var(--radius-lg); padding: 28px; margin: 24px 0; text-align: center;
+  }
+  .pass-blocked-icon { font-size: 36px; margin-bottom: 12px; }
+  .pass-blocked-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .pass-blocked-desc { font-size: 13.5px; color: #e88080; line-height: 1.7; max-width: 480px; margin: 0 auto 20px; }
+  .pass-blocked-price {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--bg2); border: 1px solid rgba(245,200,66,.4);
+    border-radius: var(--radius); padding: 12px 28px; margin-bottom: 8px;
+  }
+  .pass-blocked-price .eth-amount { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--gold); }
+  .pass-blocked-price .eth-label { font-size: 12px; color: var(--muted2); text-transform: uppercase; letter-spacing: 1px; }
 
   details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
   details:hover { border-color: var(--border-glow); }
@@ -451,39 +468,62 @@
         <div class="page-eyebrow">General</div>
         <h2>Season Pass</h2>
       </div>
-      <p>The Season Pass gives you access to the full Fighter Arena experience. Free players can watch and explore. Pass holders get to actually play and earn.</p>
+
+      <p>The Season Pass is your entry ticket to Fighter Arena. Without it, you are locked on the home screen. You cannot browse fighters, deposit ETH, view the leaderboard, or claim any rewards. The pass is the only way in.</p>
+
+      <div class="pass-blocked-box">
+        <div class="pass-blocked-icon">&#128274;</div>
+        <div class="pass-blocked-title">No Pass, No Access</div>
+        <div class="pass-blocked-desc">Players without a Season Pass are blocked at the home screen. Every feature of the game, fighters, vaults, leaderboard, rewards, is locked behind the pass. There is no free version of the game.</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div class="pass-blocked-price">
+            <span class="eth-amount">0.001 ETH</span>
+            <span class="eth-label">per season</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted2);">One pass covers the full 7 day season</div>
+        </div>
+      </div>
+
       <div class="pass-grid">
         <div class="pass-card">
-          <div class="pass-tier" style="color:var(--muted2)">Free</div>
-          <div class="pass-name">Spectator</div>
-          <div class="pass-price">No cost</div>
+          <div class="pass-tier" style="color:var(--red)">&#128274; No Pass</div>
+          <div class="pass-name">Blocked</div>
+          <div class="pass-price">Free</div>
           <ul class="pass-perks">
-            <li>Watch all fights live</li>
-            <li>View the leaderboard</li>
-            <li>Follow fighter stats</li>
-            <li>Browse fight history</li>
+            <li class="locked">Blocked on home screen</li>
+            <li class="locked">Cannot view fighters</li>
+            <li class="locked">Cannot deposit ETH</li>
+            <li class="locked">Cannot view leaderboard</li>
+            <li class="locked">Cannot claim rewards</li>
           </ul>
         </div>
         <div class="pass-card featured">
-          <div class="pass-tier" style="color:var(--gold)">&#9733; Premium</div>
-          <div class="pass-name">Season Pass</div>
-          <div class="pass-price">Paid per season</div>
+          <div class="pass-tier" style="color:var(--gold)">&#9733; Season Pass</div>
+          <div class="pass-name">Full Access</div>
+          <div class="pass-price" style="color:var(--gold);font-weight:700;font-size:16px;">0.001 ETH</div>
           <ul class="pass-perks">
-            <li>Everything in Spectator</li>
+            <li>Full access to the game</li>
+            <li>Browse all 5 fighters</li>
             <li>Deposit ETH into fighter vaults</li>
-            <li>Earn from the prize pool</li>
+            <li>Live leaderboard and rankings</li>
             <li>Contribution score tracking</li>
-            <li>Leaderboard rank and tier placement</li>
-            <li>Access to reward claiming</li>
+            <li>Claim ETH rewards at season end</li>
           </ul>
         </div>
       </div>
+
+      <div class="callout danger">
+        <span class="callout-icon">&#9888;</span>
+        <div><strong>You are blocked without a pass.</strong> Connecting your wallet is not enough. You must purchase the Season Pass to get past the home screen. No pass means no game.</div>
+      </div>
+
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
-        <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2.</div>
+        <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2. Each season costs 0.001 ETH.</div>
       </div>
+
       <h3>Why a pass?</h3>
-      <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future seasons. Season Pass holders are directly betting on Fighter Arena staying alive, which aligns with them also wanting to earn.</p>
+      <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future seasons. At 0.001 ETH it is designed to be accessible to anyone who wants to play seriously.</p>
     </section>
 
     <hr class="divider"/>
@@ -827,7 +867,7 @@
 
       <details>
         <summary>Do I need the Season Pass to play? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Yes, if you want to actually earn. Free spectators can watch fights and browse the leaderboard, but depositing into vaults and claiming rewards requires a Season Pass. The pass is per season and it doesn't carry over.</div>
+        <div class="detail-body">Yes. Without a Season Pass you are blocked on the home screen. You cannot see fighters, deposit ETH, view the leaderboard, or claim rewards. The pass costs 0.001 ETH per season and does not carry over to the next one.</div>
       </details>
 
       <details>
