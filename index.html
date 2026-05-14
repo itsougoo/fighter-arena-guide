@@ -320,7 +320,7 @@
       <div class="hero">
         <div class="season-badge"><span class="dot"></span>Season 1 &nbsp; Live on Abstract</div>
         <h1 class="hero-title">Fighter Arena<br/><em>Game Guide</em></h1>
-        <p class="hero-desc">Fighter Arena is a fully on-chain AI combat league. Five fighters battle every hour while you earn <strong>ETH</strong> by backing the ones you believe in.</p>
+        <p class="hero-desc">Fighter Arena is a fully on chain AI combat league. Five fighters battle every hour while you earn <strong>ETH</strong> by backing the ones you believe in.</p>
       </div>
       <div class="stat-strip">
         <div class="stat-card">
@@ -331,7 +331,7 @@
         <div class="stat-card">
           <div class="stat-label">Reward Currency</div>
           <div class="stat-val">ETH</div>
-          <div class="stat-sub">Claimable on-chain</div>
+          <div class="stat-sub">Claimable on chain</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Wallet</div>
@@ -368,7 +368,7 @@
           <div class="step-num">2</div>
           <div class="step-body">
             <h4>Get ETH on Abstract</h4>
-            <p>Bridge ETH to Abstract or use the in-app onramp. You'll need ETH for your vault deposit plus a small amount for gas.</p>
+            <p>Bridge ETH to Abstract or use the in app onramp. You'll need ETH for your vault deposit plus a small amount for gas.</p>
           </div>
         </div>
         <div class="step">
@@ -416,7 +416,7 @@
       <p>Fighter Arena runs exclusively on <strong>Abstract Global Wallet</strong>. MetaMask, Ledger, and other standard wallets won't work. Transactions will fail at the contract level.</p>
       <div class="callout danger">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>AGW only.</strong> Don't try to interact with Fighter Arena using a regular EOA wallet. It's not a UI limitation. The contracts themselves require smart-wallet primitives that standard wallets don't have.</div>
+        <div><strong>AGW only.</strong> Don't try to interact with Fighter Arena using a regular EOA wallet. It's not a UI limitation. The contracts themselves require smart wallet primitives that standard wallets don't have.</div>
       </div>
       <h3>Creating your AGW</h3>
       <div class="steps">
@@ -431,7 +431,7 @@
           <div class="step-num">2</div>
           <div class="step-body">
             <h4>Fund your wallet</h4>
-            <p>Bridge ETH from mainnet or use Abstract's built-in onramp. You need ETH for deposits and a small amount for gas fees.</p>
+            <p>Bridge ETH from mainnet or use Abstract's built in onramp. You need ETH for deposits and a small amount for gas fees.</p>
           </div>
         </div>
         <div class="step">
@@ -493,7 +493,7 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Overview</h2>
       </div>
-      <p>Season 1 is the debut competitive season. Five AI fighters, seven days, ETH on the line. Everything runs on-chain on Abstract.</p>
+      <p>Season 1 is the debut competitive season. Five AI fighters, seven days, ETH on the line. Everything runs on chain on Abstract.</p>
       <div class="stat-strip">
         <div class="stat-card">
           <div class="stat-label">Season Duration</div>
@@ -523,7 +523,7 @@
           <div class="newlist">
             <span>ChampionVaultV2 with native ETH deposits and a clean 95/5 split</span>
             <span>Merkle proof reward distribution, fully trustless claiming</span>
-            <span>Anti-whale square-root amount scoring</span>
+            <span>Anti whale square root amount scoring</span>
             <span>Season Pass access system</span>
           </div>
         </div>
@@ -606,7 +606,7 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Combat System</h2>
       </div>
-      <p>Fights run every hour, automatically, for the full 7-day season. Each hourly window has <strong>10 fights</strong> in a round-robin format. Every fighter faces every other fighter multiple times across the season.</p>
+      <p>Fights run every hour, automatically, for the full 7 day season. Each hourly window has <strong>10 fights</strong> in a round robin format. Every fighter faces every other fighter multiple times across the season.</p>
       <p>Each fight tracks HP, a Special Gauge, and round state. When the Special Gauge hits 100, the fighter unleashes a special move. Combat is deterministic. Given the same starting states, you always get the same result.</p>
 
       <h3>How a season plays out</h3>
@@ -617,11 +617,11 @@
         </div>
         <div class="tl-item">
           <h4>Combat phase 168 hours</h4>
-          <p>10 fights per hour, non-stop. Every result is recorded on-chain with cryptographic verification. Anyone can check the outcome of any fight at any time.</p>
+          <p>10 fights per hour, without stopping. Every result is recorded on chain with cryptographic verification. Anyone can check the outcome of any fight at any time.</p>
         </div>
         <div class="tl-item">
           <h4>Season closes</h4>
-          <p>Vaults stop accepting deposits. Leaderboard positions lock. The reward tree gets built and the Merkle root gets committed on-chain.</p>
+          <p>Vaults stop accepting deposits. Leaderboard positions lock. The reward tree gets built and the Merkle root gets committed on chain.</p>
         </div>
         <div class="tl-item">
           <h4>Settlement and claiming</h4>
@@ -651,7 +651,7 @@
             <tr>
               <td class="t-bold">&#127919; Back a fighter</td>
               <td>Deposit ETH into their vault</td>
-              <td>Amount factor (square-root scaled)</td>
+              <td>Amount factor (square root scaled)</td>
             </tr>
             <tr>
               <td class="t-bold">&#9201; Back early</td>
@@ -661,13 +661,13 @@
             <tr>
               <td class="t-bold">&#9889; Keep adding</td>
               <td>Make multiple deposits throughout the week</td>
-              <td>Regularity multiplier, beats one-time stakers</td>
+              <td>Regularity multiplier, beats single time stakers</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h3>Anti-whale protection</h3>
+      <h3>Anti whale protection</h3>
       <p>Raw ETH amounts go through a square root before scoring. If you put in 4x more ETH than someone else, you only get 2x their amount score. This means a player who deposits consistently at medium size and stays for the full season can realistically outrank someone who dumped a huge amount late and did nothing else.</p>
 
       <div class="callout success">
@@ -698,7 +698,7 @@
           </div>
           <div class="factor">
             <div class="var">regularity</div>
-            <div class="desc">How consistently you deposited. Spreading contributions across the week beats a single one-time stake.</div>
+            <div class="desc">How consistently you deposited. Spreading contributions across the week beats a single stake.</div>
           </div>
           <div class="factor">
             <div class="var">risk</div>
@@ -754,7 +754,7 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Champion Vaults</h2>
       </div>
-      <p>Every fighter has their own <strong>Champion Vault</strong>, a non-custodial smart contract on Abstract. Your ETH goes in, it stays there, and only you can claim it out with a valid Merkle proof after the season settles. Nobody can touch it in between.</p>
+      <p>Every fighter has their own <strong>Champion Vault</strong>, a non custodial smart contract on Abstract. Your ETH goes in, it stays there, and only you can claim it out with a valid Merkle proof after the season settles. Nobody can touch it in between.</p>
 
       <h3>How deposits split</h3>
       <p>Every deposit splits automatically at the contract level, with no middleman:</p>
@@ -806,7 +806,7 @@
           <div class="step-num">3</div>
           <div class="step-body">
             <h4>Hit Claim</h4>
-            <p>One click. Your AGW signs the transaction, the proof gets verified on-chain, and ETH lands in your wallet. If you want to send it to a different address, use the "Claim to another address" option.</p>
+            <p>One click. Your AGW signs the transaction, the proof gets verified on chain, and ETH lands in your wallet. If you want to send it to a different address, use the "Claim to another address" option.</p>
           </div>
         </div>
       </div>
@@ -846,8 +846,8 @@
       </details>
 
       <details>
-        <summary>Can I withdraw mid-season? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Technically yes, but it's a bad idea. Pulling out mid-season wipes most of your duration and regularity score, the two factors that compound over time. Only consider it if you're done with the season entirely.</div>
+        <summary>Can I withdraw mid season? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Technically yes, but it's a bad idea. Pulling out mid season wipes most of your duration and regularity score, the two factors that compound over time. Only consider it if you're done with the season entirely.</div>
       </details>
 
       <details>
@@ -857,7 +857,7 @@
 
       <details>
         <summary>What wallet do I need? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Abstract Global Wallet (AGW) only. MetaMask, Ledger, and other standard wallets will not work. This is a contract-level requirement, not just a UI thing. Create your AGW at abs.xyz. Takes about a minute, no seed phrase needed.</div>
+        <div class="detail-body">Abstract Global Wallet (AGW) only. MetaMask, Ledger, and other standard wallets will not work. This is a contract level requirement, not just a UI thing. Create your AGW at abs.xyz. Takes about a minute, no seed phrase needed.</div>
       </details>
 
       <details>
