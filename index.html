@@ -172,12 +172,7 @@
   }
   .mechanic-card:hover { border-color: var(--border-glow); transform: translateY(-2px); }
   .mechanic-icon { font-size: 26px; margin-bottom: 10px; }
-  .mechanic-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-  .mechanic-mult { font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
-  .mechanic-mult.green { background: rgba(61,220,132,.15); color: var(--green); border: 1px solid rgba(61,220,132,.3); }
-  .mechanic-mult.blue  { background: rgba(91,141,238,.15); color: var(--blue);  border: 1px solid rgba(91,141,238,.3); }
-  .mechanic-mult.gold  { background: rgba(245,200,66,.15); color: var(--gold);  border: 1px solid rgba(245,200,66,.3); }
-  .mechanic-mult.red   { background: rgba(232,64,64,.15);  color: var(--red);   border: 1px solid rgba(232,64,64,.3); }
+  .mechanic-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
   .mechanic-desc { font-size: 13px; color: var(--muted2); line-height: 1.65; }
 
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin: 18px 0; }
@@ -197,7 +192,7 @@
 
   .formula-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin: 20px 0; text-align: center; }
   .formula { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--gold); background: var(--bg2); padding: 14px 24px; border-radius: var(--radius); border: 1px solid var(--border); display: inline-block; margin-bottom: 24px; letter-spacing: .5px; }
-  .factor-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .factor-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .factor { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 12px; }
   .factor .var  { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
   .factor .desc { font-size: 11px; color: var(--muted2); line-height: 1.5; }
@@ -630,7 +625,7 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Supporting Fighters</h2>
       </div>
-      <p>You back your fighter by putting ETH into their Champion Vault. There are four ways to do it. Each one feeds the prize pool and builds your contribution score, but they carry different <strong>risk multipliers</strong> that change how much your score counts at season end.</p>
+      <p>You back your fighter by putting ETH into their Champion Vault. There are four ways to do it. Each one feeds the prize pool and builds your contribution score.</p>
       <p>Pick the fighter you believe in and commit to them. If you switch fighters during the season you lose the contribution points you built with your previous one.</p>
     </section>
 
@@ -642,36 +637,32 @@
         <h2>Prize Pool Mechanics</h2>
       </div>
       <p>Every fighter has their own separate prize pool inside their Champion Vault. There is no global prize pool. Rewards are calculated per fighter, not across all fighters at once. When you back Vandal, you are competing for Vandal's pool against other Vandal supporters.</p>
-      <p>Four mechanics feed each fighter's pool and build your contribution score. Each one has a different risk multiplier that amplifies your score:</p>
+      <p>Four mechanics feed each fighter's pool and build your contribution score:</p>
 
       <div class="mechanic-grid">
 
         <div class="mechanic-card">
           <div class="mechanic-icon">&#127922;</div>
           <div class="mechanic-title">Betting</div>
-          <div class="mechanic-mult red">Risk &times; 1.35</div>
-          <p class="mechanic-desc">The highest risk play. You bet ETH on your fighter winning their next fight. If they win, your contribution score gets the strongest multiplier in the game. If they lose, you still fed the pool but your multiplier is lower. High risk, high reward. This is how you climb the leaderboard fast.</p>
+          <p class="mechanic-desc">The highest risk play. You bet ETH on your fighter winning their next fight. If they win, your contribution score gets the strongest boost in the game. If they lose, you still fed the pool but your score is lower. High risk, high reward. This is how you climb the leaderboard fast.</p>
         </div>
 
         <div class="mechanic-card">
           <div class="mechanic-icon">&#128293;</div>
           <div class="mechanic-title">Special Attacks</div>
-          <div class="mechanic-mult gold">Risk &times; 1.20</div>
-          <p class="mechanic-desc">Trigger a special combat action for your fighter during a live fight window. The ETH you spend activates the action and goes directly into the vault. Your score gets a strong multiplier. Special attacks are limited per fight window so timing matters.</p>
+          <p class="mechanic-desc">Trigger a special combat action for your fighter during a live fight window. The ETH you spend activates the action and goes directly into the vault. Your score gets a strong boost. Special attacks are limited per fight window so timing matters.</p>
         </div>
 
         <div class="mechanic-card">
           <div class="mechanic-icon">&#128170;</div>
           <div class="mechanic-title">Sponsoring</div>
-          <div class="mechanic-mult blue">Risk &times; 1.00</div>
-          <p class="mechanic-desc">Direct support deposit into your fighter's vault. No win condition, no special action. Neutral risk. The ETH goes straight into the pool and you get a solid base multiplier. Sponsoring is reliable and consistent. It is the safest way to accumulate contribution over the full season.</p>
+          <p class="mechanic-desc">Direct support deposit into your fighter's vault. No win condition, no special action. The ETH goes straight into the pool and you get a solid base score. Sponsoring is reliable and consistent. It is the safest way to accumulate contribution over the full season.</p>
         </div>
 
         <div class="mechanic-card">
           <div class="mechanic-icon">&#127947;</div>
           <div class="mechanic-title">Training Sessions</div>
-          <div class="mechanic-mult green">Risk &times; 0.85</div>
-          <p class="mechanic-desc">Fund a training session for your fighter between fights. The ETH goes into the vault but the multiplier is the lowest of the four options. Training is not about score. It is about consistency and duration. Players who train regularly all season keep their score compounding even during quiet periods.</p>
+          <p class="mechanic-desc">Fund a training session for your fighter between fights. The ETH goes into the vault. Training is about consistency and duration. Players who train regularly all season keep their score compounding even during quiet periods.</p>
         </div>
 
       </div>
@@ -679,30 +670,26 @@
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>Action</th><th>Risk Multiplier</th><th>Pool Impact</th><th>Score Strategy</th></tr>
+            <tr><th>Action</th><th>Pool Impact</th><th>Score Strategy</th></tr>
           </thead>
           <tbody>
             <tr>
               <td class="t-bold">&#127922; Betting</td>
-              <td class="t-red">&times; 1.35</td>
               <td>Feeds vault directly</td>
               <td>Max score when your fighter wins</td>
             </tr>
             <tr>
               <td class="t-bold">&#128293; Special Attack</td>
-              <td class="t-gold">&times; 1.20</td>
               <td>Feeds vault directly</td>
               <td>High score during live fight windows</td>
             </tr>
             <tr>
               <td class="t-bold">&#128170; Sponsoring</td>
-              <td class="t-blue">&times; 1.00</td>
               <td>Feeds vault directly</td>
               <td>Reliable base score all season</td>
             </tr>
             <tr>
               <td class="t-bold">&#127947; Training</td>
-              <td class="t-muted">&times; 0.85</td>
               <td>Feeds vault directly</td>
               <td>Keeps duration and regularity climbing</td>
             </tr>
@@ -712,7 +699,7 @@
 
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>Every action feeds the pool.</strong> Regardless of multiplier, every ETH you put in through any mechanic goes directly into your fighter's Champion Vault. The pool grows with every bet, every sponsor, every training session, every special attack from all their supporters.</div>
+        <div><strong>Every action feeds the pool.</strong> Every ETH you put in through any mechanic goes directly into your fighter's Champion Vault. The pool grows with every bet, every sponsor, every training session, every special attack from all their supporters.</div>
       </div>
 
       <div class="callout info">
@@ -728,10 +715,10 @@
         <div class="page-eyebrow">Season 1</div>
         <h2>Contribution Score</h2>
       </div>
-      <p>Your rank within your fighter's pool is determined by your <strong>contribution score</strong>. It captures how much you put in, how early, how consistently, and how risky your actions were.</p>
+      <p>Your rank within your fighter's pool is determined by your <strong>contribution score</strong>. It captures how much you put in, how early, and how consistently.</p>
 
       <div class="formula-box">
-        <div class="formula">score = &radic;amount &times; duration &times; regularity &times; risk</div>
+        <div class="formula">score = &radic;amount &times; duration &times; regularity</div>
         <div class="factor-row">
           <div class="factor">
             <div class="var">&radic;amount</div>
@@ -745,16 +732,12 @@
             <div class="var">regularity</div>
             <div class="desc">How consistently you deposited. Spreading actions across the week beats one single deposit. Rewards active players.</div>
           </div>
-          <div class="factor">
-            <div class="var">risk</div>
-            <div class="desc">The multiplier of your action type. Betting gives 1.35, special attacks 1.20, sponsoring 1.00, training 0.85.</div>
-          </div>
         </div>
       </div>
 
       <div class="callout success">
         <span class="callout-icon">&#128161;</span>
-        <div><strong>Best strategy:</strong> bet on your fighter early for the high multiplier, sponsor consistently through the week for reliable score, and use training sessions to keep your regularity multiplier high. Mix all four actions to maximize every factor in the formula.</div>
+        <div><strong>Best strategy:</strong> back your fighter early to maximize duration, sponsor and train consistently through the week to keep your regularity multiplier high, and use betting and special attacks when your fighter is on a good run.</div>
       </div>
     </section>
 
@@ -887,7 +870,7 @@
 
       <details>
         <summary>What is the difference between betting, sponsoring, training and special attacks? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">All four actions deposit ETH into your fighter's vault and build your contribution score, but they carry different risk multipliers. Betting gives the highest multiplier (1.35x) when your fighter wins. Special attacks give 1.20x during live fight windows. Sponsoring is neutral at 1.00x. Training gives 0.85x but keeps your regularity score compounding. Use all four throughout the season for maximum effect.</div>
+        <div class="detail-body">All four actions deposit ETH into your fighter's vault and build your contribution score. Betting carries the most risk but gives the biggest score boost when your fighter wins. Special attacks trigger during live fights and give a strong score boost. Sponsoring is neutral and reliable. Training keeps your regularity compounding. Use all four throughout the season for maximum effect.</div>
       </details>
 
       <details>
@@ -902,7 +885,7 @@
 
       <details>
         <summary>What happens to my ETH if my fighter loses most fights? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Your deposited ETH is always safe in the vault and comes back to you. What you lose is the risk multiplier benefit from bets. A fighter who wins consistently gives their backers a stronger score. Backing an underdog who surprises pays very well if they perform.</div>
+        <div class="detail-body">Your deposited ETH is always safe in the vault and comes back to you. A fighter who wins consistently gives their backers a stronger score. Backing an underdog who surprises pays very well if they perform.</div>
       </details>
 
       <details>
@@ -917,7 +900,7 @@
 
       <details>
         <summary>I'm in the bottom 5% — what do I get? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No prize pool rewards. But your deposited ETH comes back in full. To avoid landing here, start early, bet on your fighter regularly, and keep contributing through the week. Even small training deposits improve your regularity score.</div>
+        <div class="detail-body">No prize pool rewards. But your deposited ETH comes back in full. To avoid landing here, start early, back your fighter regularly, and keep contributing through the week. Even small training deposits improve your regularity score.</div>
       </details>
 
       <details>
