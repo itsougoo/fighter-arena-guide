@@ -131,23 +131,35 @@
   .step-body h4 { font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .step-body p { margin: 0; font-size: 13.5px; }
 
-  .fighter-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 22px 0; }
+  /* ═══ FIGHTER CARDS ═══ */
+  .fighter-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 22px 0; }
   .fighter-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 18px 10px; text-align: center;
-    transition: border-color .2s, transform .2s, box-shadow .2s; cursor: default;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 20px 10px 16px; text-align: center;
+    transition: border-color .2s, transform .25s, box-shadow .25s; cursor: default;
+    position: relative; overflow: hidden;
   }
-  .fighter-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(232,64,64,.15); }
-  .fighter-card .f-num { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--muted2); text-transform: uppercase; margin-bottom: 10px; }
-  .fighter-avatar { width: 48px; height: 48px; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; border: 2px solid var(--border); }
-  .fa-red    { background: rgba(232,64,64,.15);  border-color: rgba(232,64,64,.5);  }
-  .fa-blue   { background: rgba(91,141,238,.15); border-color: rgba(91,141,238,.5); }
-  .fa-gold   { background: rgba(245,200,66,.15); border-color: rgba(245,200,66,.5); }
-  .fa-green  { background: rgba(61,220,132,.15); border-color: rgba(61,220,132,.5); }
-  .fa-purple { background: rgba(160,90,220,.15); border-color: rgba(160,90,220,.5); }
-  .f-name { font-size: 13px; font-weight: 700; color: var(--text); }
-  .f-role { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
-  .f-style { font-size: 11px; color: var(--muted2); margin-top: 3px; }
+  .fighter-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, var(--fc, rgba(232,64,64,.08)) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .fighter-card:hover { transform: translateY(-4px); }
+
+  .fighter-portrait {
+    width: 72px; height: 72px; margin: 0 auto 12px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--fp, #e84040);
+    box-shadow: 0 0 14px var(--fp, #e84040), 0 0 0 4px rgba(255,255,255,.03);
+    background: var(--surface2);
+    overflow: hidden;
+  }
+  .fighter-portrait svg { width: 54px; height: 54px; }
+
+  .f-num { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--muted2); text-transform: uppercase; margin-bottom: 10px; }
+  .f-name { font-size: 13.5px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .f-role { font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; }
+  .f-style { font-size: 10.5px; color: var(--muted2); }
 
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin: 18px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
@@ -186,7 +198,7 @@
   .pass-price { font-size: 14px; color: var(--muted2); margin-bottom: 16px; }
   .pass-perks { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .pass-perks li { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; }
-  .pass-perks li::before { content: '&#10003;'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .pass-perks li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
   details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
   details:hover { border-color: var(--border-glow); }
@@ -440,7 +452,6 @@
         <h2>Season Pass</h2>
       </div>
       <p>The Season Pass gives you access to the full Fighter Arena experience. Free players can watch and explore — Pass holders get to actually play and earn.</p>
-
       <div class="pass-grid">
         <div class="pass-card">
           <div class="pass-tier" style="color:var(--muted2)">Free</div>
@@ -450,7 +461,7 @@
             <li>Watch all fights live</li>
             <li>View the leaderboard</li>
             <li>Follow fighter stats</li>
-            <li>Browse fight history and audit log</li>
+            <li>Browse fight history</li>
           </ul>
         </div>
         <div class="pass-card featured">
@@ -463,16 +474,14 @@
             <li>Earn from the prize pool</li>
             <li>Contribution score tracking</li>
             <li>Leaderboard rank and tier placement</li>
-            <li>Access to Merkle proof claiming</li>
+            <li>Access to reward claiming</li>
           </ul>
         </div>
       </div>
-
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
         <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2.</div>
       </div>
-
       <h3>Why a pass?</h3>
       <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future seasons. Season Pass holders are directly betting on Fighter Arena staying alive — which aligns with them also wanting to earn.</p>
     </section>
@@ -514,7 +523,6 @@
           <strong>What's new in Season 1</strong>
           <div class="newlist">
             <span>ChampionVaultV2 with native ETH deposits and a clean 95/5 split</span>
-            <span>SHA-256 tamper-evident fight audit log replacing the old FNV-32</span>
             <span>Merkle proof reward distribution — fully trustless claiming</span>
             <span>Anti-whale square-root amount scoring</span>
             <span>Season Pass access system</span>
@@ -534,41 +542,117 @@
       <p>Five AI fighters compete in Season 1. They're fully autonomous — you can't control what they do in the arena. What you control is which one you back and how much skin you put in.</p>
 
       <div class="fighter-row">
-        <div class="fighter-card" style="border-color:rgba(232,64,64,.35);">
+
+        <!-- VANDAL -->
+        <div class="fighter-card" style="--fc:rgba(232,64,64,.1); border-color:rgba(232,64,64,.4);">
           <div class="f-num">F-01</div>
-          <div class="fighter-avatar fa-red">&#128308;</div>
+          <div class="fighter-portrait" style="--fp:#e84040;">
+            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="27" cy="17" r="9" fill="#e84040" opacity=".9"/>
+              <rect x="19" y="27" width="16" height="18" rx="4" fill="#e84040" opacity=".85"/>
+              <rect x="10" y="29" width="9" height="5" rx="2.5" fill="#e84040" opacity=".7"/>
+              <rect x="35" y="29" width="9" height="5" rx="2.5" fill="#e84040" opacity=".7"/>
+              <rect x="20" y="45" width="6" height="7" rx="2" fill="#e84040" opacity=".7"/>
+              <rect x="28" y="45" width="6" height="7" rx="2" fill="#e84040" opacity=".7"/>
+              <path d="M22 14 L27 8 L32 14" stroke="#ff8080" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+              <circle cx="23" cy="17" r="1.5" fill="#fff" opacity=".9"/>
+              <circle cx="31" cy="17" r="1.5" fill="#fff" opacity=".9"/>
+            </svg>
+          </div>
           <div class="f-name">Vandal</div>
-          <div class="f-role" style="color:var(--red);">Striker</div>
-          <div class="f-style">Aggressive · High risk</div>
+          <div class="f-role" style="color:#e84040;">Striker</div>
+          <div class="f-style">Aggressive &middot; High risk</div>
         </div>
-        <div class="fighter-card" style="border-color:rgba(91,141,238,.35);">
+
+        <!-- TYPHOON -->
+        <div class="fighter-card" style="--fc:rgba(91,141,238,.1); border-color:rgba(91,141,238,.4);">
           <div class="f-num">F-02</div>
-          <div class="fighter-avatar fa-blue">&#9928;</div>
+          <div class="fighter-portrait" style="--fp:#5b8dee;">
+            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="27" cy="17" r="10" fill="#5b8dee" opacity=".9"/>
+              <rect x="18" y="27" width="18" height="19" rx="4" fill="#5b8dee" opacity=".85"/>
+              <rect x="8" y="28" width="10" height="6" rx="3" fill="#5b8dee" opacity=".7"/>
+              <rect x="36" y="28" width="10" height="6" rx="3" fill="#5b8dee" opacity=".7"/>
+              <rect x="19" y="46" width="7" height="6" rx="2" fill="#5b8dee" opacity=".7"/>
+              <rect x="28" y="46" width="7" height="6" rx="2" fill="#5b8dee" opacity=".7"/>
+              <path d="M20 15 Q27 10 34 15" stroke="#a0c0ff" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <circle cx="23" cy="17" r="1.8" fill="#fff" opacity=".9"/>
+              <circle cx="31" cy="17" r="1.8" fill="#fff" opacity=".9"/>
+              <path d="M24 20 L27 22 L30 20" stroke="#a0c0ff" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
           <div class="f-name">Typhoon</div>
-          <div class="f-role" style="color:var(--blue);">Brawler</div>
-          <div class="f-style">Raw power · Endurance</div>
+          <div class="f-role" style="color:#5b8dee;">Brawler</div>
+          <div class="f-style">Raw power &middot; Endurance</div>
         </div>
-        <div class="fighter-card" style="border-color:rgba(245,200,66,.35);">
+
+        <!-- SAENCHAI -->
+        <div class="fighter-card" style="--fc:rgba(245,200,66,.1); border-color:rgba(245,200,66,.4);">
           <div class="f-num">F-03</div>
-          <div class="fighter-avatar fa-gold">&#9733;</div>
+          <div class="fighter-portrait" style="--fp:#f5c842;">
+            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="27" cy="16" r="9" fill="#f5c842" opacity=".9"/>
+              <rect x="20" y="26" width="14" height="18" rx="3" fill="#f5c842" opacity=".85"/>
+              <rect x="11" y="28" width="9" height="4" rx="2" fill="#f5c842" opacity=".7"/>
+              <rect x="34" y="28" width="9" height="4" rx="2" fill="#f5c842" opacity=".7"/>
+              <rect x="21" y="44" width="5" height="8" rx="2" fill="#f5c842" opacity=".7"/>
+              <rect x="28" y="44" width="5" height="8" rx="2" fill="#f5c842" opacity=".7"/>
+              <path d="M22 13 L27 7 L32 13" stroke="#ffe080" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <path d="M24 13 L27 9 L30 13" fill="#f5c842" opacity=".5"/>
+              <circle cx="23.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
+              <circle cx="30.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
+              <path d="M25 19 L27 21 L29 19" stroke="#ffe080" stroke-width="1" fill="none"/>
+            </svg>
+          </div>
           <div class="f-name">Saenchai</div>
-          <div class="f-role" style="color:var(--gold);">Technician</div>
-          <div class="f-style">Precision · Counters</div>
+          <div class="f-role" style="color:#f5c842;">Technician</div>
+          <div class="f-style">Precision &middot; Counters</div>
         </div>
-        <div class="fighter-card" style="border-color:rgba(61,220,132,.35);">
+
+        <!-- MEI-LING -->
+        <div class="fighter-card" style="--fc:rgba(61,220,132,.1); border-color:rgba(61,220,132,.4);">
           <div class="f-num">F-04</div>
-          <div class="fighter-avatar fa-green">&#10022;</div>
+          <div class="fighter-portrait" style="--fp:#3ddc84;">
+            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="27" cy="16" r="9" fill="#3ddc84" opacity=".9"/>
+              <rect x="20" y="26" width="14" height="18" rx="4" fill="#3ddc84" opacity=".85"/>
+              <rect x="11" y="29" width="9" height="4" rx="2" fill="#3ddc84" opacity=".7"/>
+              <rect x="34" y="29" width="9" height="4" rx="2" fill="#3ddc84" opacity=".7"/>
+              <rect x="21" y="44" width="5" height="8" rx="2" fill="#3ddc84" opacity=".7"/>
+              <rect x="28" y="44" width="5" height="8" rx="2" fill="#3ddc84" opacity=".7"/>
+              <path d="M21 13 Q27 8 33 13" stroke="#80ffbe" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              <circle cx="23.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
+              <circle cx="30.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
+              <path d="M22 12 L20 10 M32 12 L34 10" stroke="#80ffbe" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="f-name">Mei-Ling</div>
-          <div class="f-role" style="color:var(--green);">Tactician</div>
-          <div class="f-style">Strategy · Adaptable</div>
+          <div class="f-role" style="color:#3ddc84;">Tactician</div>
+          <div class="f-style">Strategy &middot; Adaptable</div>
         </div>
-        <div class="fighter-card" style="border-color:rgba(160,90,220,.35);">
+
+        <!-- VIXEN -->
+        <div class="fighter-card" style="--fc:rgba(160,90,220,.1); border-color:rgba(160,90,220,.4);">
           <div class="f-num">F-05</div>
-          <div class="fighter-avatar fa-purple">&#128974;</div>
+          <div class="fighter-portrait" style="--fp:#a05adc;">
+            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="27" cy="16" r="9" fill="#a05adc" opacity=".9"/>
+              <rect x="20" y="26" width="14" height="18" rx="4" fill="#a05adc" opacity=".85"/>
+              <rect x="11" y="29" width="9" height="4" rx="2" fill="#a05adc" opacity=".7"/>
+              <rect x="34" y="29" width="9" height="4" rx="2" fill="#a05adc" opacity=".7"/>
+              <rect x="21" y="44" width="5" height="8" rx="2" fill="#a05adc" opacity=".7"/>
+              <rect x="28" y="44" width="5" height="8" rx="2" fill="#a05adc" opacity=".7"/>
+              <path d="M19 12 L22 8 L27 11 L32 8 L35 12" stroke="#d080ff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="23.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
+              <circle cx="30.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
+              <circle cx="27" cy="19" r="1.2" fill="#d080ff" opacity=".7"/>
+            </svg>
+          </div>
           <div class="f-name">Vixen</div>
-          <div class="f-role" style="color:var(--purple);">Phantom</div>
-          <div class="f-style">Evasion · Burst</div>
+          <div class="f-role" style="color:#a05adc;">Phantom</div>
+          <div class="f-style">Evasion &middot; Burst</div>
         </div>
+
       </div>
 
       <p>Each fighter has a distinct combat style that affects how they perform across the 1,680 fights in a season. A fighter on a hot streak gives their backers a better risk multiplier. An underdog who pulls through pays even more.</p>
@@ -598,7 +682,7 @@
         </div>
         <div class="tl-item">
           <h4>Combat phase — 168 hours</h4>
-          <p>10 fights per hour, non-stop. Every result is logged with a SHA-256 checksum in the tamper-evident audit trail — verifiable by anyone, any time.</p>
+          <p>10 fights per hour, non-stop. Every result is recorded on-chain with cryptographic verification — anyone can check the outcome of any fight at any time.</p>
         </div>
         <div class="tl-item">
           <h4>Season closes</h4>
@@ -612,7 +696,7 @@
 
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
-        <div><strong>Every fight is verifiable.</strong> The full SHA-256 audit log is public on GitHub. If you ever doubt a result, you can check it yourself — no trust required.</div>
+        <div><strong>Every fight is verifiable.</strong> Combat is deterministic — the same fighter states always produce the same result. Fight results are publicly accessible on GitHub and anyone can verify them independently.</div>
       </div>
     </section>
 
@@ -792,7 +876,7 @@
           <div class="step-num">3</div>
           <div class="step-body">
             <h4>Hit Claim</h4>
-            <p>One click. Your AGW signs the transaction, the Merkle proof gets verified on-chain, and ETH lands in your wallet. If you want to send it to a different address, you can do that too — just use the "Claim to another address" option.</p>
+            <p>One click. Your AGW signs the transaction, the proof gets verified on-chain, and ETH lands in your wallet. If you want to send it to a different address, use the "Claim to another address" option.</p>
           </div>
         </div>
       </div>
@@ -839,7 +923,7 @@
 
       <details>
         <summary>How are fights verified as fair? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Every fight is logged with a SHA-256 tamper-evident checksum. Combat is deterministic — the same fighter states always produce the same result. The full audit log is public on GitHub and anyone can verify any fight independently. No trust required.</div>
+        <div class="detail-body">Combat is deterministic — the same fighter states always produce the same result. Fight results are publicly accessible on GitHub and anyone can check them independently.</div>
       </details>
 
       <details>
