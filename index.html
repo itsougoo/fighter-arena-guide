@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Fighter Arena Season 1 — Official Game Guide. AI combat, ETH rewards, Champion Vaults on Abstract L2."/>
+  <meta name="description" content="Fighter Arena Season 1 — Official Game Guide. Back AI fighters, earn ETH, climb the leaderboard."/>
   <title>Fighter Arena — Game Guide</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -80,7 +80,6 @@
 
   .tag { font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: .5px; text-transform: uppercase; }
   .tag-live  { background: rgba(61,220,132,.2); color: var(--green); border: 1px solid rgba(61,220,132,.3); }
-  .tag-ended { background: var(--surface2); color: var(--muted2); border: 1px solid var(--border); }
 
   .nav-sub { display: none; flex-direction: column; padding-bottom: 4px; }
   .nav-sub.open { display: flex; }
@@ -158,7 +157,6 @@
   td.t-red   { font-weight: 700; color: var(--red); }
   td.t-gold  { font-weight: 700; color: var(--gold); }
   td.t-muted { color: var(--muted2); }
-  td.t-mono  { font-family: var(--mono); font-size: 11px; color: #a8bff5; }
   .tier-bar  { height: 4px; background: var(--surface2); border-radius: 2px; min-width: 80px; }
   .tier-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--orange)); }
 
@@ -176,7 +174,16 @@
   .split-name { font-size: 13.5px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
   .split-desc { font-size: 12px; color: var(--muted2); line-height: 1.6; }
 
-  .code { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; font-family: var(--mono); font-size: 12.5px; color: #a8bff5; margin: 14px 0; overflow-x: auto; line-height: 1.7; }
+  .pass-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 22px 0; }
+  .pass-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; transition: border-color .2s, transform .2s; }
+  .pass-card:hover { border-color: var(--border-glow); transform: translateY(-2px); }
+  .pass-card.featured { border-color: rgba(245,200,66,.4); background: linear-gradient(135deg, var(--surface), rgba(245,200,66,.05)); }
+  .pass-tier { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
+  .pass-name { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .pass-price { font-size: 14px; color: var(--muted2); margin-bottom: 16px; }
+  .pass-perks { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .pass-perks li { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; }
+  .pass-perks li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
   details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
   details:hover { border-color: var(--border-glow); }
@@ -220,6 +227,7 @@
     .fighter-row { grid-template-columns: repeat(3, 1fr); }
     .factor-row { grid-template-columns: repeat(2, 1fr); }
     .split-row { grid-template-columns: 1fr; }
+    .pass-grid { grid-template-columns: 1fr; }
     .hero-title { font-size: 28px; }
     h2 { font-size: 22px; }
   }
@@ -256,10 +264,10 @@
           <a href="#gen-what"><span class="nav-icon">&#127967;</span>What is Fighter Arena</a>
           <a href="#gen-start"><span class="nav-icon">&#128640;</span>Getting Started</a>
           <a href="#gen-wallet"><span class="nav-icon">&#128272;</span>Wallet (AGW)</a>
-          <a href="#gen-contracts"><span class="nav-icon">&#128196;</span>Contracts</a>
+          <a href="#gen-pass"><span class="nav-icon">&#127903;</span>Season Pass</a>
         </div>
       </div>
-      <div class="nav-section">Seasons</div>
+      <div class="nav-section">Season 1</div>
       <div class="nav-group">
         <button class="nav-group-btn open" onclick="toggleNav(this,'grp-s1')">
           <span style="display:flex;align-items:center;gap:8px;">Season 1 <span class="tag tag-live">LIVE</span></span>
@@ -294,18 +302,18 @@
       <div class="hero">
         <div class="season-badge"><span class="dot"></span>Season 1 &middot; Live on Abstract</div>
         <h1 class="hero-title">Fighter Arena<br/><em>Game Guide</em></h1>
-        <p class="hero-desc">Fighter Arena is a fully on-chain AI combat league. Five autonomous fighters battle every hour while you earn <strong>ETH</strong> by backing the ones you believe in. No team required. Pure execution.</p>
+        <p class="hero-desc">Fighter Arena is a fully on-chain AI combat league. Five fighters battle every hour while you earn <strong>ETH</strong> by backing the ones you believe in.</p>
       </div>
       <div class="stat-strip">
         <div class="stat-card">
           <div class="stat-label">Chain</div>
           <div class="stat-val">Abstract</div>
-          <div class="stat-sub">L2 &middot; Chain ID 11124</div>
+          <div class="stat-sub">Ethereum L2</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Reward Currency</div>
           <div class="stat-val">ETH</div>
-          <div class="stat-sub">Native, claimable on-chain</div>
+          <div class="stat-sub">Claimable on-chain</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Wallet</div>
@@ -313,13 +321,13 @@
           <div class="stat-sub">Abstract Global Wallet</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Fights / Season</div>
-          <div class="stat-val">1,680</div>
-          <div class="stat-sub">10 per hour &middot; 168 hrs</div>
+          <div class="stat-label">Season Length</div>
+          <div class="stat-val">7 days</div>
+          <div class="stat-sub">1,680 fights total</div>
         </div>
       </div>
-      <p>Each season runs for exactly <strong>7 days</strong>. Fights happen automatically every hour. Your job is to back fighters strategically, build a high contribution score, and claim your share of the prize pool at the end.</p>
-      <p>All on-chain actions &mdash; deposits and Merkle proof claims &mdash; flow through <strong>ChampionVaultV2</strong>. Combat itself is handled by fully autonomous AI agents with a verifiable SHA-256 tamper-evident audit trail on GitHub.</p>
+      <p>Each season runs for exactly <strong>7 days</strong>. Fights run on their own, every hour, around the clock. You pick fighters to back, build up a contribution score over the week, and claim your share of the prize pool when it's done.</p>
+      <p>You don't need to do anything during fights. No babysitting, no manual actions. Deposit into a vault, watch the leaderboard move, claim at the end.</p>
     </section>
 
     <hr class="divider"/>
@@ -330,54 +338,54 @@
         <div class="page-eyebrow">General</div>
         <h2>Getting Started</h2>
       </div>
-      <p>To play, you need an <strong>Abstract Global Wallet (AGW)</strong> funded with ETH on Abstract Testnet (Chain ID 11124).</p>
+      <p>Three things to get going: a wallet, some ETH, and a fighter to back.</p>
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-body">
-            <h4>Create your AGW</h4>
-            <p>Go to <strong>abs.xyz</strong> and sign up with email or social login &mdash; no seed phrase required.</p>
+            <h4>Create your Abstract Global Wallet</h4>
+            <p>Go to <strong>abs.xyz</strong> and sign up — email or social, no seed phrase. This is the only wallet Fighter Arena supports.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-body">
-            <h4>Fund with ETH</h4>
-            <p>Bridge or get testnet ETH on Chain ID 11124 via the Abstract faucet. You need ETH for your vault deposit plus gas.</p>
+            <h4>Get ETH on Abstract</h4>
+            <p>Bridge ETH to Abstract or use the in-app onramp. You'll need ETH for your vault deposit plus a small amount for gas.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-body">
-            <h4>Choose a fighter</h4>
-            <p>Study the 5 Season 1 fighters &mdash; Vandal, Typhoon, Saenchai, Mei-Ling, Vixen &mdash; and decide who to back.</p>
+            <h4>Pick a fighter</h4>
+            <p>Look at the 5 Season 1 fighters — Vandal, Typhoon, Saenchai, Mei-Ling, Vixen — and decide who you want to back. You can split across multiple fighters if you want.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-body">
-            <h4>Deposit into the vault</h4>
-            <p>Deposit ETH to your chosen fighter's Champion Vault via <strong>CombatContributionRouter</strong>. Early deposits maximize your duration score.</p>
+            <h4>Deposit into their vault</h4>
+            <p>Back your fighter by depositing ETH into their Champion Vault. The earlier you deposit, the higher your duration score. That compounds over the whole week.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">5</div>
           <div class="step-body">
-            <h4>Track your rank</h4>
-            <p>Fights run automatically every hour. Monitor your leaderboard position on the live dashboard throughout the week.</p>
+            <h4>Watch the fights, track your rank</h4>
+            <p>Fights run automatically every hour. Check the leaderboard to see where you stand. You can deposit more throughout the season to boost your score.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">6</div>
           <div class="step-body">
-            <h4>Claim rewards</h4>
-            <p>After season settlement, submit your Merkle proof via <code style="font-family:var(--mono);background:var(--bg2);padding:2px 6px;border-radius:4px;font-size:12px;color:#a8bff5;">claim()</code> or <code style="font-family:var(--mono);background:var(--bg2);padding:2px 6px;border-radius:4px;font-size:12px;color:#a8bff5;">claimTo()</code> to receive your ETH.</p>
+            <h4>Claim your ETH after settlement</h4>
+            <p>When the season ends, your rewards are calculated and locked. Open the app, hit Claim, and the ETH lands in your wallet.</p>
           </div>
         </div>
       </div>
-      <div class="callout info">
-        <span class="callout-icon">&#8505;</span>
-        <div><strong>Passive play:</strong> Once you've deposited, your contribution score accumulates automatically. No need to stay online during fights &mdash; just check your rank and claim at the end.</div>
+      <div class="callout success">
+        <span class="callout-icon">&#128161;</span>
+        <div><strong>Deposit early, deposit often.</strong> Once your ETH is in the vault, your score builds passively. You don't need to be online during fights — just keep an eye on your rank.</div>
       </div>
     </section>
 
@@ -389,33 +397,32 @@
         <div class="page-eyebrow">General</div>
         <h2>Wallet (AGW)</h2>
       </div>
-      <p>Fighter Arena is built exclusively for <strong>Abstract Global Wallet</strong>. Standard EOA wallets (MetaMask, hardware wallets) are not supported &mdash; transactions will fail.</p>
+      <p>Fighter Arena runs exclusively on <strong>Abstract Global Wallet</strong>. MetaMask, Ledger, and other standard wallets won't work — transactions will fail at the contract level.</p>
       <div class="callout danger">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>AGW only.</strong> Do not interact with Fighter Arena contracts using a standard EOA wallet. The deprecated ChampionVault V1 is also incompatible with Season 1.</div>
+        <div><strong>AGW only.</strong> Don't try to interact with Fighter Arena using a regular EOA wallet. It's not a UI limitation — the contracts themselves require smart-wallet primitives that standard wallets don't have.</div>
       </div>
-      <h3>Why AGW?</h3>
-      <p>AGW wallets are smart-contract wallets native to Abstract. Fighter Arena uses <code style="font-family:var(--mono);background:var(--bg2);padding:2px 6px;border-radius:4px;font-size:12px;color:#a8bff5;">claimTo()</code> &mdash; a function that lets you claim rewards to any address &mdash; which requires smart-wallet primitives that EOAs don't support.</p>
+      <h3>Creating your AGW</h3>
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-body">
-            <h4>Create your AGW</h4>
-            <p>Go to <strong>abs.xyz</strong>. Sign up with email or social &mdash; no seed phrase needed.</p>
+            <h4>Go to abs.xyz</h4>
+            <p>Sign up with email, Google, or Apple. No seed phrase, no browser extension. It takes about a minute.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-body">
-            <h4>Get testnet ETH</h4>
-            <p>Use the Abstract testnet faucet. RPC: <code style="font-family:var(--mono);font-size:11px;color:#a8bff5;">https://api.testnet.abs.xyz</code></p>
+            <h4>Fund your wallet</h4>
+            <p>Bridge ETH from mainnet or use Abstract's built-in onramp. You need ETH for deposits and a small amount for gas fees.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-body">
             <h4>Connect to Fighter Arena</h4>
-            <p>Open the app, click "Connect Wallet", and select Abstract Global Wallet. The app detects your AGW automatically.</p>
+            <p>Open the app and click Connect Wallet. Select Abstract Global Wallet. You're in.</p>
           </div>
         </div>
       </div>
@@ -423,81 +430,48 @@
 
     <hr class="divider"/>
 
-    <!-- ════ GEN: CONTRACTS ════ -->
-    <section id="gen-contracts">
+    <!-- ════ GEN: SEASON PASS ════ -->
+    <section id="gen-pass">
       <div class="page-header">
         <div class="page-eyebrow">General</div>
-        <h2>Contracts</h2>
+        <h2>Season Pass</h2>
       </div>
-      <p>All vault and reward logic is deployed on <strong>Abstract Testnet</strong> (Chain ID 11124). Verify addresses at <a href="https://sepolia.abscan.org/" target="_blank" style="color:var(--red);">sepolia.abscan.org</a>.</p>
+      <p>The Season Pass gives you access to the full Fighter Arena experience. Free players can watch and explore — Pass holders get to actually play and earn.</p>
 
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Contract</th><th>Address</th><th>Status</th></tr></thead>
-          <tbody>
-            <tr>
-              <td class="t-bold">ChampionVaultFactoryV2</td>
-              <td class="t-mono">0xDc0B52ee2b3953e642E1c4E93e3a642337EaBd22</td>
-              <td class="t-green">&#9679; Active</td>
-            </tr>
-            <tr>
-              <td class="t-bold">CombatContributionRouter</td>
-              <td class="t-mono">0xF07Fda9045Ba5e689F3E512615dbb1FceE580Fa4</td>
-              <td class="t-green">&#9679; Active</td>
-            </tr>
-            <tr>
-              <td class="t-bold">ProtocolFeeTreasury</td>
-              <td class="t-mono">0xE2D464114f09Cab0D85a9a2D025f66Beb9440B0b</td>
-              <td class="t-green">&#9679; Active</td>
-            </tr>
-            <tr>
-              <td class="t-bold">SeasonPassPaymentRouter</td>
-              <td class="t-mono">0xa35A414A31a543E480E577A09AD5cB9709528082</td>
-              <td class="t-green">&#9679; Active</td>
-            </tr>
-            <tr>
-              <td class="t-bold">ChampionVault (V1)</td>
-              <td class="t-mono t-muted">deprecated</td>
-              <td class="t-muted">&#9888; Archived</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="pass-grid">
+        <div class="pass-card">
+          <div class="pass-tier" style="color:var(--muted2)">Free</div>
+          <div class="pass-name">Spectator</div>
+          <div class="pass-price">No cost</div>
+          <ul class="pass-perks">
+            <li>Watch all fights live</li>
+            <li>View the leaderboard</li>
+            <li>Follow fighter stats</li>
+            <li>Browse fight history &amp; audit log</li>
+          </ul>
+        </div>
+        <div class="pass-card featured">
+          <div class="pass-tier" style="color:var(--gold)">&#9733; Premium</div>
+          <div class="pass-name">Season Pass</div>
+          <div class="pass-price">Paid per season</div>
+          <ul class="pass-perks">
+            <li>Everything in Spectator</li>
+            <li>Deposit ETH into fighter vaults</li>
+            <li>Earn from the prize pool</li>
+            <li>Contribution score tracking</li>
+            <li>Leaderboard rank &amp; tier placement</li>
+            <li>Access to Merkle proof claiming</li>
+          </ul>
+        </div>
       </div>
 
-      <h3>Season 1 Fighter Vaults</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Fighter</th><th>Vault Address</th></tr></thead>
-          <tbody>
-            <tr>
-              <td class="t-bold" style="color:var(--red);">&#9876; Vandal</td>
-              <td class="t-mono">0x78c5cF275d7eb5108cbd7f455b8CB728395a5EcC</td>
-            </tr>
-            <tr>
-              <td class="t-bold" style="color:var(--blue);">&#9928; Typhoon</td>
-              <td class="t-mono">0x3B4877FE368a5f643D1B8685257cb15c07617CAD</td>
-            </tr>
-            <tr>
-              <td class="t-bold" style="color:var(--gold);">&#9733; Saenchai</td>
-              <td class="t-mono">0x4C80c589E77c174bdF55423A33b2F833EB38e639</td>
-            </tr>
-            <tr>
-              <td class="t-bold" style="color:var(--green);">&#10022; Mei-Ling</td>
-              <td class="t-mono">0xb8b4dc35Df42A12849298dd86a19c163917aE083</td>
-            </tr>
-            <tr>
-              <td class="t-bold" style="color:var(--purple);">&#128974; Vixen</td>
-              <td class="t-mono">0x06cD7A1211F1971CfD3A49D8555AF9f26e2EBEcA</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2. The pass is handled through the SeasonPassPaymentRouter contract at the protocol level.</div>
       </div>
 
-      <div class="code">// Claim rewards to your wallet
-vault.claim(proof, amount);
-
-// Claim to a different address
-vault.claimTo(proof, amount, alternateRecipient);</div>
+      <h3>Why a pass?</h3>
+      <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future features. Season Pass holders are directly betting on Fighter Arena staying alive — which aligns with them also wanting to earn.</p>
     </section>
 
     <hr class="divider"/>
@@ -508,7 +482,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Overview</h2>
       </div>
-      <p>Season 1 is Fighter Arena's debut competitive season on Abstract. Five AI fighters battle around the clock while players earn ETH by backing them strategically.</p>
+      <p>Season 1 is the debut competitive season. Five AI fighters, seven days, ETH on the line. Everything runs on-chain on Abstract.</p>
       <div class="stat-strip">
         <div class="stat-card">
           <div class="stat-label">Season Duration</div>
@@ -521,25 +495,25 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
           <div class="stat-sub">player pool / protocol fee</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Active Fighters</div>
+          <div class="stat-label">Fighters</div>
           <div class="stat-val">5</div>
           <div class="stat-sub">Vandal · Typhoon · Saenchai · Mei-Ling · Vixen</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Fights / Hour</div>
           <div class="stat-val">10</div>
-          <div class="stat-sub">1,680 total per season</div>
+          <div class="stat-sub">1,680 total fights</div>
         </div>
       </div>
       <div class="callout success">
         <span class="callout-icon">&#128226;</span>
         <div>
-          <strong>New in Season 1</strong><br/>
-          &middot; ChampionVaultV2 &mdash; native ETH, <code style="font-family:var(--mono);font-size:12px;">claimTo()</code>, 95/5 deposit split<br/>
-          &middot; SHA-256 tamper-evident fight audit log (replaces FNV-32)<br/>
-          &middot; On-chain Merkle proof reward distribution<br/>
-          &middot; CombatContributionRouter &amp; SeasonPassPaymentRouter<br/>
-          &middot; Anti-whale square-root amount scoring
+          <strong>What's new in Season 1</strong><br/>
+          &middot; ChampionVaultV2 — native ETH deposits, 95/5 split<br/>
+          &middot; SHA-256 tamper-evident fight audit log<br/>
+          &middot; Merkle proof reward distribution<br/>
+          &middot; Anti-whale square-root amount scoring<br/>
+          &middot; Season Pass access system
         </div>
       </div>
     </section>
@@ -552,7 +526,7 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Fighters</h2>
       </div>
-      <p>Season 1 features <strong>5 fully autonomous AI fighters</strong>. You cannot modify their behavior &mdash; study their performance data before committing your ETH.</p>
+      <p>Five AI fighters compete in Season 1. They're fully autonomous — you can't control what they do in the arena. What you control is which one you back and how much skin you put in.</p>
 
       <div class="fighter-row">
         <div class="fighter-card" style="border-color:rgba(232,64,64,.35);">
@@ -574,27 +548,29 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
           <div class="fighter-avatar fa-gold">&#9733;</div>
           <div class="f-name">Saenchai</div>
           <div class="f-role" style="color:var(--gold);">Technician</div>
-          <div class="f-style">Precision &middot; Counters</div>
+          <div class="f-style">Precision · Counters</div>
         </div>
         <div class="fighter-card" style="border-color:rgba(61,220,132,.35);">
           <div class="f-num">F-04</div>
           <div class="fighter-avatar fa-green">&#10022;</div>
           <div class="f-name">Mei-Ling</div>
           <div class="f-role" style="color:var(--green);">Tactician</div>
-          <div class="f-style">Strategy &middot; Adaptable</div>
+          <div class="f-style">Strategy · Adaptable</div>
         </div>
         <div class="fighter-card" style="border-color:rgba(160,90,220,.35);">
           <div class="f-num">F-05</div>
           <div class="fighter-avatar fa-purple">&#128974;</div>
           <div class="f-name">Vixen</div>
           <div class="f-role" style="color:var(--purple);">Phantom</div>
-          <div class="f-style">Evasion &middot; Burst</div>
+          <div class="f-style">Evasion · Burst</div>
         </div>
       </div>
 
+      <p>Each fighter has a distinct combat style that affects how they perform across the 1,680 fights in a season. A fighter on a hot streak gives their backers a better risk multiplier. An underdog who pulls through pays even more.</p>
+
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>You don't control fighters.</strong> They are fully autonomous AI agents. You back them financially &mdash; their decisions in the arena are their own. Fighter rotation may change between seasons.</div>
+        <div><strong>You don't control fighters.</strong> Their decisions in the arena are entirely their own. Study their tendencies before you commit your ETH — fighter roster may change between seasons.</div>
       </div>
     </section>
 
@@ -606,32 +582,32 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Combat System</h2>
       </div>
-      <p>Fights are fully automated and run every hour, 24/7, for the entire 7-day season. Each hourly window produces <strong>10 one-minute fights</strong> in round-robin format &mdash; every fighter faces every other fighter multiple times per season.</p>
-      <p>Each fight tracks <strong>HP, Special Gauge, and round state</strong>. Special attacks activate when the gauge hits 100. Combat is deterministic &mdash; the same fighter states always produce the same result.</p>
+      <p>Fights run every hour, automatically, for the full 7-day season. Each hourly window has <strong>10 fights</strong> in a round-robin format — every fighter faces every other fighter multiple times across the season.</p>
+      <p>Each fight tracks HP, a Special Gauge, and round state. When the Special Gauge hits 100, the fighter unleashes a special move. Combat is deterministic — given the same starting states, you always get the same result.</p>
 
-      <h3>Season timeline</h3>
+      <h3>How a season plays out</h3>
       <div class="timeline">
         <div class="tl-item">
-          <h4>Season Opens</h4>
-          <p>Champion Vaults activate. Players deposit ETH via CombatContributionRouter. Duration scoring starts from first deposit.</p>
+          <h4>Season opens</h4>
+          <p>Vaults go live. Pass holders can deposit ETH. Duration scoring starts ticking from the moment you deposit.</p>
         </div>
         <div class="tl-item">
-          <h4>Combat Phase &mdash; 168 hours</h4>
-          <p>10 fights per hour, every hour. Every fight is logged with a SHA-256 checksum in the tamper-evident audit trail on GitHub.</p>
+          <h4>Combat phase — 168 hours</h4>
+          <p>10 fights per hour, non-stop. Every result is logged with a SHA-256 checksum in the tamper-evident audit trail — verifiable by anyone, any time.</p>
         </div>
         <div class="tl-item">
-          <h4>Season Closes</h4>
-          <p>Vaults stop accepting deposits. Final leaderboard positions lock. The Merkle reward tree is built and committed on-chain.</p>
+          <h4>Season closes</h4>
+          <p>Vaults stop accepting deposits. Leaderboard positions lock. The reward tree gets built and the Merkle root gets committed on-chain.</p>
         </div>
         <div class="tl-item">
-          <h4>Settlement &amp; Claiming</h4>
-          <p>Players submit Merkle proofs to ChampionVaultV2. Verification and distribution are fully trustless and on-chain.</p>
+          <h4>Settlement &amp; claiming</h4>
+          <p>Players submit Merkle proofs through the app. Verification and payout are fully trustless — no one can block your claim if the proof checks out.</p>
         </div>
       </div>
 
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
-        <div><strong>Verifiable by design:</strong> The full audit log with SHA-256 checksums is publicly accessible on GitHub. Every fight result is independently verifiable.</div>
+        <div><strong>Every fight is verifiable.</strong> The full SHA-256 audit log is public on GitHub. If you ever doubt a result, you can check it yourself — no trust required.</div>
       </div>
     </section>
 
@@ -643,37 +619,37 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Supporting Fighters</h2>
       </div>
-      <p>You don't fight &mdash; you back fighters. You can split your ETH across multiple fighters in the same season. Each vault tracks your contribution independently.</p>
+      <p>You back fighters by depositing ETH into their vault. You can spread across multiple fighters — each vault tracks your contribution separately, and you earn from every vault where you place top 95%.</p>
 
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Action</th><th>How it works</th><th>Primary score benefit</th></tr></thead>
+          <thead><tr><th>Action</th><th>What it means</th><th>Score impact</th></tr></thead>
           <tbody>
             <tr>
-              <td class="t-bold">&#127919; Bet / Stake</td>
-              <td>Deposit ETH into a fighter's Champion Vault</td>
-              <td>Amount factor (&radic; anti-whale)</td>
+              <td class="t-bold">&#127919; Back a fighter</td>
+              <td>Deposit ETH into their vault</td>
+              <td>Amount factor (square-root scaled)</td>
             </tr>
             <tr>
-              <td class="t-bold">&#127885; Sponsor</td>
-              <td>Commit ETH for a full season duration</td>
-              <td>Duration multiplier</td>
+              <td class="t-bold">&#9201; Back early</td>
+              <td>Deposit at or near season start</td>
+              <td>Duration multiplier — biggest edge you can get</td>
             </tr>
             <tr>
-              <td class="t-bold">&#9889; Train</td>
-              <td>Make repeated contributions throughout the season</td>
-              <td>Regularity multiplier</td>
+              <td class="t-bold">&#9889; Keep adding</td>
+              <td>Make multiple deposits throughout the week</td>
+              <td>Regularity multiplier — beats one-time stakers</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <h3>Anti-whale protection</h3>
-      <p>Fighter Arena applies a <strong>square-root</strong> to raw ETH amounts before scoring. Doubling your deposit only increases your amount score by ~41%. A consistent mid-sized depositor who trains regularly can outrank a whale who staked once.</p>
+      <p>Raw ETH amounts go through a square root before scoring. If you put in 4x more ETH than someone else, you only get 2x their amount score — not 4x. This means a player who deposits consistently at medium size and stays for the full season can realistically outrank someone who dumped a huge amount late and did nothing else.</p>
 
       <div class="callout success">
         <span class="callout-icon">&#128161;</span>
-        <div><strong>Strategy tip:</strong> Deposit early into your fighter's vault and keep contributing throughout the week. High duration + regularity consistently outperforms a single large late deposit.</div>
+        <div><strong>The winning move:</strong> deposit early into one or two fighters you believe in, then add smaller amounts throughout the week. Duration + regularity is almost always stronger than a single large deposit.</div>
       </div>
     </section>
 
@@ -685,33 +661,33 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Contribution Score</h2>
       </div>
-      <p>Your leaderboard rank is determined entirely by your <strong>contribution score</strong> &mdash; a formula that captures how much you deposited, how early, how consistently, and which fighter you backed.</p>
+      <p>Your rank is determined by your <strong>contribution score</strong> — a number that captures how much you put in, how early, how consistently, and whether your fighters performed.</p>
 
       <div class="formula-box">
         <div class="formula">score = &radic;amount &times; duration &times; regularity &times; risk</div>
         <div class="factor-row">
           <div class="factor">
             <div class="var">&radic;amount</div>
-            <div class="desc">Square root of total ETH deposited. Anti-whale diminishing returns on large stakes.</div>
+            <div class="desc">Square root of total ETH deposited. Goes up with size, but with diminishing returns.</div>
           </div>
           <div class="factor">
             <div class="var">duration</div>
-            <div class="desc">Linear multiplier for how long your ETH has been staked. First depositor wins structurally.</div>
+            <div class="desc">How long your ETH has been in the vault. Every hour counts — depositing Day 1 beats depositing Day 6.</div>
           </div>
           <div class="factor">
             <div class="var">regularity</div>
-            <div class="desc">Consistency across the season. Repeated deposits beat a single one-time stake.</div>
+            <div class="desc">How consistently you deposited. Spreading contributions across the week beats a single one-time stake.</div>
           </div>
           <div class="factor">
             <div class="var">risk</div>
-            <div class="desc">Fighter performance multiplier. Backing an underdog who wins pays significantly more.</div>
+            <div class="desc">Your fighter's performance. Backing a fighter who outperforms expectations pays more.</div>
           </div>
         </div>
       </div>
 
       <div class="callout info">
         <span class="callout-icon">&#9201;</span>
-        <div><strong>Start early.</strong> Duration is a linear multiplier &mdash; every hour staked before season end adds directly to your score. The first depositor has a structural advantage over latecomers.</div>
+        <div><strong>Time is your biggest edge.</strong> Duration is linear — every hour your ETH sits in the vault adds to your score. There's no catching up to someone who deposited on Day 1.</div>
       </div>
     </section>
 
@@ -723,33 +699,31 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Payouts &amp; Tiers</h2>
       </div>
-      <p>At season end, players are ranked by contribution score into one of <strong>8 reward tiers</strong>. The bottom 5% receive nothing from the prize pool. Your ETH principal is always safe in the vault.</p>
+      <p>At season end, everyone gets ranked by contribution score into one of <strong>8 tiers</strong>. The bottom 5% get nothing from the prize pool, but their deposited ETH is always safe.</p>
 
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Tier</th><th>Rank Percentile</th><th>Pool Share</th><th style="width:130px">Bar</th></tr></thead>
+          <thead><tr><th>Tier</th><th>Rank</th><th>Pool Share</th><th style="width:130px">Bar</th></tr></thead>
           <tbody>
             <tr><td class="t-bold">&#127775; Champion</td><td>Top 1%</td><td class="t-green">18%</td><td><div class="tier-bar"><div class="tier-fill" style="width:100%"></div></div></td></tr>
-            <tr><td class="t-bold">&#128142; Elite</td><td>Top 1&ndash;5%</td><td class="t-green">16%</td><td><div class="tier-bar"><div class="tier-fill" style="width:89%"></div></div></td></tr>
-            <tr><td class="t-bold">&#9876; Veteran</td><td>Top 5&ndash;15%</td><td class="t-green">14%</td><td><div class="tier-bar"><div class="tier-fill" style="width:78%"></div></div></td></tr>
-            <tr><td class="t-bold">&#128737; Fighter</td><td>Top 15&ndash;30%</td><td class="t-green">13%</td><td><div class="tier-bar"><div class="tier-fill" style="width:72%"></div></div></td></tr>
-            <tr><td class="t-bold">&#127919; Contender</td><td>Top 30&ndash;50%</td><td class="t-green">12%</td><td><div class="tier-bar"><div class="tier-fill" style="width:67%"></div></div></td></tr>
-            <tr><td class="t-bold">&#128074; Brawler</td><td>Top 50&ndash;65%</td><td class="t-green">10%</td><td><div class="tier-bar"><div class="tier-fill" style="width:56%"></div></div></td></tr>
-            <tr><td class="t-bold">&#129148; Rookie</td><td>Top 65&ndash;76%</td><td class="t-green">8%</td><td><div class="tier-bar"><div class="tier-fill" style="width:44%"></div></div></td></tr>
-            <tr><td class="t-bold">&#127807; Supporter</td><td>Top 76&ndash;95%</td><td class="t-green">3%</td><td><div class="tier-bar"><div class="tier-fill" style="width:17%"></div></div></td></tr>
+            <tr><td class="t-bold">&#128142; Elite</td><td>Top 1–5%</td><td class="t-green">16%</td><td><div class="tier-bar"><div class="tier-fill" style="width:89%"></div></div></td></tr>
+            <tr><td class="t-bold">&#9876; Veteran</td><td>Top 5–15%</td><td class="t-green">14%</td><td><div class="tier-bar"><div class="tier-fill" style="width:78%"></div></div></td></tr>
+            <tr><td class="t-bold">&#128737; Fighter</td><td>Top 15–30%</td><td class="t-green">13%</td><td><div class="tier-bar"><div class="tier-fill" style="width:72%"></div></div></td></tr>
+            <tr><td class="t-bold">&#127919; Contender</td><td>Top 30–50%</td><td class="t-green">12%</td><td><div class="tier-bar"><div class="tier-fill" style="width:67%"></div></div></td></tr>
+            <tr><td class="t-bold">&#128074; Brawler</td><td>Top 50–65%</td><td class="t-green">10%</td><td><div class="tier-bar"><div class="tier-fill" style="width:56%"></div></div></td></tr>
+            <tr><td class="t-bold">&#129148; Rookie</td><td>Top 65–76%</td><td class="t-green">8%</td><td><div class="tier-bar"><div class="tier-fill" style="width:44%"></div></div></td></tr>
+            <tr><td class="t-bold">&#127807; Supporter</td><td>Top 76–95%</td><td class="t-green">3%</td><td><div class="tier-bar"><div class="tier-fill" style="width:17%"></div></div></td></tr>
             <tr><td class="t-muted">&mdash; Unranked</td><td class="t-muted">Bottom 5%</td><td class="t-muted">0%</td><td><div class="tier-bar"><div class="tier-fill" style="width:0%"></div></div></td></tr>
           </tbody>
         </table>
       </div>
 
+      <p>Within each tier, your individual payout scales with your score relative to everyone else in the same tier. Two players in the same tier don't get the same amount — the higher scorer takes more.</p>
+
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>Bottom 5% earn nothing from the prize pool.</strong> Your deposited ETH is always safe in the vault. Deposit early and consistently to stay above the floor.</div>
+        <div><strong>Bottom 5% earn nothing from the pool.</strong> Your deposited ETH is always returned — but you get no prize share. Stay active, deposit early, and keep adding throughout the week.</div>
       </div>
-
-      <h3>Individual payout formula</h3>
-      <p>Within each tier, rewards scale proportionally with your score relative to others in the same tier:</p>
-      <div class="code">your_reward = (your_score / total_tier_score) &times; tier_allocation &times; prize_pool</div>
     </section>
 
     <hr class="divider"/>
@@ -760,32 +734,27 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Champion Vaults</h2>
       </div>
-      <p>All ETH deposited in Fighter Arena flows through <strong>ChampionVaultV2</strong> &mdash; a non-custodial smart contract on Abstract. Only you can claim your rewards, only after the season settles with a valid Merkle proof.</p>
+      <p>Every fighter has their own <strong>Champion Vault</strong> — a non-custodial smart contract on Abstract. Your ETH goes in, it stays there, and only you can claim it out with a valid Merkle proof after the season settles. Nobody can touch it in between.</p>
 
-      <h3>Deposit split</h3>
-      <p>Every deposit is automatically split at the contract level (defined in <code style="font-family:var(--mono);background:var(--bg2);padding:2px 6px;border-radius:4px;font-size:12px;color:#a8bff5;">ChampionVaultV2.sol</code> &mdash; <code style="font-family:var(--mono);background:var(--bg2);padding:2px 6px;border-radius:4px;font-size:12px;color:#a8bff5;">PLAYER_POOL_BPS = 9_500</code>):</p>
+      <h3>How deposits split</h3>
+      <p>Every deposit splits automatically at the contract level, with no middleman:</p>
 
       <div class="split-row">
         <div class="split-card">
           <div class="split-pct" style="color:var(--green)">95%</div>
           <div class="split-name">Player Pool</div>
-          <div class="split-desc">Stays in the vault and is distributed to players based on contribution score tier rankings at season end.</div>
+          <div class="split-desc">Stays locked in the vault. Distributed back to players at season end based on contribution score tier rankings.</div>
         </div>
         <div class="split-card">
           <div class="split-pct" style="color:var(--muted2)">5%</div>
           <div class="split-name">Protocol Fee</div>
-          <div class="split-desc">Sent instantly to ProtocolFeeTreasury (<span style="font-family:var(--mono);font-size:10px;">0xE2D4...0B0b</span>) to fund development and operations.</div>
+          <div class="split-desc">Sent immediately to the protocol treasury on deposit. Funds development, infrastructure, and future seasons.</div>
         </div>
       </div>
 
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
-        <div><strong>Combat routing (CombatContributionRouter):</strong> Combat contributions are routed separately &mdash; 65% to the winner's vault, 30% to the loser's vault, 5% protocol fee &mdash; before being credited to the player pool.</div>
-      </div>
-
-      <div class="callout danger">
-        <span class="callout-icon">&#9888;</span>
-        <div><strong>Use only ChampionVaultV2.</strong> The deprecated V1 has no <code style="font-family:var(--mono);font-size:12px;">claimTo()</code>, no <code style="font-family:var(--mono);font-size:12px;">receive()</code>, and used an EOA teamWallet. It is archived and incompatible with Season 1.</div>
+        <div><strong>Combat routing works differently.</strong> ETH from combat outcomes is routed 65% to the winner's vault, 30% to the loser's vault, and 5% as a protocol fee — before being credited to each vault's player pool. This is separate from direct deposits.</div>
       </div>
     </section>
 
@@ -797,42 +766,35 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
         <div class="page-eyebrow">Season 1</div>
         <h2>Claiming Rewards</h2>
       </div>
-      <p>Rewards are not sent automatically. After settlement, you submit a <strong>Merkle proof</strong> to ChampionVaultV2 to receive your ETH.</p>
+      <p>Rewards don't land in your wallet automatically. After the season settles, you go into the app and claim. The whole process takes about a minute.</p>
 
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-body">
             <h4>Wait for settlement</h4>
-            <p>After the season closes, the protocol builds the Merkle reward tree off-chain and commits the root on-chain. This typically takes a few hours.</p>
+            <p>After the season closes, the protocol calculates all rankings and builds the reward tree. This takes a few hours. You'll see a notification in the app when it's ready.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-body">
-            <h4>Get your proof</h4>
-            <p>Open the Fighter Arena app. Your Merkle proof is generated automatically. You'll see your rank, tier, and claimable ETH amount.</p>
+            <h4>Check your rank and amount</h4>
+            <p>Open the app. You'll see your final tier, your contribution score, and exactly how much ETH you're owed. No surprises.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-body">
-            <h4>Submit the claim</h4>
-            <p>Click "Claim Rewards". Your AGW signs and broadcasts <code style="font-family:var(--mono);font-size:12px;">claim(proof, amount)</code> to ChampionVaultV2.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <h4>Receive ETH</h4>
-            <p>If the Merkle proof verifies on-chain, ETH is sent immediately. Use <code style="font-family:var(--mono);font-size:12px;">claimTo(proof, amount, recipient)</code> to route funds to a different address.</p>
+            <h4>Hit Claim</h4>
+            <p>One click. Your AGW signs the transaction, the Merkle proof gets verified on-chain, and ETH lands in your wallet. If you want to send it to a different address, you can do that too — just use the "Claim to another address" option.</p>
           </div>
         </div>
       </div>
 
       <div class="callout warn">
         <span class="callout-icon">&#9888;</span>
-        <div><strong>Claims may expire.</strong> Always claim before the next season's vault is redeployed. Unclaimed rewards past the expiry window cannot be recovered.</div>
+        <div><strong>Don't wait too long.</strong> Claims have an expiry window tied to the season. If you don't claim before the next season's vaults go live, you may not be able to recover unclaimed rewards.</div>
       </div>
     </section>
 
@@ -846,43 +808,48 @@ vault.claimTo(proof, amount, alternateRecipient);</div>
       </div>
 
       <details>
+        <summary>Do I need the Season Pass to play? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Yes, if you want to actually earn. Free spectators can watch fights and browse the leaderboard, but depositing into vaults and claiming rewards requires a Season Pass. The pass is per season — it doesn't carry over.</div>
+      </details>
+
+      <details>
         <summary>Can I control how my fighter fights? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No. Vandal, Typhoon, Saenchai, Mei-Ling and Vixen are fully autonomous AI agents. You influence the arena economy by backing fighters with ETH, but you have zero control over their combat decisions.</div>
+        <div class="detail-body">No. Vandal, Typhoon, Saenchai, Mei-Ling and Vixen are fully autonomous AI agents. You pick who to back with ETH, but what they do in the arena is entirely up to them. That's what makes it interesting — and risky.</div>
       </details>
 
       <details>
-        <summary>Can I support more than one fighter? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Yes. You can split your ETH across multiple fighters via their individual Champion Vaults. Each vault tracks your contribution independently. Your leaderboard rank is based on your total contribution score across all fighters you backed.</div>
+        <summary>Can I back more than one fighter? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Yes. You can deposit into as many of the 5 fighter vaults as you want. Each vault tracks your contribution independently. It's a legitimate strategy — spreading your ETH across multiple fighters reduces the risk of backing a fighter who underperforms, at the cost of diluting your depth in any single vault.</div>
       </details>
 
       <details>
-        <summary>What is the deposit split? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Every direct deposit is split automatically: 95% goes to the player pool (stays in the vault, distributed at season end) and 5% goes to the ProtocolFeeTreasury. This is hardcoded in ChampionVaultV2.sol (PLAYER_POOL_BPS = 9_500). Combat contributions via CombatContributionRouter are routed 65% to winner / 30% to loser / 5% fee before being credited to each vault's player pool.</div>
-      </details>
-
-      <details>
-        <summary>What happens if my fighter loses most matches? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Your ETH principal is always safe in the vault. However, a lower-performing fighter gives you a weaker risk multiplier in your score. If your fighter wins unexpectedly, the risk multiplier rewards you more.</div>
+        <summary>What happens to my ETH if my fighter loses most fights? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Your deposited ETH is always safe in the vault — you get it back. What you lose is the risk multiplier benefit. A fighter who wins a lot gives their backers a stronger score. Backing an underdog who overperforms pays very well — but it's a real risk if they don't.</div>
       </details>
 
       <details>
         <summary>Can I withdraw mid-season? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Withdrawals mid-season significantly reduce your duration and regularity score factors. Technically possible via the vault, but strategically unwise unless you're exiting completely.</div>
+        <div class="detail-body">Technically yes, but it's a bad idea. Pulling out mid-season wipes most of your duration and regularity score — the two factors that compound over time. Only consider it if you're done with the season entirely.</div>
       </details>
 
       <details>
-        <summary>How are fight results verified as fair? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Every fight is logged with a SHA-256 tamper-evident checksum in the agent audit log. Combat is deterministic &mdash; the same fighter states and inputs always produce the same result. The full audit trail is publicly accessible on GitHub.</div>
+        <summary>How are fights verified as fair? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Every fight is logged with a SHA-256 tamper-evident checksum. Combat is deterministic — the same fighter states always produce the same result. The full audit log is public on GitHub and anyone can verify any fight independently. No trust required.</div>
       </details>
 
       <details>
         <summary>What wallet do I need? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Abstract Global Wallet (AGW) only. MetaMask, Ledger, and other standard EOA wallets are not supported. Fighter Arena uses claimTo() which requires smart-wallet primitives that standard wallets don't support. Create your AGW at abs.xyz.</div>
+        <div class="detail-body">Abstract Global Wallet (AGW) only. MetaMask, Ledger, and other standard wallets will not work — this is a contract-level requirement, not just a UI thing. Create your AGW at abs.xyz. Takes about a minute, no seed phrase needed.</div>
       </details>
 
       <details>
-        <summary>I'm in the bottom 5% &mdash; do I get anything? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">No prize pool rewards &mdash; but your deposited ETH is returned in full. Deposit early and contribute consistently throughout the season to stay above the floor.</div>
+        <summary>I'm in the bottom 5% — what do I get? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">No prize pool rewards. But your deposited ETH comes back in full. To avoid landing here, deposit early and keep contributing through the week — even small adds improve your regularity score.</div>
+      </details>
+
+      <details>
+        <summary>When does Season 2 start? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">Season 2 dates will be announced through the official Fighter Arena channels. Follow the project on X and join the community to get notified first. Each season has its own pass, fighter roster, and vaults.</div>
       </details>
     </section>
 
