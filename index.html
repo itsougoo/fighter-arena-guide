@@ -122,6 +122,9 @@
   .callout.danger  { background: var(--red-dim);    border-color: rgba(232,64,64,.25);   color: #e88080; }
   .callout strong { color: var(--text); }
 
+  .newlist { margin: 8px 0 0; display: flex; flex-direction: column; gap: 4px; }
+  .newlist span { display: block; font-size: 13px; }
+
   .steps { margin: 20px 0; }
   .step { display: flex; gap: 16px; margin-bottom: 22px; align-items: flex-start; }
   .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; box-shadow: var(--red-glow); }
@@ -183,7 +186,7 @@
   .pass-price { font-size: 14px; color: var(--muted2); margin-bottom: 16px; }
   .pass-perks { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .pass-perks li { font-size: 13px; color: var(--muted); display: flex; gap: 8px; align-items: flex-start; }
-  .pass-perks li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .pass-perks li::before { content: '&#10003;'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
   details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; transition: border-color .2s; }
   details:hover { border-color: var(--border-glow); }
@@ -358,7 +361,7 @@
           <div class="step-num">3</div>
           <div class="step-body">
             <h4>Pick a fighter</h4>
-            <p>Look at the 5 Season 1 fighters — Vandal, Typhoon, Saenchai, Mei-Ling, Vixen — and decide who you want to back. You can split across multiple fighters if you want.</p>
+            <p>Look at the 5 Season 1 fighters and decide who you want to back. You can split across multiple fighters if you want.</p>
           </div>
         </div>
         <div class="step">
@@ -447,7 +450,7 @@
             <li>Watch all fights live</li>
             <li>View the leaderboard</li>
             <li>Follow fighter stats</li>
-            <li>Browse fight history &amp; audit log</li>
+            <li>Browse fight history and audit log</li>
           </ul>
         </div>
         <div class="pass-card featured">
@@ -459,7 +462,7 @@
             <li>Deposit ETH into fighter vaults</li>
             <li>Earn from the prize pool</li>
             <li>Contribution score tracking</li>
-            <li>Leaderboard rank &amp; tier placement</li>
+            <li>Leaderboard rank and tier placement</li>
             <li>Access to Merkle proof claiming</li>
           </ul>
         </div>
@@ -467,11 +470,11 @@
 
       <div class="callout info">
         <span class="callout-icon">&#8505;</span>
-        <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2. The pass is handled through the SeasonPassPaymentRouter contract at the protocol level.</div>
+        <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2.</div>
       </div>
 
       <h3>Why a pass?</h3>
-      <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future features. Season Pass holders are directly betting on Fighter Arena staying alive — which aligns with them also wanting to earn.</p>
+      <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future seasons. Season Pass holders are directly betting on Fighter Arena staying alive — which aligns with them also wanting to earn.</p>
     </section>
 
     <hr class="divider"/>
@@ -497,7 +500,7 @@
         <div class="stat-card">
           <div class="stat-label">Fighters</div>
           <div class="stat-val">5</div>
-          <div class="stat-sub">Vandal · Typhoon · Saenchai · Mei-Ling · Vixen</div>
+          <div class="stat-sub">Vandal, Typhoon, Saenchai, Mei-Ling, Vixen</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Fights / Hour</div>
@@ -508,12 +511,14 @@
       <div class="callout success">
         <span class="callout-icon">&#128226;</span>
         <div>
-          <strong>What's new in Season 1</strong><br/>
-          &middot; ChampionVaultV2 — native ETH deposits, 95/5 split<br/>
-          &middot; SHA-256 tamper-evident fight audit log<br/>
-          &middot; Merkle proof reward distribution<br/>
-          &middot; Anti-whale square-root amount scoring<br/>
-          &middot; Season Pass access system
+          <strong>What's new in Season 1</strong>
+          <div class="newlist">
+            <span>ChampionVaultV2 with native ETH deposits and a clean 95/5 split</span>
+            <span>SHA-256 tamper-evident fight audit log replacing the old FNV-32</span>
+            <span>Merkle proof reward distribution — fully trustless claiming</span>
+            <span>Anti-whale square-root amount scoring</span>
+            <span>Season Pass access system</span>
+          </div>
         </div>
       </div>
     </section>
@@ -600,7 +605,7 @@
           <p>Vaults stop accepting deposits. Leaderboard positions lock. The reward tree gets built and the Merkle root gets committed on-chain.</p>
         </div>
         <div class="tl-item">
-          <h4>Settlement &amp; claiming</h4>
+          <h4>Settlement and claiming</h4>
           <p>Players submit Merkle proofs through the app. Verification and payout are fully trustless — no one can block your claim if the proof checks out.</p>
         </div>
       </div>
@@ -649,7 +654,7 @@
 
       <div class="callout success">
         <span class="callout-icon">&#128161;</span>
-        <div><strong>The winning move:</strong> deposit early into one or two fighters you believe in, then add smaller amounts throughout the week. Duration + regularity is almost always stronger than a single large deposit.</div>
+        <div><strong>The winning move:</strong> deposit early into one or two fighters you believe in, then add smaller amounts throughout the week. Duration and regularity combined is almost always stronger than a single large deposit.</div>
       </div>
     </section>
 
@@ -713,7 +718,7 @@
             <tr><td class="t-bold">&#128074; Brawler</td><td>Top 50–65%</td><td class="t-green">10%</td><td><div class="tier-bar"><div class="tier-fill" style="width:56%"></div></div></td></tr>
             <tr><td class="t-bold">&#129148; Rookie</td><td>Top 65–76%</td><td class="t-green">8%</td><td><div class="tier-bar"><div class="tier-fill" style="width:44%"></div></div></td></tr>
             <tr><td class="t-bold">&#127807; Supporter</td><td>Top 76–95%</td><td class="t-green">3%</td><td><div class="tier-bar"><div class="tier-fill" style="width:17%"></div></div></td></tr>
-            <tr><td class="t-muted">&mdash; Unranked</td><td class="t-muted">Bottom 5%</td><td class="t-muted">0%</td><td><div class="tier-bar"><div class="tier-fill" style="width:0%"></div></div></td></tr>
+            <tr><td class="t-muted">Unranked</td><td class="t-muted">Bottom 5%</td><td class="t-muted">0%</td><td><div class="tier-bar"><div class="tier-fill" style="width:0%"></div></div></td></tr>
           </tbody>
         </table>
       </div>
@@ -819,7 +824,7 @@
 
       <details>
         <summary>Can I back more than one fighter? <span class="sum-chevron">&#9662;</span></summary>
-        <div class="detail-body">Yes. You can deposit into as many of the 5 fighter vaults as you want. Each vault tracks your contribution independently. It's a legitimate strategy — spreading your ETH across multiple fighters reduces the risk of backing a fighter who underperforms, at the cost of diluting your depth in any single vault.</div>
+        <div class="detail-body">Yes. You can deposit into as many of the 5 fighter vaults as you want. Each vault tracks your contribution independently. Spreading your ETH across multiple fighters reduces the risk of backing someone who underperforms, at the cost of diluting your depth in any single vault.</div>
       </details>
 
       <details>
