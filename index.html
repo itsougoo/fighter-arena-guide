@@ -135,31 +135,37 @@
   .fighter-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 22px 0; }
   .fighter-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
-    padding: 20px 10px 16px; text-align: center;
+    padding: 0 0 16px; text-align: center;
     transition: border-color .2s, transform .25s, box-shadow .25s; cursor: default;
     position: relative; overflow: hidden;
   }
   .fighter-card::before {
     content: ''; position: absolute; inset: 0;
     background: radial-gradient(ellipse at 50% 0%, var(--fc, rgba(232,64,64,.08)) 0%, transparent 70%);
-    pointer-events: none;
+    pointer-events: none; z-index: 1;
   }
   .fighter-card:hover { transform: translateY(-4px); }
 
   .fighter-portrait {
-    width: 72px; height: 72px; margin: 0 auto 12px;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    border: 2px solid var(--fp, #e84040);
-    box-shadow: 0 0 14px var(--fp, #e84040), 0 0 0 4px rgba(255,255,255,.03);
-    background: var(--surface2);
-    overflow: hidden;
+    width: 100%; aspect-ratio: 3/4; overflow: hidden;
+    position: relative; margin-bottom: 12px;
   }
-  .fighter-portrait svg { width: 54px; height: 54px; }
+  .fighter-portrait img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    display: block;
+    transition: transform .3s;
+  }
+  .fighter-card:hover .fighter-portrait img { transform: scale(1.05); }
+  .fighter-portrait::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+    background: linear-gradient(to top, var(--surface), transparent);
+    pointer-events: none;
+  }
 
-  .f-num { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--muted2); text-transform: uppercase; margin-bottom: 10px; }
-  .f-name { font-size: 13.5px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
-  .f-role { font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; }
-  .f-style { font-size: 10.5px; color: var(--muted2); }
+  .f-num { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--muted2); text-transform: uppercase; margin-bottom: 6px; position: relative; z-index: 2; }
+  .f-name { font-size: 13.5px; font-weight: 700; color: var(--text); margin-bottom: 3px; position: relative; z-index: 2; }
+  .f-role { font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; position: relative; z-index: 2; }
+  .f-style { font-size: 10.5px; color: var(--muted2); position: relative; z-index: 2; padding: 0 8px; }
 
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin: 18px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
@@ -544,112 +550,57 @@
       <div class="fighter-row">
 
         <!-- VANDAL -->
-        <div class="fighter-card" style="--fc:rgba(232,64,64,.1); border-color:rgba(232,64,64,.4);">
-          <div class="f-num">F-01</div>
-          <div class="fighter-portrait" style="--fp:#e84040;">
-            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="27" cy="17" r="9" fill="#e84040" opacity=".9"/>
-              <rect x="19" y="27" width="16" height="18" rx="4" fill="#e84040" opacity=".85"/>
-              <rect x="10" y="29" width="9" height="5" rx="2.5" fill="#e84040" opacity=".7"/>
-              <rect x="35" y="29" width="9" height="5" rx="2.5" fill="#e84040" opacity=".7"/>
-              <rect x="20" y="45" width="6" height="7" rx="2" fill="#e84040" opacity=".7"/>
-              <rect x="28" y="45" width="6" height="7" rx="2" fill="#e84040" opacity=".7"/>
-              <path d="M22 14 L27 8 L32 14" stroke="#ff8080" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-              <circle cx="23" cy="17" r="1.5" fill="#fff" opacity=".9"/>
-              <circle cx="31" cy="17" r="1.5" fill="#fff" opacity=".9"/>
-            </svg>
+        <div class="fighter-card" style="--fc:rgba(160,90,220,.12); border-color:rgba(160,90,220,.4);">
+          <div class="fighter-portrait">
+            <img src="vandal.png" alt="Vandal"/>
           </div>
+          <div class="f-num">F-01</div>
           <div class="f-name">Vandal</div>
-          <div class="f-role" style="color:#e84040;">Striker</div>
+          <div class="f-role" style="color:#a05adc;">Striker</div>
           <div class="f-style">Aggressive  High risk</div>
         </div>
 
         <!-- TYPHOON -->
-        <div class="fighter-card" style="--fc:rgba(91,141,238,.1); border-color:rgba(91,141,238,.4);">
-          <div class="f-num">F-02</div>
-          <div class="fighter-portrait" style="--fp:#5b8dee;">
-            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="27" cy="17" r="10" fill="#5b8dee" opacity=".9"/>
-              <rect x="18" y="27" width="18" height="19" rx="4" fill="#5b8dee" opacity=".85"/>
-              <rect x="8" y="28" width="10" height="6" rx="3" fill="#5b8dee" opacity=".7"/>
-              <rect x="36" y="28" width="10" height="6" rx="3" fill="#5b8dee" opacity=".7"/>
-              <rect x="19" y="46" width="7" height="6" rx="2" fill="#5b8dee" opacity=".7"/>
-              <rect x="28" y="46" width="7" height="6" rx="2" fill="#5b8dee" opacity=".7"/>
-              <path d="M20 15 Q27 10 34 15" stroke="#a0c0ff" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <circle cx="23" cy="17" r="1.8" fill="#fff" opacity=".9"/>
-              <circle cx="31" cy="17" r="1.8" fill="#fff" opacity=".9"/>
-              <path d="M24 20 L27 22 L30 20" stroke="#a0c0ff" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-            </svg>
+        <div class="fighter-card" style="--fc:rgba(232,64,64,.12); border-color:rgba(232,64,64,.4);">
+          <div class="fighter-portrait">
+            <img src="typhon.png" alt="Typhoon"/>
           </div>
+          <div class="f-num">F-02</div>
           <div class="f-name">Typhoon</div>
-          <div class="f-role" style="color:#5b8dee;">Brawler</div>
+          <div class="f-role" style="color:#e84040;">Brawler</div>
           <div class="f-style">Raw power  Endurance</div>
         </div>
 
         <!-- SAENCHAI -->
-        <div class="fighter-card" style="--fc:rgba(245,200,66,.1); border-color:rgba(245,200,66,.4);">
-          <div class="f-num">F-03</div>
-          <div class="fighter-portrait" style="--fp:#f5c842;">
-            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="27" cy="16" r="9" fill="#f5c842" opacity=".9"/>
-              <rect x="20" y="26" width="14" height="18" rx="3" fill="#f5c842" opacity=".85"/>
-              <rect x="11" y="28" width="9" height="4" rx="2" fill="#f5c842" opacity=".7"/>
-              <rect x="34" y="28" width="9" height="4" rx="2" fill="#f5c842" opacity=".7"/>
-              <rect x="21" y="44" width="5" height="8" rx="2" fill="#f5c842" opacity=".7"/>
-              <rect x="28" y="44" width="5" height="8" rx="2" fill="#f5c842" opacity=".7"/>
-              <path d="M22 13 L27 7 L32 13" stroke="#ffe080" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-              <path d="M24 13 L27 9 L30 13" fill="#f5c842" opacity=".5"/>
-              <circle cx="23.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
-              <circle cx="30.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
-              <path d="M25 19 L27 21 L29 19" stroke="#ffe080" stroke-width="1" fill="none"/>
-            </svg>
+        <div class="fighter-card" style="--fc:rgba(91,141,238,.12); border-color:rgba(91,141,238,.4);">
+          <div class="fighter-portrait">
+            <img src="sebchai.png" alt="Saenchai"/>
           </div>
+          <div class="f-num">F-03</div>
           <div class="f-name">Saenchai</div>
-          <div class="f-role" style="color:#f5c842;">Technician</div>
+          <div class="f-role" style="color:#5b8dee;">Technician</div>
           <div class="f-style">Precision  Counters</div>
         </div>
 
         <!-- MEI-LING -->
-        <div class="fighter-card" style="--fc:rgba(61,220,132,.1); border-color:rgba(61,220,132,.4);">
-          <div class="f-num">F-04</div>
-          <div class="fighter-portrait" style="--fp:#3ddc84;">
-            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="27" cy="16" r="9" fill="#3ddc84" opacity=".9"/>
-              <rect x="20" y="26" width="14" height="18" rx="4" fill="#3ddc84" opacity=".85"/>
-              <rect x="11" y="29" width="9" height="4" rx="2" fill="#3ddc84" opacity=".7"/>
-              <rect x="34" y="29" width="9" height="4" rx="2" fill="#3ddc84" opacity=".7"/>
-              <rect x="21" y="44" width="5" height="8" rx="2" fill="#3ddc84" opacity=".7"/>
-              <rect x="28" y="44" width="5" height="8" rx="2" fill="#3ddc84" opacity=".7"/>
-              <path d="M21 13 Q27 8 33 13" stroke="#80ffbe" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-              <circle cx="23.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
-              <circle cx="30.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
-              <path d="M22 12 L20 10 M32 12 L34 10" stroke="#80ffbe" stroke-width="1.2" stroke-linecap="round"/>
-            </svg>
+        <div class="fighter-card" style="--fc:rgba(160,90,220,.12); border-color:rgba(160,90,220,.4);">
+          <div class="fighter-portrait">
+            <img src="mei ling.png" alt="Mei-Ling"/>
           </div>
+          <div class="f-num">F-04</div>
           <div class="f-name">Mei-Ling</div>
-          <div class="f-role" style="color:#3ddc84;">Tactician</div>
+          <div class="f-role" style="color:#a05adc;">Tactician</div>
           <div class="f-style">Strategy  Adaptable</div>
         </div>
 
         <!-- VIXEN -->
-        <div class="fighter-card" style="--fc:rgba(160,90,220,.1); border-color:rgba(160,90,220,.4);">
-          <div class="f-num">F-05</div>
-          <div class="fighter-portrait" style="--fp:#a05adc;">
-            <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="27" cy="16" r="9" fill="#a05adc" opacity=".9"/>
-              <rect x="20" y="26" width="14" height="18" rx="4" fill="#a05adc" opacity=".85"/>
-              <rect x="11" y="29" width="9" height="4" rx="2" fill="#a05adc" opacity=".7"/>
-              <rect x="34" y="29" width="9" height="4" rx="2" fill="#a05adc" opacity=".7"/>
-              <rect x="21" y="44" width="5" height="8" rx="2" fill="#a05adc" opacity=".7"/>
-              <rect x="28" y="44" width="5" height="8" rx="2" fill="#a05adc" opacity=".7"/>
-              <path d="M19 12 L22 8 L27 11 L32 8 L35 12" stroke="#d080ff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="23.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
-              <circle cx="30.5" cy="16" r="1.5" fill="#fff" opacity=".9"/>
-              <circle cx="27" cy="19" r="1.2" fill="#d080ff" opacity=".7"/>
-            </svg>
+        <div class="fighter-card" style="--fc:rgba(61,220,132,.12); border-color:rgba(61,220,132,.4);">
+          <div class="fighter-portrait">
+            <img src="vixen.png" alt="Vixen"/>
           </div>
+          <div class="f-num">F-05</div>
           <div class="f-name">Vixen</div>
-          <div class="f-role" style="color:#a05adc;">Phantom</div>
+          <div class="f-role" style="color:#3ddc84;">Phantom</div>
           <div class="f-style">Evasion  Burst</div>
         </div>
 
