@@ -522,8 +522,8 @@
         <div><strong>One pass per season.</strong> Passes don't carry over between seasons. If you played Season 1, you'll need a new pass for Season 2. Each season costs 0.001 ETH.</div>
       </div>
 
-      <h3>Why a pass?</h3>
-      <p>The Season Pass is how the game stays sustainable. The protocol fee from vaults covers infrastructure, but the pass funds ongoing development, new fighters, and future seasons. At 0.001 ETH it is designed to be accessible to anyone who wants to play seriously.</p>
+      <h3>Where does the pass fee go?</h3>
+      <p>The 0.001 ETH you pay for the Season Pass goes entirely to the team. It does not enter the prize pool. It funds ongoing development, server infrastructure, new fighters, and future seasons. The prize pool is separate and comes only from vault deposits, which follow the 95/5 split described in the Champion Vaults section.</p>
     </section>
 
     <hr class="divider"/>
@@ -796,8 +796,8 @@
       </div>
       <p>Every fighter has their own <strong>Champion Vault</strong>, a non custodial smart contract on Abstract. Your ETH goes in, it stays there, and only you can claim it out with a valid Merkle proof after the season settles. Nobody can touch it in between.</p>
 
-      <h3>How deposits split</h3>
-      <p>Every deposit splits automatically at the contract level, with no middleman:</p>
+      <h3>How vault deposits split</h3>
+      <p>Every deposit into a fighter vault splits automatically at the contract level. This split applies only to vault deposits and has nothing to do with the Season Pass fee.</p>
 
       <div class="split-row">
         <div class="split-card">
@@ -810,6 +810,11 @@
           <div class="split-name">Protocol Fee</div>
           <div class="split-desc">Sent immediately to the protocol treasury on deposit. Funds development, infrastructure, and future seasons.</div>
         </div>
+      </div>
+
+      <div class="callout info">
+        <span class="callout-icon">&#8505;</span>
+        <div><strong>Season Pass fees are separate.</strong> The 0.001 ETH pass cost goes directly to the team and does not enter the prize pool. The 95/5 split only applies to ETH deposited into fighter vaults.</div>
       </div>
 
       <div class="callout info">
@@ -868,6 +873,11 @@
       <details>
         <summary>Do I need the Season Pass to play? <span class="sum-chevron">&#9662;</span></summary>
         <div class="detail-body">Yes. Without a Season Pass you are blocked on the home screen. You cannot see fighters, deposit ETH, view the leaderboard, or claim rewards. The pass costs 0.001 ETH per season and does not carry over to the next one.</div>
+      </details>
+
+      <details>
+        <summary>Where does my 0.001 ETH pass fee go? <span class="sum-chevron">&#9662;</span></summary>
+        <div class="detail-body">The pass fee goes entirely to the team. It does not enter the prize pool. The 95/5 split only applies to ETH deposited into fighter vaults, not to the Season Pass purchase.</div>
       </details>
 
       <details>
